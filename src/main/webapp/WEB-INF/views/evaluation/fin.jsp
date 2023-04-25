@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var = 'root' value = "${pageContext.request.contextPath }/"/> <!-- 절대경로 설정 : -->
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>기말 강의평가 입력</title>
+<title>성적 입력</title>
 <style>
+/*강의 선택*/
 	.sec{
 	 position:absolute;
 	 top:8%;
@@ -14,166 +14,240 @@
 	 width: 85%;
 	 height: 92%;
 	}
-
 	.contents{
 		width: 100%;
 		height: 100%;
 	}
-	
-	.enrolled{
-		background-color: #f2f2f2;
-	}
-	
-	.table {
-		border-collapse: collapse;
-		width: 100%;
-		margin: 0 auto;
-		margin-top: 10px;
-		overflow-x: auto;
-	}
-	
-	.row {
-	  display: table-row;
-	}
-	
-	.cell {
-	  display: table-cell;
-	  padding: 8px;
-	  border: 1px solid #ccc;
-	  text-align: center;
-	}
-	
-	.header {
-	  font-weight: bold;
-	  background-color: #f2f2f2;
-	}
-	
-	.header .cell {
-	  border-top: 2px solid #444;
-	  border-bottom: 2px solid #444;
-	/* css 추가 바람 */
+.lec-sel {
+  display: flex; /* Flexbox 레이아웃 적용 */
+   flex-wrap: nowrap;
+  align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
+  
+}
+.lec-sel2 {
+  display: flex; /* Flexbox 레이아웃 적용 */
+   flex-wrap: nowrap;
+  align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
+  }
+.lec-sel > div {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  border-right : 2px solid #44f;
+  padding: 10px;
+  height: 10px;
+}
+.lec-sel2 > div {
+ flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+  border-right : 1px solid #ccc;
+  padding: 5px;
+ 
+  }
+/* 교수정보 css  */
+.lecture-info  {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  border: none;
+}
+.lecture-info > div {
+  text-align: left;
+  padding: 0 10px;
+  border-right: 2px solid #4444ff;
+}
+.lecture-id-value {
+  border-right: none;
+}
+/* 성적입력 css  */
+.eval_check{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 10px;
+	border: none;
+}
+.eval_check>div {
+	flex: 1;
+	text-align: center;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+    }
+.eval_check>div:first-child {
+	border-left: none;
+	font
+}
+.eval_check>div:last-child {
+	border-right: none;
+}
+.eval_check > div.eval_choice {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+   justify-content: center;
+  
+}
+.eval_num{
+	witdh : 120px;
+}
+.eval_check1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .eval_num {
+        width: 120px;
+        text-align: center;
+    }
+    
+    .eval_q {
+        flex-grow: 1;
+        text-align: left;
+    }
 </style>
+<script>
+ function inputg() {
+	 var section = document.getElementById("inputg");
+	 if(section.style.display=="none"){
+		 section.style.display="block";
+	 }else{
+		 section.style.dispaly="none";
+	 }
+ }
+ 
+	</script>
 </head>
 <body>
-	
+
 	<c:import url="/WEB-INF/views/academy/base.jsp"/>
-	
+	<!-- 
+	 -->
 	<section class="sec">
+	
 		<div class = "contents">
-		<!-- .contents 안에 html 추가 바람 -->
-			<header style="margin: 15px, 15px, 10px, 20px; background-color: skyblue; height : 15%;">
+			<!-- 강의선택  -->
+			<div style="text-align: left; font-size: 18px; padding: 5px;">강의
+				선택</div>
+			<div class="lec-sel" style="font-weight: bold">
+				<div class="lec-id">학수번호</div>
+				<div class="lec-name">과목명</div>
+				<div class="lec-type">이수구분</div>
+				<div class="lec-grade">학년</div>
+				<div class="lec-credit">학점</div>
+				<div class="lec-class">강의실</div>
+				<div class="lec-number">수강인원</div>
+				<div class="lec-day">요일</div>
+				<div class="lec-time">시간</div>
+				<div>비고</div>
+			</div>
+			<div class="lec-sel2">
+				<div class="lec-id">aaaaaaa</div>
+				<div class="lec-name">aaaaaa</div>
+				<div class="lec-type">전공</div>
+				<div class="lec-grade">1</div>
+				<div class="lec-credit">3</div>
+				<div class="lec-class">A101</div>
+				<div class="lec-number">70</div>
+				<div class="lec-day">월</div>
+				<div class="lec-time">09:00 ~ 12:00</div>
 				<div>
-					<form action="" method = "post" style="display: inline;">
-						<div style="margin-left: 30px;">
-							<button type="button" onclick="" value = "select" style="color: white; border-radius: 10px; background-color: gray; margin: 20px, 20px">조회</button>
-							<button type="submit" value = "save" style="color: white; border-radius: 10px; background-color: blue">저장</button>
-						</div>
-						<div style = "margin-left: 30px;">
-							학번/이름:
-							<input type="text" name = "id"/>
-							<input type="text" name = "name"/>
-						</div>
-					</form>
-				</div>
-			</header>
-			<!-- 수강과목 -->
-			<div class="enrolled">
-				<h3>수강과목</h3>
-				<div class="table">
-					<div class="row header">
-						<div class="cell">속성 1</div>
-					    <div class="cell">속성 2</div>
-					    <div class="cell">속성 3</div>
-					    <div class="cell">속성 4</div>
-					    <div class="cell">속성 5</div>
-					    <div class="cell">속성 6</div>
-					</div>
-					<div class="row">
-					    <div class="cell">값 1-1</div>
-					    <div class="cell">값 1-2</div>
-					    <div class="cell">값 1-3</div>
-					    <div class="cell">값 1-4</div>
-					    <div class="cell">값 1-5</div>
-					    <div class="cell">값 1-6</div>
-					</div>
+					<input type="button" value="선택" onclick="inputg()" />
 				</div>
 			</div>
+			<div class="lec-sel2">
+				<div class="lec-id">BBBBBBB</div>
+				<div class="lec-name">BBBBBBB</div>
+				<div class="lec-type">전공</div>
+				<div class="lec-grade">2</div>
+				<div class="lec-credit">3</div>
+				<div class="lec-class">A301</div>
+				<div class="lec-number">60</div>
+				<div class="lec-day">수</div>
+				<div class="lec-time">13:00 ~ 16:00</div>
+				<div>
+					<input type="button" value="선택" onclick="inputg()" />
+				</div>
+			</div>
+			<hr />
+			<p></p>
+			<!-- 과목정보  -->
+			<section id="inputg" style="display: none">
+				<div style="text-align: left; font-size: 18px; padding: 5px;">과목정보</div>
+				<div class="lecture-info">
+					<div class="name-label" style="font-weight: bold">과목명</div>
+					<div class="name-value">JAVA</div>
+					<div class="lecture-id-label" style="font-weight: bold">학수번호</div>
+					<div class="lecture-id-value">HALF0104</div>
+				</div>
 		
-			<!-- 강의평가 입력 -->
-			<form action="" method="post">
-				<div class="course-info">
-					<div class="course-code">ABC101</div>
-					<div class="course-name">Introduction to ABC</div>
-					<div class="professor-name">Prof. John Smith</div>
+				<div class="lecture-info">
+					<div class="class-label" style="font-weight: bold">강의실</div>
+					<div class="class-value">B102</div>
+					<div class="day-label" style="font-weight: bold">요일</div>
+					<div class="day-value">수</div>
+					<div class="time-label" style="font-weight: bold">시간</div>
+					<div class="time-value">09:00 ~ 12:00</div>
 				</div>
 				
-				<div class="agreement-form">
-					<div class="agreement-text">
-						<p>강의 평가에 대한 내용이 공개됩니다. 이에 동의하십니까?</p>
-					</div>
-					<div class="agreement-checkbox">
-						<input type="checkbox" id="agree-checkbox"> 
-						<label for="agree-checkbox">동의합니다</label>
-					</div>
-				</div>
-			
-				<div class="evaluation-form">
-					<h3>강의평가</h3>
-					<h4>강의 내용</h4>
-					<input type="radio" id="content-5" name="content" value="5"> 
-					<label for="content-5">5</label> 
-					<input type="radio" id="content-4" name="content" value="4"> 
-					<label for="content-4">4</label> 
-					<input type="radio" id="content-3" name="content" value="3"> 
-					<label for="content-3">3</label>
-					<input type="radio" id="content-2" name="content" value="2">
-					<label for="content-2">2</label>
-					<input type="radio" id="content-1" name="content" value="1">
-					<label for="content-1">1</label>
-			
-					<h4>강의 속도</h4>
-					<input type="radio" id="pace-5" name="pace" value="5"> 
-					<label for="pace-5">5</label> 
-					<input type="radio" id="pace-4" name="pace" value="4"> 
-					<label for="pace-4">4</label> 
-					<input type="radio" id="pace-3" name="pace" value="3"> 
-					<label for="pace-3">3</label>
-					<input type="radio" id="pace-2" name="pace" value="2"> 
-					<label for="pace-2">2</label> 
-					<input type="radio" id="pace-1" name="pace" value="1"> 
-					<label for="pace-1">1</label>
-			
-					<h4>과제 난이도</h4>
-					<input type="radio" id="assignment-5" name="assignment" value="5">
-					<label for="assignment-5">5</label> 
-					<input type="radio" id="assignment-4" name="assignment" value="4"> 
-					<label for="assignment-4">4</label>
-					<input type="radio" id="assignment-3" name="assignment" value="3">
-					<label for="assignment-3">3</label>
-					<input type="radio" id="assignment-2" name="assignment" value="2">
-					<label for="assignment-2">2</label> 
-					<input type="radio" id="assignment-1" name="assignment" value="1"> 
-					<label for="assignment-1">1</label>
-			
-					<h4>출석 요구도</h4>
-					<input type="radio" id="attendance-5" name="attendance" value="5">
-					<label for="attendance-5">5</label> 
-					<input type="radio" id="attendance-4" name="attendance" value="4"> 
-					<label for="attendance-4">4</label> 
-					<input type="radio" id="attendance-3" name="attendance" value="3"> 
-					<label for="attendance-3">3</label>
-					<input type="radio" id="attendance-2" name="attendance" value="2">
-					<label for="attendance-2">2</label>
-					<input type="radio"	id="attendance-1" name="attendance" value="1"> 
-					<label for="attendance-1">1</label>
+				<!-- 강의평가내용 -->
+				<div
+					style="text-align: left; font-size: 18px; padding: 5px; display: flex; justify-content: space-between;">
+					<div>강의평가 내용</div>
 					
-					<div class="form-group">
-						<label for="comment">교수님께 하고 싶은 말</label>
-						<textarea id="comment" name="comment" rows="5" cols="50"></textarea>
+				</div>
+				<div class="eval_check1" >
+					<div class="eval_num">질문1</div>
+					<div class="eval_q">강의 목표와 강의내용이 강좌명과 부합하는가?</div>
+				</div>
+				<div class="eval_check">
+					<div class="eval_choice">선택1</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택2</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택3</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택4</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택5</div>
+					<div class="eval_choice"></div>
+					
+				</div>
+				<div class="eval_check1" >
+					<div class="eval_num">질의2</div>
+					<div class="eval_q">과제물의 내용과 양은 적절하였는가?</div>
+				</div>
+				<div class="eval_check">
+					<div class="eval_choice">선택1</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택2</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택3</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택4</div>
+					<div class="eval_choice"></div>
+					<div class="eval_choice">선택5</div>
+					<div class="eval_choice"></div>
+					
+				</div>
+				
+				<hr />
+				
+				<div style="text-align: left; font-size: 18px; padding: 5px;">
+					<div>피드백 내용</div>
+					<div style="margin-top:5px">
+						<textarea class="textarea" readonly="readonly" style="width:100%; height:120px; text-align:left; resize:none; background: #ffffdd;" > 
+						${Feedback }</textarea>
 					</div>
 				</div>
-			</form>
+			</section>
 		</div>
 	</section>
+
 </body>
 </html>

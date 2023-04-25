@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.softsoldesk.beans.DepartmentBean;
 import kr.co.softsoldesk.beans.GradeBean;
 import kr.co.softsoldesk.beans.GradeDTO;
+import kr.co.softsoldesk.beans.LectureBean;
 import kr.co.softsoldesk.beans.MemberBean;
 import kr.co.softsoldesk.beans.StudentBean;
 import kr.co.softsoldesk.service.GradeService;
 import kr.co.softsoldesk.service.MemberService;
+import kr.co.softsoldesk.service.TimeTableService;
 
 @RequestMapping("/academy")
 @Controller
@@ -32,6 +34,9 @@ public class AcademyController {
 
 	@Autowired
 	private GradeService gradeService;
+	
+	@Autowired
+	private TimeTableService timeTableService;
 	
 	@Resource(name = "loginMemberBean")
 	private MemberBean loginMemberBean;
@@ -56,7 +61,8 @@ public class AcademyController {
 	public String personal_info_pro(@Valid @ModelAttribute("modifyMemberBean") MemberBean modifyMemberBean, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return "academy/personal_info";
+			
+			return "academy/personal_info_fail";
 		}
 		memberService.modifyMemberInfo(modifyMemberBean);
 		
@@ -71,10 +77,37 @@ public class AcademyController {
 	}
 	//시간표 조회
 	@GetMapping("/timetable")
-	public String academy_timetable() {
-		return "academy/timetable";
-	}
-	
+	   public String academy_timetable(@ModelAttribute("getTimeTableinfo") MemberBean getTimeTable,
+	                           @ModelAttribute(name="getTimeTableUserInfo") LectureBean timeTableUserInfo,Model model) {
+	      
+	      timeTableService.timeTableUserInfo(getTimeTable);
+	      
+	      List<LectureBean> getTimeTableUserInfo=timeTableService.allTimeTableInfo(model);
+	      model.addAttribute("getTimeTableUserInfo", getTimeTableUserInfo);
+	      for(LectureBean lecture : getTimeTableUserInfo) {
+	         System.out.println(lecture.getLec_id());
+	         System.out.println(lecture.getLec_name());
+	         System.out.println(lecture.getCompletion());
+	         System.out.println(lecture.getCredits());
+	         System.out.println(lecture.getDayOftheWeek());
+	         System.out.println(lecture.getStarttime());
+	         System.out.println(lecture.getEndtime());
+	         System.out.println(lecture.getR_id());
+	      
+	      }
+	      
+	      return "academy/timetable";
+	   }
+	   @GetMapping("/timetable_pro")
+	   public String academy_timetable_pro(@Valid @ModelAttribute("getTimeTableinfo") MemberBean getTimeTable, BindingResult result) {
+	      if(result.hasErrors()) {
+	         return "academy/timetable";
+	      }
+	      
+	      timeTableService.timeTableUserInfo(getTimeTable);
+	      
+	      return "academy/timetable_success";
+	   }
 	//성적
 	//금학기 성적조회
 	@GetMapping("/grade_check")

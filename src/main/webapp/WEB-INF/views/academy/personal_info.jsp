@@ -153,6 +153,16 @@ div.list7 {
 		<section class="sec">
 			<div class = "contents">
 				<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean">
+					<%-- 
+					<div class="form-group">
+						<label for="member_file">사진</label>
+						<img src = "${root }upload/${modifyMemberBean.member_file}"/>
+					</div>
+					<div class="form-group">
+						<form:label path="upload_file">사진</form:label>
+						<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
+					</div>
+					 --%>
 					<div class="form-group">
 						<form:label path="Name">이름</form:label>
 						<form:input path="Name" class="form-control" readonly="true"/>
@@ -175,7 +185,7 @@ div.list7 {
 					</div>
 					<div class="form-group">
 						<form:label path="Password">비밀번호</form:label>
-						<form:password path="Password" class="form-control" />
+						<form:password path="Password" class="form-control"/>
 						<form:errors path="Password" style="color:red"/>
 					</div>
 					<div class="form-group">
@@ -184,17 +194,17 @@ div.list7 {
 					</div>
 					<div class="form-group">
 						<form:label path="Phone_num">전화번호</form:label>
-						<form:input path="Phone_num" class="form-control" />
+						<form:input path="Phone_num" class="form-control"/>
 						<form:errors path="Phone_num" style="color:red"/>
 					</div>
 					<div class="form-group">
 						<form:label path="Emergency_Contact">비상연락처</form:label>
-						<form:input path="Emergency_Contact" class="form-control" />
+						<form:input path="Emergency_Contact" class="form-control"/>
 						<form:errors path="Emergency_Contact" style="color:red"/>
 					</div>
 					<div class="form-group">
 						<form:label path="Address">주소</form:label>
-						<form:input path="Address" class="form-control" />
+						<form:input path="Address" class="form-control"/>
 						<form:errors path="Address" style="color:red"/>
 					</div>
 					<div class="form-group">

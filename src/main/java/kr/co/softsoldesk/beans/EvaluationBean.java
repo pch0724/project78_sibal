@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class EvaluationBean {
 	
-	private String Lec_ID;
-	private int Std_ID;
+	private String lec_ID;
+	private int std_ID;
 	private int items1;
 	private int items2;
 	private int items3;
@@ -18,4 +18,10 @@ public class EvaluationBean {
 	
 	@Size(max = 200)
 	private String feedback;
+	
+	private int credits;
+	private String name;
+	private String lec_name;
+	
+	private String ID;
 }

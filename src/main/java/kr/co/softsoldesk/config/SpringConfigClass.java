@@ -1,16 +1,12 @@
 package kr.co.softsoldesk.config;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.DispatcherServlet;
-
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+/*
 // Spring 환경설정 방법1
 public class SpringConfigClass implements WebApplicationInitializer{
 
@@ -49,7 +45,8 @@ public class SpringConfigClass implements WebApplicationInitializer{
 	}
 	
 }
-/*
+*/
+
 // Spring 환경설정 방법2
 public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServletInitializer {
 	   // DispatcherServlet에 매핑할 요청 주소를 셋팅한다.
@@ -81,5 +78,18 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
 	      encodingFilter.setEncoding("UTF-8");
 	      return new Filter[] {encodingFilter};
 	   }
+	   
+	   // null : 아파치톰캣에서 제공하는 서버의 임시기억장소
+	   // 52428800 : 업로드 데이터의 용량(1024*50) 50MB
+	   // 52428800 : 파일 데이터를 포함한 전체 용량(1024*500) 500MB
+	   // 0 : 데이터를 받아서 자동 저장
+	   @Override
+	   protected void customizeRegistration(Dynamic registration) {
+			
+		  super.customizeRegistration(registration);
+			
+		  MultipartConfigElement config1 = new MultipartConfigElement(null,5428800,54288000,0);
+		  registration.setMultipartConfig(config1);
+	   }
+		
 	}
-*/

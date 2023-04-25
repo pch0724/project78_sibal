@@ -31,6 +31,10 @@ public class MemberDao {
 		return memberMapper.checkMemberIdExist(ID);
 	}
 	
+	// 최초로그인
+	public String checkFirstLogin(int ID) {
+		return memberMapper.checkFirstLoginMember(ID);
+	}
 	
 	
 	// 로그인
@@ -58,6 +62,11 @@ public class MemberDao {
 		
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 		memberMapper.modifyMemberInfo(modifyMemberBean);
+	}
+	
+	// 시간표
+	public MemberBean getTimeTableinfo(int ID) {
+	      return memberMapper.getTimeTableinfo(ID);
 	}
 	
 }

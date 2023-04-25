@@ -26,7 +26,7 @@ public class GradeService {
    
    public void getMemberInfo2(GradeDTO getInfoMemberBean2) {
       GradeDTO tempGetInfoMemberBean2 = gradeDao.getMemberInfo2(loginMemberBean.getID());
-
+      
       getInfoMemberBean2.setStd_id(tempGetInfoMemberBean2.getStd_id());
       getInfoMemberBean2.setName(tempGetInfoMemberBean2.getName());
       getInfoMemberBean2.setD_name(tempGetInfoMemberBean2.getD_name());

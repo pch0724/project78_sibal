@@ -2,6 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 <script>
-	alert('개인정보가 수정되었습니다')
+	alert('개인정보 수정에 실패하였습니다')
 	location.href = '${root}academy/personal_info'
 </script> 

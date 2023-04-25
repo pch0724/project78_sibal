@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -33,7 +34,7 @@ import kr.co.softsoldesk.mapper.RoleMapper;
 import kr.co.softsoldesk.mapper.Std_HistioryMapper;
 import kr.co.softsoldesk.mapper.StudentMapper;
 import kr.co.softsoldesk.service.MemberService;
-import kr.co.softsoldesk.service.Mid_Eva_Service;
+import kr.co.softsoldesk.service.EvaluationService;
 
 @PropertySource("/WEB-INF/properties/db.properties")
 @ComponentScan("kr.co.softsoldesk.controller") // 스캔할 패키지 지정
@@ -57,7 +58,7 @@ public class ServletAppContext implements WebMvcConfigurer{
 	private String db_password;
 	
 	@Autowired
-	private Mid_Eva_Service midEvaService;
+	private EvaluationService midEvaService;
 
 	/*
 	 * @Autowired private MemberService memberService;
@@ -237,5 +238,11 @@ public class ServletAppContext implements WebMvcConfigurer{
 		return res;
 	}
 	
+	// 정적파일 인식
+	@Bean
+	public StandardServletMultipartResolver multipartResolver() {
+		
+		return new StandardServletMultipartResolver();
+	}
 	
 }

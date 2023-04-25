@@ -7,20 +7,24 @@ import lombok.Setter;
 @Setter
 public class LectureBean {
 	
-	private String Lec_ID;
-	private String Lec_Name;
-	private int P_ID;
-	private int Credits;
-	private int YearOfOpening;
-	private int semester;
-	private int grade;
-	private int Capacity;
-	private int StartTime;
-	private String DayOfTheWeek;
-	private int EndTime;
-	private int D_ID;
-	private String R_ID;
-	private String completion;
-	
-	
+	   private int ID;
+	   private String lec_id;
+	   
+	   private String lec_name;
+	   private int p_id;
+	   private String completion;
+	   private int credits;
+	   private String dayOftheWeek;
+	   private int starttime;
+	   private int endtime;
+	   private String r_id;
+
+	   
+	   private int grade;
+	   private int capacity;
+	   
+	   
+	   private int yearofopening;
+	   private int d_id;
+	   private int semester;
 }

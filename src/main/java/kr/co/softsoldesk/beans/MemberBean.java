@@ -1,5 +1,7 @@
 package kr.co.softsoldesk.beans;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,8 @@ public class MemberBean {
 	private int ID;
 	
 	private String Password;
+	
+	private String Password2;
 	
 	private String Name;
 	
@@ -28,6 +32,8 @@ public class MemberBean {
 	
 	private int R_id;
 	
+	private String memberFirstLogin;
+
 	private int semester;
 	
 	private int grade;
@@ -36,7 +42,12 @@ public class MemberBean {
 	
 	private String D_Name;
 	
+	private String member_file;
+	//MultipartFile : 정적파일
+	private MultipartFile upload_file;
+	
 	private boolean memberIdExist;
+	//최초로그인 여부
 	
 	private boolean memberLogin;
 	

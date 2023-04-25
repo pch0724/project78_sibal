@@ -43,9 +43,9 @@ public class LoginController {
 		}
 		
 		memberService.getLoginMemberInfo(tempLoginMemberBean); //로그인 여부
-		
+
 		if(loginMemberBean.isMemberLogin() == true) {
-			return "login_success";
+				return "login_success";				
 		}else {
 			return "login_fail";
 		}
