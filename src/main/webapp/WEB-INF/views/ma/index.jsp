@@ -194,72 +194,72 @@ div.square2 {
       }
       
       // 달력
-   function showCalendar() {
-    const today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-
-    const calendarHeader = document.getElementById("calendar-header");
-    const calendarBody = document.getElementById("calendar-body");
-
-    // 달력 헤더에 연도와 월을 출력합니다.
-    const yearMonth = year + "년 " + month + "월";
-    const headerHTML = "<div style='text-align:center; font-size: 24px; font-weight: bold;'>" + yearMonth + "</div>";
-    calendarHeader.innerHTML = headerHTML;
-
-    let calendarHTML = "<tr>";
-
-    // 첫 번째 행에는 요일명을 출력합니다.
-    calendarHTML += "<th>일</th>";
-    calendarHTML += "<th>월</th>";
-    calendarHTML += "<th>화</th>";
-    calendarHTML += "<th>수</th>";
-    calendarHTML += "<th>목</th>";
-    calendarHTML += "<th>금</th>";
-    calendarHTML += "<th>토</th>";
-    calendarHTML += "</tr>";
-
-    // 달력에 출력할 날짜를 계산합니다.
-    const firstDay = new Date(year, month - 1, 1);
-    const lastDay = new Date(year, month, 0);
-    const daysInMonth = lastDay.getDate();
-
-    let date = 1; // 첫 번째 날짜부터 시작합니다.
-
-    // 현재 요일을 구합니다.
-    const todayIndex = today.getDay();
-
-    // 달력의 행을 출력합니다.
-    for (let i = 0; i < 6; i++) {
-        calendarHTML += "<tr>";
-
-        for (let j = 0; j < 7; j++) {
-            if (i === 0 && j < firstDay.getDay()) {
-                calendarHTML += "<td></td>"; // 이번 달이 시작되는 요일 이전의 빈 칸을 출력합니다.
-            } else if (date > daysInMonth) {
-                calendarHTML += "<td></td>"; // 이번 달이 끝난 이후의 빈 칸을 출력합니다.
-            } else {
-                // 현재 날짜와 같으면 클래스에 "today"를 추가합니다.
-                const className = (year === today.getFullYear() && month === today.getMonth() + 1 && date === today.getDate()) ? "today yellow" : "";
-
-                // 현재 요일이면 클래스에 "today"를 추가합니다.
-                if (j === todayIndex && i !== 0 && date <= daysInMonth) {
-                    calendarHTML += `<td class="${className}">` + date + "</td>";
-                } else {
-                    calendarHTML += `<td class="${className}">` + date + "</td>";
-                }
-
-                date++;
-            }
-        }
-
-        calendarHTML += "</tr>";
-    }
-
-    calendarBody.innerHTML = calendarHTML;
-}
-
-showCalendar();
+	   function showCalendar() {
+	    const today = new Date();
+	    let year = today.getFullYear();
+	    let month = today.getMonth() + 1;
+	
+	    const calendarHeader = document.getElementById("calendar-header");
+	    const calendarBody = document.getElementById("calendar-body");
+	
+	    // 달력 헤더에 연도와 월을 출력합니다.
+	    const yearMonth = year + "년 " + month + "월";
+	    const headerHTML = "<div style='text-align:center; font-size: 24px; font-weight: bold;'>" + yearMonth + "</div>";
+	    calendarHeader.innerHTML = headerHTML;
+	
+	    let calendarHTML = "<tr>";
+	
+	    // 첫 번째 행에는 요일명을 출력합니다.
+	    calendarHTML += "<th>일</th>";
+	    calendarHTML += "<th>월</th>";
+	    calendarHTML += "<th>화</th>";
+	    calendarHTML += "<th>수</th>";
+	    calendarHTML += "<th>목</th>";
+	    calendarHTML += "<th>금</th>";
+	    calendarHTML += "<th>토</th>";
+	    calendarHTML += "</tr>";
+	
+	    // 달력에 출력할 날짜를 계산합니다.
+	    const firstDay = new Date(year, month - 1, 1);
+	    const lastDay = new Date(year, month, 0);
+	    const daysInMonth = lastDay.getDate();
+	
+	    let date = 1; // 첫 번째 날짜부터 시작합니다.
+	
+	    // 현재 요일을 구합니다.
+	    const todayIndex = today.getDay();
+	
+	    // 달력의 행을 출력합니다.
+	    for (let i = 0; i < 6; i++) {
+	        calendarHTML += "<tr>";
+	
+	        for (let j = 0; j < 7; j++) {
+	            if (i === 0 && j < firstDay.getDay()) {
+	                calendarHTML += "<td></td>"; // 이번 달이 시작되는 요일 이전의 빈 칸을 출력합니다.
+	            } else if (date > daysInMonth) {
+	                calendarHTML += "<td></td>"; // 이번 달이 끝난 이후의 빈 칸을 출력합니다.
+	            } else {
+	                // 현재 날짜와 같으면 클래스에 "today"를 추가합니다.
+	                const className = (year === today.getFullYear() && month === today.getMonth() + 1 && date === today.getDate()) ? "today yellow" : "";
+	
+	                // 현재 요일이면 클래스에 "today"를 추가합니다.
+	                if (j === todayIndex && i !== 0 && date <= daysInMonth) {
+	                    calendarHTML += `<td class="${className}">` + date + "</td>";
+	                } else {
+	                    calendarHTML += `<td class="${className}">` + date + "</td>";
+	                }
+	
+	                date++;
+	            }
+	        }
+	
+	        calendarHTML += "</tr>";
+	    }
+	
+	    calendarBody.innerHTML = calendarHTML;
+	}
+	
+	showCalendar();
    </script>
 </body>
 </html>

@@ -64,7 +64,7 @@
 		
 		<form:label path="feedback">교수님께 하고 싶은 말</form:label>
 		<form:textarea path="feedback"/>
-		<form:errors path="feedback" style = "color:red"></form:errors>
+		
 	</div>
 	<form:button type = "submit">제출</form:button>
 	</form:form>

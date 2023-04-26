@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.softsoldesk.beans.DepartmentBean;
 import kr.co.softsoldesk.beans.MemberBean;
+import kr.co.softsoldesk.beans.ProfessorBean;
 import kr.co.softsoldesk.beans.StudentBean;
 import kr.co.softsoldesk.dao.MemberDao;
 
@@ -80,45 +81,36 @@ public class MemberService {
 			loginMemberBean.setAddress(tempLoginMemberBean2.getAddress());
 			loginMemberBean.setEntrance_Date(tempLoginMemberBean2.getEntrance_Date());
 			loginMemberBean.setEmail(tempLoginMemberBean2.getEmail());
+			loginMemberBean.setR_id(tempLoginMemberBean2.getR_id());
 			loginMemberBean.setMemberFirstLogin(tempLoginMemberBean2.getMemberFirstLogin());
+			loginMemberBean.setMember_file(tempLoginMemberBean2.getMember_file());
 			loginMemberBean.setMemberLogin(true);
 		}
 		
 	}
 
-	/*
-	public void getModifyMemberInfo(MemberBean modifyMemberBean) {
-		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getID());
-		
-		modifyMemberBean.setID(tempModifyMemberBean.getID());
-		modifyMemberBean.setName(tempModifyMemberBean.getName());
-		
+	// 교수 정보 조회
+	public ProfessorBean getProfessorInfo(int P_ID) {
+		return memberDao.getProfessorInfo(P_ID);
 	}
-	*/
+		
+	// 학생 학년학기 조회
+	public StudentBean getStudentInfo(int Std_ID) {
+		return memberDao.getStudentInfo(Std_ID);
+	}
 	
-	public void getModifyMemberInfo(MemberBean modifyMemberBean) {
-		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getID());
-		StudentBean stdBean = memberDao.getStudentInfo(loginMemberBean.getID());
-		String D_Name = memberDao.getDepartmentName(stdBean.getDepartment_ID());
-				
-		modifyMemberBean.setID(tempModifyMemberBean.getID());
-		modifyMemberBean.setName(tempModifyMemberBean.getName());
-		modifyMemberBean.setPassword(tempModifyMemberBean.getPassword());
-		modifyMemberBean.setBirth_Date(tempModifyMemberBean.getBirth_Date());
-		modifyMemberBean.setAddress(tempModifyMemberBean.getAddress());
-		modifyMemberBean.setEntrance_Date(tempModifyMemberBean.getEntrance_Date());
-		modifyMemberBean.setPhone_num(tempModifyMemberBean.getPhone_num());
-		modifyMemberBean.setEmergency_Contact(tempModifyMemberBean.getEmergency_Contact());
-		modifyMemberBean.setEmail(tempModifyMemberBean.getEmail());
-		modifyMemberBean.setSemester(stdBean.getSemester());
-		modifyMemberBean.setGrade(stdBean.getGrade());
-		modifyMemberBean.setD_ID(stdBean.getDepartment_ID());
-		modifyMemberBean.setD_Name(D_Name);
+	// 학과이름 조회
+	public String getDepartmentName(int D_ID) {
+		return memberDao.getDepartmentName(D_ID);
+	}
+	
+	public MemberBean getModifyMemberInfo(int ID) {
+		return memberDao.getModifyMemberInfo(ID);
+
 	}
 	
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 		
-		/*
 		MultipartFile upload_file = modifyMemberBean.getUpload_file();
 		
 		if(upload_file.getSize() > 0) {
@@ -126,9 +118,6 @@ public class MemberService {
 			System.out.println(file_name);
 			modifyMemberBean.setMember_file(file_name);
 		}
-		*/
-		modifyMemberBean.setID(loginMemberBean.getID());
-		
 		memberDao.modifyMemberInfo(modifyMemberBean);
 	}
 	

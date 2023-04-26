@@ -18,7 +18,7 @@ public interface GradeMapper {
    
    
    //세부정보
-   @Select("select lec_name, member.name, completion, credits, at_score, m_score, f_score, a_score, grade.grade from grade inner join lecture on grade.lec_id = lecture.lec_id inner join member on member.id=p_id where std_id =#{id} and yearofopening=2022 and semester=1 ")
+   @Select("select lec_name, member.name, completion, credits, at_score, m_score, f_score, a_score, grade.grade from grade inner join lecture on grade.lec_id = lecture.lec_id inner join member on member.id=p_id where std_id =#{id} and yearofopening=2022 and semester=2")
    List<GradeBean> getGradeCheckInfo(int ID);
 }
  
