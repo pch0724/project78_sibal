@@ -27,11 +27,11 @@ public class GradeService {
    public void getMemberInfo2(GradeDTO getInfoMemberBean2) {
       GradeDTO tempGetInfoMemberBean2 = gradeDao.getMemberInfo2(loginMemberBean.getID());
       
-      getInfoMemberBean2.setStd_id(tempGetInfoMemberBean2.getStd_id());
+      getInfoMemberBean2.setStd_ID(tempGetInfoMemberBean2.getStd_ID());
       getInfoMemberBean2.setName(tempGetInfoMemberBean2.getName());
       getInfoMemberBean2.setD_name(tempGetInfoMemberBean2.getD_name());
       getInfoMemberBean2.setGrade(tempGetInfoMemberBean2.getGrade());
-      getInfoMemberBean2.setSemester(tempGetInfoMemberBean2.getSemester());
+      getInfoMemberBean2.setS_semester(tempGetInfoMemberBean2.getS_semester());
    }
    /*
    public List<Std_HistoryBean> getLecList2(Model model) {

@@ -7,7 +7,7 @@ import kr.co.softsoldesk.beans.ProfessorBean;
 
 public interface ProfessorMapper {
 
-	@Select("select Department_ID from Professor where P_ID = #{P_ID}")
-	ProfessorBean getProfessorInfo(int P_ID);
+	@Select("select d_ID from Professor where p_ID = #{p_ID}")
+	ProfessorBean getProfessorInfo(int p_ID);
 	
 }

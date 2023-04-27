@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class RoleBean {
 
-	private int R_ID;
-	private String Role_Name;
+	private int r_ID;
+	private String r_name;
 	
 }

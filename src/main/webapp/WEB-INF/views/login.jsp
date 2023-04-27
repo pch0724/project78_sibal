@@ -158,9 +158,9 @@ div > .login-wrapper {
 				            </div>
 				            
 				            <div>
-					            <form:label path="Password">비밀번호</form:label>
-				            	<form:password path="Password"/>
-					            <form:errors path="Password" style='color:red'/>
+					            <form:label path="password">비밀번호</form:label>
+				            	<form:password path="password"/>
+					            <form:errors path="password" style='color:red'/>
 				            </div>
 							<form:button type="submit" id="login">로그인</form:button>
 				        </form:form>

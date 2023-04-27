@@ -23,5 +23,15 @@ public class EvaluationBean {
 	private String name;
 	private String lec_name;
 	
-	private String ID;
+	private int ID;
+	
+	private boolean completed;
+	
+	public boolean isCompleted() {
+        return completed;
+    }
+	
+	public void setCompleted(boolean completed) {
+	    this.completed = completed;
+	}
 }

@@ -81,7 +81,7 @@
                <div class="name-label" style="font-weight: bold">이름</div>
                <div class="name-value">${getInfoMemberBean2.name }</div>
                <div class="student-id-label" style="font-weight: bold">학번</div>
-               <div class="student-id-value">${getInfoMemberBean2.std_id }</div>
+               <div class="student-id-value">${getInfoMemberBean2.std_ID }</div>
             </div>
 
             <div class="student-info">
@@ -90,7 +90,7 @@
                <div class="grade-label" style="font-weight: bold">학년</div>
                <div class="grade-value">${getInfoMemberBean2.grade }</div>
                <div class="semester-label" style="font-weight: bold">학기</div>
-               <div class="semester-value">${getInfoMemberBean2.semester }</div>
+               <div class="semester-value">${getInfoMemberBean2.s_semester }</div>
             </div>
          </form:form>
          <div style="text-align: left; font-size: 18px; padding: 5px;">금학기
@@ -119,7 +119,7 @@
                <div class="midterm">${grade.m_score }</div>
                <div class="final">${grade.f_score }</div>
                <div class="assignment">${grade.a_score }</div>
-               <div class="grade">${grade.grade }</div>
+               <div class="grade">${grade.gpa }</div>
             </div>
          </c:forEach>
 

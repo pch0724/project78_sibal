@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class StudentBean {
 	
-	private int Std_ID;
-	private int Department_ID;
-	private int semester;
+	private int std_ID;
+	private int d_ID;
 	private int grade;
+	private int s_semester;
 	
 }

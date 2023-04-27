@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class DepartmentBean {
 
-	private int D_ID;
-	private String D_Name;
+	private int d_ID;
+	private String d_name;
 	
 }

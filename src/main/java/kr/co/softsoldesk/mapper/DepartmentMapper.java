@@ -6,7 +6,7 @@ import kr.co.softsoldesk.beans.DepartmentBean;
 
 public interface DepartmentMapper {
 
-	@Select("select D_Name from Department where D_ID = #{D_ID}")
+	@Select("select d_name from Department where d_ID = #{d_ID}")
 	String getDepartmentName(int D_ID);
 	
 }

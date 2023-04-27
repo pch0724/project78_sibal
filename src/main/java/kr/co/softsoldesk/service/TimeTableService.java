@@ -29,7 +29,7 @@ public class TimeTableService {
 	       MemberBean timeTableUserInfo2=memberDao.getTimeTableinfo(loginMemberBean.getID());
 	      timeTableUserInfo1.setID(timeTableUserInfo2.getID());
 	      timeTableUserInfo1.setName(timeTableUserInfo2.getName());
-	      timeTableUserInfo1.setD_Name(timeTableUserInfo2.getD_Name());
+	      timeTableUserInfo1.setD_name(timeTableUserInfo2.getD_name());
 	      
 	   
 	      

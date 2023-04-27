@@ -149,14 +149,14 @@
 			</div>
 			<c:forEach var = "i" begin="0" end="${size }">
 				<div class="lec-sel2">
-						<div class="lec-id">${list.get(i).lec_id }</div>
+						<div class="lec-id">${list.get(i).lec_ID }</div>
 						<div class="lec-name">${list.get(i).lec_name }</div>
 						<div class="lec-type">${list.get(i).completion }</div>
 						<div class="lec-grade">${list.get(i).grade }</div>
 						<div class="lec-credit">${list.get(i).credits }</div>
-						<div class="lec-class">${list.get(i).r_id }</div>
+						<div class="lec-class">${list.get(i).c_ID }</div>
 						<div class="lec-number">${list.get(i).capacity }</div>
-						<div class="lec-day">${list.get(i).dayOftheWeek }</div>
+						<div class="lec-day">${list.get(i).day }</div>
 						<div class="lec-time">${list.get(i).starttime }교시 ~ ${list.get(i).endtime }교시</div>
 						<div>
 							<input type="button" value="선택" onclick="inputg()"/>
@@ -173,7 +173,7 @@
 					<div class="name-label" style="font-weight: bold">과목명</div>
 					<div class="name-value">${obj.lec_name }</div>
 					<div class="lecture-id-label" style="font-weight: bold">학수번호</div>
-					<div class="lecture-id-value">${obj.lec_id }</div>
+					<div class="lecture-id-value">${obj.lec_ID }</div>
 				</div>
 		
 				<div class="lecture-info">
@@ -232,7 +232,7 @@
 					<div>피드백 내용</div>
 					<div style="margin-top:5px">
 						<textarea class="textarea" readonly="readonly" style="width:100%; height:120px; text-align:left; resize:none; background: #ffffdd;" > 
-						${Feedback }</textarea>
+						${feedback }</textarea>
 					</div>
 				</div>
 			</section>

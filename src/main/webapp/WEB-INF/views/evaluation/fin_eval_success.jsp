@@ -4,6 +4,6 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <script>
 	alert('저장되었습니다')
-	location.href = '${root}evaluation/mid'
+	location.href = '${root}evaluation/fin'
 	window.close();
 </script>

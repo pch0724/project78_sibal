@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ProfessorBean {
 	
-	private int P_ID;
-	private int Department_ID;
+	private int p_ID;
+	private int d_ID;
 }

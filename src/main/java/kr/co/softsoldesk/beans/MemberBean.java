@@ -19,44 +19,46 @@ public class MemberBean {
 	
 	@Size(min = 4, max = 18, message = "4~18자 이내로 입력")
 	@Pattern(regexp = "[a-zA-Z0-9]*", message = "영어 대소문자 또는 숫자만 입력")
-	private String Password;
-	
+	private String password;
+	//-----
 	@Size(min = 4, max = 18, message = "4~18자 이내로 입력" )
 	@Pattern(regexp = "[a-zA-Z0-9]*", message = "영어 대소문자 또는 숫자만 입력")
-	private String Password2;
+	private String password2;
 	
-	private String Name;
+	private String name;
 	
-	private String Birth_Date;
+	private String birth;
 
-	private String Phone_num;
+	private String phone;
 	
-	private String Emergency_Contact;
+	private String emergency;
 	
 	//@Pattern(regexp = "[가-힣0-9]*", message = "한글 또는 숫자만 입력")
-	private String Address;
+	private String address;
 	
 	@Pattern(regexp = "[0-9]*", message = "숫자만 입력")
-	private String Entrance_Date;
+	private String entrance;
 	
 	@Email
-	private String Email;
+	private String email;
 	
-	private int R_id;
+	private int r_ID;
 	
-	private String memberFirstLogin;
-
+	private String first_login;
+	
+	private String member_file;
+	//MultipartFile : 정적파일
+	private MultipartFile upload_file; //oracle엔추가안함
+	//---------------------------------------
 	private int semester;
 	
 	private int grade;
 	
-	private int D_ID;
+	private int d_ID;
 	
-	private String D_Name;
+	private String d_name;
 	
-	private String member_file;
-	//MultipartFile : 정적파일
-	private MultipartFile upload_file;
+	
 	
 	private boolean memberIdExist;
 	//최초로그인 여부

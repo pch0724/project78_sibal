@@ -31,8 +31,8 @@ public class EvaluationController {
 	@GetMapping("/mid")
 	public String mid(@ModelAttribute("getInfoMemberBean") MemberBean getInfoMemberBean, Model model) {
 		// 권한
-		int r_id = loginMemberBean.getR_id();		
-		model.addAttribute("r_id", r_id);
+		int r_ID = loginMemberBean.getR_ID();		
+		model.addAttribute("r_ID", r_ID);
 		
 		
 		evaluationService.getMemberInfo(getInfoMemberBean);
@@ -75,8 +75,8 @@ public class EvaluationController {
 	@GetMapping("/fin")
 	public String fin(@ModelAttribute("getInfoMemberBean") MemberBean getInfoMemberBean, Model model) {
 		// 권한
-		int r_id = loginMemberBean.getR_id();		
-		model.addAttribute("r_id", r_id);
+		int r_ID = loginMemberBean.getR_ID();		
+		model.addAttribute("r_ID", r_ID);
 		
 		
 		evaluationService.getMemberInfo(getInfoMemberBean);
@@ -119,8 +119,8 @@ public class EvaluationController {
 	@GetMapping("/mid_check")
 	public String mid_check(Model model) {
 		// 권한
-		int r_id = loginMemberBean.getR_id();		
-		model.addAttribute("r_id", r_id);
+		int r_ID = loginMemberBean.getR_ID();		
+		model.addAttribute("r_ID", r_ID);
 		
 		List<LectureBean> list = evaluationService.getLectureList(loginMemberBean.getID());
 		int size = list.size()-1;
@@ -132,8 +132,8 @@ public class EvaluationController {
 	@GetMapping("/fin_check")
 	public String fin_check(Model model) {
 		// 권한
-		int r_id = loginMemberBean.getR_id();		
-		model.addAttribute("r_id", r_id);
+		int r_ID = loginMemberBean.getR_ID();		
+		model.addAttribute("r_ID", r_ID);
 		
 		
 		List<LectureBean> list = evaluationService.getLectureList(loginMemberBean.getID());

@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class ClassroomBean {
 	
-	private int RoomID;
-	private String RoomName;
-	private int RoomCapacity;
-	private String RoomType;
+	private String c_ID;
+	private String c_name;
+	private int c_capacity;
+	private String c_type;
 }

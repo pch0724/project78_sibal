@@ -11,10 +11,10 @@ public class GradeDTO {
 
    
    private String name;
-   private int std_id;
+   private int std_ID;
    private String d_name;
    private int grade;
-   private int semester;
+   private int s_semester;
    
    
 }

@@ -128,11 +128,11 @@ function collapse(element) {
                </button>
               <div class="content">
                   <ul>
-                  	<c:if test="${r_id == 3}">
+                  	<c:if test="${r_ID == 3}">
 	                     <li><a href="${root }enrollment/index">수강신청</a></li>
 	                     <li><a href="${root }academy/enrollment">수강신청현황</a></li>
 	                </c:if>
-	                <c:if test ="${r_id == 3 or r_id == 2}">
+	                <c:if test ="${r_ID == 3 or r_ID == 2}">
 	                     <li><a href="${root }academy/timetable">시간표조회</a></li>
 	                </c:if>
 	                     
@@ -145,11 +145,11 @@ function collapse(element) {
                </button>
                <div class="content">
                   <ul>
-                  	<c:if test="${r_id == 3 }">
+                  	<c:if test="${r_ID == 3 }">
 	                    <li><a href="${root }academy/grade_check">금학기 성적조회</a></li>
 	                    <li><a href="${root }academy/all_grade_check">전체 성적조회</a></li>
                     </c:if>
-                    <c:if test="${r_id == 2 }">
+                    <c:if test="${r_ID == 2 }">
                      	<li><a href="${root }academy/grade_input">성적 입력</a></li>
                     </c:if>
                   </ul>
@@ -161,11 +161,11 @@ function collapse(element) {
                </button>
                <div class="content">
                   <ul>
-                  	<c:if test="${r_id == 3 }">
+                  	<c:if test="${r_ID == 3 }">
                      <li><a href="${root }evaluation/mid">중간강의평가</a></li>
                      <li><a href="${root }evaluation/fin">기말강의평가</a></li>
                     </c:if> 
-                  	<c:if test="${r_id == 2 }">
+                  	<c:if test="${r_ID == 2 }">
                      <li><a href="${root }evaluation/mid_check">중간강의평가조회</a></li>
                      <li><a href="${root }evaluation/fin_check">기말강의평가조회</a></li>
                     </c:if>             

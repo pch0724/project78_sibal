@@ -65,9 +65,9 @@
 				<div style="text-align:left; font-size: 18px; padding: 5px;">학생 정보</div>
 				<div class="student-info">
 					<div class="name-label" style="font-weight:bold">
-						<form:label path="Name">이름</form:label>
+						<form:label path="name">이름</form:label>
 						<div class="name-value">
-							<form:input path="Name" readonly="true"/>
+							<form:input path="name" readonly="true"/>
 						</div>
 					</div>
 					<div class="student-id-label" style=" font-weight:bold">

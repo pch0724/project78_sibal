@@ -100,11 +100,11 @@
          <div class="left-div">
             <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
                <br />
-               이름 :&nbsp;<form:input class="readonly" path="Name" readonly="true"/>
+               이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
                <br />
-               학번 :&nbsp;<form:input class="readonly" path="ID" readonly="true" />
+               학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
                <br />
-               학과 :&nbsp;<form:input class="readonly" path="D_Name" readonly="true" />&nbsp;과<br />
+               학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
             </form:form>
             <div></div>
          </div>
@@ -125,7 +125,7 @@
                         <c:forEach var="day" items="${['월', '화', '수', '목', '금']}">
                            <td>
                               <c:forEach var="lecture" items="${getTimeTableUserInfo}">
-                                 <c:if test="${lecture.dayOftheWeek eq day && lecture.starttime <= time && lecture.endtime >= time}">
+                                 <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
                                          ${lecture.lec_name}
                                     </c:if>
                               </c:forEach>

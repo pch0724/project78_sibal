@@ -41,6 +41,12 @@ public class MemberDao {
 		return memberMapper.checkFirstLoginMember(ID);
 	}
 	
+	// 비밀번호 변경
+	public void modifyFirstLogin(MemberBean tempLoginMemberBean) {
+		
+		memberMapper.modifyFirstLogin(tempLoginMemberBean);
+		
+	}
 	
 	// 로그인
 	

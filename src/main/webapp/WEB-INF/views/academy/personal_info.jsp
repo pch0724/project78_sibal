@@ -166,16 +166,16 @@ div.list7 {
 					</div>
 					
 					<div class="form-group">
-						<form:label path="Name">이름</form:label>
-						<form:input path="Name" class="form-control" readonly="true"/>
+						<form:label path="name">이름</form:label>
+						<form:input path="name" class="form-control" readonly="true"/>
 					</div>
 					<div class="form-group">
 						<form:label path="ID">학번/교직원번호</form:label>
 						<form:input path="ID" class="form-control" readonly="true"/>
 					</div>
 					<div class="form-group">
-						<form:label path="D_Name">학과</form:label>
-						<form:input path="D_Name" class="form-control" readonly="true"/>
+						<form:label path="d_name">학과</form:label>
+						<form:input path="d_name" class="form-control" readonly="true"/>
 					</div>
 					<c:if test="${r_id == 3 }">
 						<div class="form-group">
@@ -183,44 +183,49 @@ div.list7 {
 							<form:input path="grade" class="form-control" readonly="true"/>
 						</div>
 						<div class="form-group">
-							<form:label path="semester">학기</form:label>
-							<form:input path="semester" class="form-control" readonly="true"/>
+							<form:label path="s_semester">학기</form:label>
+							<form:input path="s_semester" class="form-control" readonly="true"/>
 						</div>
 					</c:if>
 					<div class="form-group">
-						<form:label path="Password">비밀번호</form:label>
-						<form:password path="Password" class="form-control"/>
-						<form:errors path="Password" style="color:red"/>
+						<form:label path="password">비밀번호</form:label>
+						<form:password path="password" class="form-control"/>
+						<form:errors path="password" style="color:red"/>
 					</div>
 					<div class="form-group">
-						<form:label path="Birth_Date">생년월일</form:label>
-						<form:input path="Birth_Date" class="form-control" readonly="true"/>
+						<form:label path="password2">비밀번호 확인</form:label>
+						<form:password path="password2" class="form-control"/>
+						<form:errors path="password2" style="color:red"/>
 					</div>
 					<div class="form-group">
-						<form:label path="Phone_num">전화번호</form:label>
-						<form:input path="Phone_num" class="form-control"/>
-						<form:errors path="Phone_num" style="color:red"/>
+						<form:label path="birth">생년월일</form:label>
+						<form:input path="birth" class="form-control" readonly="true"/>
 					</div>
 					<div class="form-group">
-						<form:label path="Emergency_Contact">비상연락처</form:label>
-						<form:input path="Emergency_Contact" class="form-control"/>
-						<form:errors path="Emergency_Contact" style="color:red"/>
+						<form:label path="phone">전화번호</form:label>
+						<form:input path="phone" class="form-control"/>
+						<form:errors path="phone" style="color:red"/>
 					</div>
 					<div class="form-group">
-						<form:label path="Address">주소</form:label>
-						<form:input path="Address" class="form-control"/>
-						<form:errors path="Address" style="color:red"/>
+						<form:label path="emergency">비상연락처</form:label>
+						<form:input path="emergency" class="form-control"/>
+						<form:errors path="emergency" style="color:red"/>
+					</div>
+					<div class="form-group">
+						<form:label path="address">주소</form:label>
+						<form:input path="address" class="form-control"/>
+						<form:errors path="address" style="color:red"/>
 					</div>
 					<c:if test="${r_id == 3 }">
 					<div class="form-group">
-						<form:label path="Entrance_Date">입학일자</form:label>
-						<form:input path="Entrance_Date" class="form-control" readonly="true"/>
+						<form:label path="entrance">입학일자</form:label>
+						<form:input path="entrance" class="form-control" readonly="true"/>
 					</div>
 					</c:if>
 					<div class="form-group">
-						<form:label path="Email">이메일</form:label>
-						<form:input path="Email" class="form-control" />
-						<form:errors path="Email" style="color:red"/>
+						<form:label path="email">이메일</form:label>
+						<form:input path="email" class="form-control" />
+						<form:errors path="email" style="color:red"/>
 					</div>
 					<div class="form-group">
 						<div class="text-right">

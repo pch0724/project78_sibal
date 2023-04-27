@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-sacle=1.0" />
-<title>칠팔대학교 통합시스템 로그인</title>
+<title>비밀번호 초기화</title>
 <script src="js/jquery-3.6.4.min.js"></script>
 <style type="text/css">
 * {
@@ -146,21 +146,22 @@ div > .login-wrapper {
 				<div class="login-wrapper" >
 					<div class="login_background">
 				        <div class="logo">
-				        	<h2>Login</h2>
+				        	<h2>비밀번호 변경</h2>
 				        </div>
-				        <form:form action="${root }ma/index" method="get"  path="login-form" modelAttribute="tempLoginMemberBean">
+				        <form:form action="${root }password_change_pro" method="post"  class="login-form" modelAttribute="tempLoginMemberBean">
+					        <form:hidden path="ID"/>
 				            <div>
-					            <form:label path="ID">학번/교직원번호</form:label>
-					            <form:input path="ID"/>
-					            <form:errors path="ID" style='color:red'/>
+					            <form:label path="password">비밀번호</form:label>
+					            <form:password path="password"/>
+					            <form:errors path="password" style='color:red'/>
 				            </div>
 				            
 				            <div>
-					            <form:label path="Password">비밀번호</form:label>
-				            	<form:password path="Password"/>
-					            <form:errors path="Password" style='color:red'/>
+					            <form:label path="password2">비밀번호 확인</form:label>
+				            	<form:password path="password2"/>
+					            <form:errors path="password2" style='color:red'/>
 				            </div>
-							<form:button type="submit" id="login">로그인</form:button>
+							<form:button type="submit" id="login">비밀번호 변경</form:button>
 				        </form:form>
 			        </div><!-- login_background -->
 		    	</div><!-- login-wrapper -->

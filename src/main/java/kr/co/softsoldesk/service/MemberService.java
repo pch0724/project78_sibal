@@ -62,7 +62,9 @@ public class MemberService {
 		return memberDao.checkFirstLogin(ID);
 	}
 	
-	
+	public void modifyFirstLogin(MemberBean modifyLoginMemberBean) {
+		memberDao.modifyFirstLogin(modifyLoginMemberBean);
+	}
 	
 	// 로그인
 	public void getLoginMemberInfo(MemberBean tempLoginMemberBean) {
@@ -75,14 +77,14 @@ public class MemberService {
 			loginMemberBean.setID(tempLoginMemberBean2.getID());
 			loginMemberBean.setName(tempLoginMemberBean2.getName());
 			loginMemberBean.setPassword(tempLoginMemberBean2.getPassword());
-			loginMemberBean.setBirth_Date(tempLoginMemberBean2.getBirth_Date());
-			loginMemberBean.setPhone_num(tempLoginMemberBean2.getPhone_num());
-			loginMemberBean.setEmergency_Contact(tempLoginMemberBean2.getEmergency_Contact());
+			loginMemberBean.setBirth(tempLoginMemberBean2.getBirth());
+			loginMemberBean.setPhone(tempLoginMemberBean2.getPhone());
+			loginMemberBean.setEmergency(tempLoginMemberBean2.getEmergency());
 			loginMemberBean.setAddress(tempLoginMemberBean2.getAddress());
-			loginMemberBean.setEntrance_Date(tempLoginMemberBean2.getEntrance_Date());
+			loginMemberBean.setEntrance(tempLoginMemberBean2.getEntrance());
 			loginMemberBean.setEmail(tempLoginMemberBean2.getEmail());
-			loginMemberBean.setR_id(tempLoginMemberBean2.getR_id());
-			loginMemberBean.setMemberFirstLogin(tempLoginMemberBean2.getMemberFirstLogin());
+			loginMemberBean.setR_ID(tempLoginMemberBean2.getR_ID());
+			loginMemberBean.setFirst_login(tempLoginMemberBean2.getFirst_login());
 			loginMemberBean.setMember_file(tempLoginMemberBean2.getMember_file());
 			loginMemberBean.setMemberLogin(true);
 		}
