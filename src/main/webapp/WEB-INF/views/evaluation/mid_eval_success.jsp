@@ -5,5 +5,4 @@
 <script>
 	alert('저장되었습니다')
 	location.href = '${root}evaluation/mid'
-	window.close();
 </script>

@@ -3,5 +3,5 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <script>
 	alert('비밀번호가 변경 되었습니다')
-	location.href = '${root}/login'
+	location.href = '${root}login'
 </script>

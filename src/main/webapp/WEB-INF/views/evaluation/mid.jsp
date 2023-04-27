@@ -23,6 +23,8 @@
 	
 	.enrolled{
 		background-color: #f2f2f2;
+		
+		
 	}
 	.table {
 		border-collapse: collapse;
@@ -30,6 +32,7 @@
 		margin: 0 auto;
 		margin-top: 10px;
 		overflow-x: auto;
+		
 	}
 	.row {
 	  display: table-row;
@@ -48,6 +51,13 @@
 	  border-top: 2px solid #444;
 	  border-bottom: 2px solid #444;
 	}
+	.student-info{
+		display: flex;
+		
+	}
+	.name-label{
+		padding-right: 2%;
+	}
 </style>
 </head>
 <body >
@@ -62,7 +72,7 @@
 	<header style="margin: 15px, 15px, 10px, 20px; background-color: skyblue; height : 15%;">
 		<div>
 			<form:form action = "" method ="post" modelAttribute="getInfoMemberBean">
-				<div style="text-align:left; font-size: 18px; padding: 5px;">학생 정보</div>
+				<div style="text-align:left; font-size: 18px; padding-bottom: 1%;">학생 정보</div>
 				<div class="student-info">
 					<div class="name-label" style="font-weight:bold">
 						<form:label path="name">이름</form:label>
@@ -86,25 +96,30 @@
 		<h3>수강과목</h3>
 		<div class="table">
 			<div class="row header">
-				<div class="cell">강의평가</div>
-			    <div class="cell">학수번호</div>
-			    <div class="cell">교과목명</div>
-			    <div class="cell">담당교수</div>
-			    <div class="cell">학점</div>
+				<div class="cell" style="width: 10%">강의평가</div>
+			    <div class="cell" style="width: 10%">학수번호</div>
+			    <div class="cell" style="width: 20%">교과목명</div>
+			    <div class="cell" style="width: 7%">담당교수</div>
+			    <div class="cell" style="width: 3%">학점</div>
 			</div>
 			<c:forEach var="Eval" items="${EvalInfo}">
 			<div class="row">
 			    <div class="cell">
-				    
-				    <a href="${root }evaluation/mid_eval?lec_ID=${Eval.lec_ID}&lec_name=${Eval.lec_name }&name=${Eval.name }" target="_blank" style="color:black;">
+				    <c:choose>
+				    	<c:when test="${Eval.completed == true}">
+				    		평가완료
+				    	</c:when>
+				    	<c:otherwise>
+				    <a href="${root }evaluation/mid_eval?lec_ID=${Eval.lec_ID}&lec_name=${Eval.lec_name }&name=${Eval.name }" style="color:blue; font-weight: bold;">
 				    	강의평가
 				    </a>
-				    
+				    </c:otherwise>
+				    </c:choose>
 			    </div>
-			    <div class="cell">${Eval.lec_ID }</div>
-			    <div class="cell">${Eval.lec_name }</div>
-			    <div class="cell">${Eval.name }</div>
-			    <div class="cell">${Eval.credits }</div>
+			    <div class="cell" style="width: 10%">${Eval.lec_ID }</div>
+			    <div class="cell" style="width: 20%">${Eval.lec_name }</div>
+			    <div class="cell" style="width: 7%">${Eval.name }</div>
+			    <div class="cell" style="width: 3%">${Eval.credits }</div>
 			   
 			</div>
 			</c:forEach>

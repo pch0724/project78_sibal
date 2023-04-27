@@ -1,24 +1,19 @@
 package kr.co.softsoldesk.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.softsoldesk.beans.MemberBean;
 import kr.co.softsoldesk.service.MemberService;
-//import kr.co.softsoldesk.validator.MemberValidator;
 
 @Controller
 public class LoginController {
@@ -68,13 +63,13 @@ public class LoginController {
 	}
 	
 	@PostMapping("/password_change_pro")
-	public String password_change_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, BindingResult result) {
+	public String password_change_pro(@Valid @ModelAttribute("tempModifyMemberBean") MemberBean tempModifyMemberBean, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			System.out.println(result.getAllErrors());
 			return "password_change";
 		}
-		memberService.modifyFirstLogin(tempLoginMemberBean);
+		memberService.modifyFirstLogin(tempModifyMemberBean);
 		
 		return "password_change_success";
 	}
@@ -93,13 +88,12 @@ public class LoginController {
 		return "password_change";
 	}
 	/*
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		
-		MemberValidator validator = new MemberValidator();
-		
-		binder.addValidators(validator);
-		
-	}
-	*/
+	 * @InitBinder public void initBinder(WebDataBinder binder) {
+	 * 
+	 * MemberValidator validator = new MemberValidator();
+	 * 
+	 * binder.addValidators(validator);
+	 * 
+	 * }
+	 */
 }

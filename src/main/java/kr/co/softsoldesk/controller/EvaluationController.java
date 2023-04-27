@@ -37,7 +37,7 @@ public class EvaluationController {
 		
 		evaluationService.getMemberInfo(getInfoMemberBean);
 		
-		List<EvaluationBean> EvalInfo = evaluationService.getEvalInfo(model);
+		List<EvaluationBean> EvalInfo = evaluationService.getEvalInfo(loginMemberBean.getID());
 		
 		model.addAttribute("EvalInfo",EvalInfo);
 		
@@ -81,7 +81,7 @@ public class EvaluationController {
 		
 		evaluationService.getMemberInfo(getInfoMemberBean);
 		
-		List<EvaluationBean> EvalInfo = evaluationService.getEvalInfo(model);
+		List<EvaluationBean> EvalInfo = evaluationService.getEvalInfo(loginMemberBean.getID());
 		
 		model.addAttribute("EvalInfo",EvalInfo);
 		

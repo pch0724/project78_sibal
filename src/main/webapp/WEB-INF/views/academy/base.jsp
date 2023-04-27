@@ -107,7 +107,7 @@ function collapse(element) {
 </script>
 <body style="margin: 0;">
    <div style="position: absolute; background-color: navy; width: 100%; height: 8%;">
-      <div class="logo"> <img src="${root }images/78_2.png" alt="Logo" /></div>
+      <div class="logo"><a href="${root }ma/index"><img src="${root }images/78_2.png" alt="Logo" /></a></div>
    </div>
    <div style="width: 100%; height: 734px; float: left; display: flex;">
       <div style="position: absolute; top:8%; width: 15%; height: 100%; background-color: #424242;">

@@ -32,11 +32,9 @@ public class EvaluationService {
 		getInfoMemberBean.setName(tempGetInfoMemberBean.getName());
 	}
 	
-	public List<EvaluationBean> getEvalInfo(Model model) {
-		List<EvaluationBean> getEvalInfo=evaluationDao.getEvalInfo(loginMemberBean.getID());
+	public List<EvaluationBean> getEvalInfo(int ID) {
 		
-		model.addAttribute("getEvalInfo",getEvalInfo);
-		return getEvalInfo;
+		return evaluationDao.getEvalInfo(ID);
 		
 	}
 	
