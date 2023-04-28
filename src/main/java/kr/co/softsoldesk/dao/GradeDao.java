@@ -31,4 +31,15 @@ public class GradeDao {
    public List<GradeBean> getGradeCheckInfo(int ID) {
       return  gradeMapper.getGradeCheckInfo(ID);
    }
+   
+   // 전체 성적 조회
+   public List<GradeBean> getallchk(int ID){
+	      return gradeMapper.getallchk(ID);
+   }
+	  
+   public List<GradeBean> gradebyyear(int ID, int year, int semester){
+      return gradeMapper.gradebyyear(ID ,year, semester);
+   }
+	   
+   
 }

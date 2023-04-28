@@ -27,8 +27,6 @@ public class MainController {
 	
 	@GetMapping("/index")
 	public String main_index(@ModelAttribute MemberBean tempMemberBean) {		
-			
-			
 		
 		
 		return "ma/index";

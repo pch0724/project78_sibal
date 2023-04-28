@@ -45,7 +45,6 @@ public class LoginController {
 		memberService.getLoginMemberInfo(tempLoginMemberBean); //로그인 여부
 		
 		if(loginMemberBean.isMemberLogin() == true) {
-			//if(loginMemberBean.getF)
 			System.out.println(loginMemberBean.getFirst_login());
 			if(loginMemberBean.getFirst_login().equals("true")) {
 				return "login_success";								
@@ -56,6 +55,14 @@ public class LoginController {
 			return "login_fail";
 		}
 	}
+	
+	@GetMapping("/not_login")
+	public String not_login() {
+		
+		
+		return "not_login";
+	}
+	
 	
 	@PostMapping("/password_change")
 	public String password_change(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean) {

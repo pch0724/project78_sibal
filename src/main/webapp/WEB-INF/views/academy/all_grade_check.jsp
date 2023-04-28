@@ -1,37 +1,286 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var = 'root' value = "${pageContext.request.contextPath }/"/> <!-- 절대경로 설정 : -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
+<!-- 절대경로 설정 : -->
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전체 학기 성적조회</title>
-<style>
-	.sec{
-	 position:absolute;
-	 top:8%;
-	 left:15%;
-	 width: 85%;
-	 height: 92%;
-	}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+ <%request.setCharacterEncoding("UTF-8");%>
+$(document).ready(function(){
+   
+   $.ajaxSetup({
+      success:function(result){
+         alert(result);   
+      },
+      error:function(jqXHR){
+         alert("jqXHR status code:"+jqXHR.status+" message:"+jqXHR.responseText);
+      }//error
+   });//ajaxSetup
+}); //document.ready
 
-	.contents{
-		width: 100%;
-		height: 100%;
-	}
-	/* css 추가 바람 */
+   var currentSection = null;
+
+    function selectSection(index, button) {
+        var section = document.getElementById("test" + index);
+
+        if (currentSection && currentSection !== section) {
+            currentSection.style.display = "none";
+        }
+
+        if (section.style.display == "none") {
+            section.style.display = "block";
+            currentSection = section;
+            loadSectionData(index, button);
+        } else {
+            section.style.display = "none";
+            currentSection = null;
+        }
+    }
+
+    function loadSectionData(index, button) {
+        var year = Number(button.getAttribute("data-year"));
+        var semester = Number(button.getAttribute("data-semester"));
+
+        $.ajax({
+            type: "GET",
+            url: "${root}/all_grade_check.do",
+            data: {
+                "year": year,
+                "semester": semester
+            },
+            dataType: "json",
+            success: function (data) {
+               updateTable(index, data);
+                var sectionTitle = document.getElementById("section-title-" + index);
+                sectionTitle.textContent = year + "년 " + semester + "학기 성적조회";
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error: " + textStatus + " " + errorThrown);
+            }
+        });
+    }
+    function updateTable(index, data) {
+        var section = $("#test" + index);
+        var table = section.find("table");
+
+        // 테이블 초기화
+        table.find("tr:gt(0)").remove();
+
+        // 테이블에 데이터 추가
+        $.each(data, function (i, grade) {
+            var row = $("<tr>");
+            row.append($("<td>").text(grade.year));
+            row.append($("<td>").text(grade.semester));
+            row.append($("<td>").text(grade.lec_ID));
+            row.append($("<td>").text(grade.lec_name));
+            row.append($("<td>").text(grade.completion));
+            row.append($("<td>").text(grade.credits));
+            row.append($("<td>").text(grade.gpa));
+            table.append(row);
+        });
+    }
+
+</script>
+<title>전체 성적 조회</title>
+<style>
+/*강의 선택*/
+.sec {
+   position: absolute;
+   top: 8%;
+   left: 15%;
+   width: 85%;
+   height: 92%;
+}
+
+.contents {
+   width: 100%;
+   height: 100%;
+}
+
+.lec-sel {
+   display: flex; /* Flexbox 레이아웃 적용 */
+   flex-wrap: nowrap;
+   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
+}
+
+.lec-sel2 {
+   display: flex; /* Flexbox 레이아웃 적용 */
+   flex-wrap: nowrap;
+   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
+}
+
+.lec-sel>div {
+   flex-basis: 0;
+   flex-grow: 1;
+   text-align: center;
+   border-right: 2px solid #44f;
+   padding: 10px;
+   height: 10px;
+}
+
+.lec-sel2>div {
+   flex-basis: 0;
+   flex-grow: 1;
+   text-align: center;
+   border-right: 1px solid #ccc;
+   padding: 5px;
+}
+/* 교수정보 css  */
+.lecture-info {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   padding: 10px;
+   border: none;
+}
+
+.lecture-info>div {
+   text-align: left;
+   padding: 0 10px;
+   border-right: 2px solid #4444ff;
+}
+
+.lecture-id-value {
+   border-right: none;
+}
+
+/* 성적입력 css  */
+.gradeinput-info {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   padding: 10px;
+   border: none;
+}
+
+.gradeinput-info>div {
+   flex: 1;
+   text-align: center;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+}
+
+.gradeinput-info input[type="button"] {
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   padding: 0;
+}
+
+.gradeinput-info>div:first-child {
+   border-left: none;
+   font
+}
+
+.gradeinput-info>div:last-child {
+   border-right: none;
+}
+
+.gradeinput-info>div.attendance, .gradeinput-info>div.midterm,
+   .gradeinput-info>div.final, .gradeinput-info>div.save, .gradeinput-info>div.assignment
+   {
+   display: inline-flex;
+   flex-wrap: nowrap;
+   align-items: center;
+   justify-content: center;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+th {
+   border-right: 2px solid #4444ff;
+   padding: 10px;
+}
+
+td {
+   border-right: 1px solid #ccc;
+   padding: 10px;
+}
 </style>
+
 </head>
 <body>
-	
-	<c:import url="/WEB-INF/views/academy/base.jsp"/>
-	
-	<section class="sec">
-		<div class = "contents">
-		<!-- .contents 안에 html 추가 바람 -->
-		<h2>전체학기성적조회</h2>
-		</div>
-	</section>
 
+   <c:import url="/WEB-INF/views/academy/base.jsp" />
+
+   <section class="sec">
+      <div class="contents">
+         <div style="text-align: left; font-size: 18px; padding: 5px;">년도/학기별취득학점
+            현황</div>
+         <table>
+            <tr>
+               <th rowspan=2>학년도</th>
+               <th rowspan=2>학기</th>
+               <th colspan=3>신청학점</th>
+               <th colspan=3>취득학점</th>
+               <th rowspan=2>평점</th>
+               <th rowspan=2>상세보기</th>
+            </tr>
+            <tr>
+               <th>전공</th>
+               <th>교양</th>
+               <th width=80px>총신청학점</th>
+               <th>전공</th>
+               <th>교양</th>
+               <th width=80px>총취득학점</th>
+            </tr>
+            <c:forEach var="i" begin="0" end="${size1}">
+               <tr>
+                  <td>${totalGPA.get(i).year}</td>
+                  <td>${totalGPA.get(i).semester}</td>
+                  <td>${totalGPA.get(i).en_a }</td>
+                  <td>${totalGPA.get(i).en_b }</td>
+                  <td>${totalGPA.get(i).en_all }</td>
+                  <td>${totalGPA.get(i).ac_a }</td>
+                  <td>${totalGPA.get(i).ac_b }</td>
+                  <td>${totalGPA.get(i).ac_all }</td>
+                  <td>${totalGPA.get(i).avg_grade }</td>
+                  <td>
+                     <input type="button" value="조회" onclick="selectSection(${i}, this)" data-year="${totalGPA.get(i).year}" data-semester="${totalGPA.get(i).semester}" />
+                  </td>
+               </tr>
+            </c:forEach>
+         </table>
+
+
+         <c:forEach var="i" begin="0" end="${size1}">
+            <section id="test${i}" style="display: none">
+               <h4 id="section-title-${i}">${year }년${semester }학기 성적조회</h4>
+               <table>
+                  <tr>
+                     <th>학년도</th>
+                     <th>학기</th>
+                     <th>학수번호</th>
+                     <th>강의명</th>
+                     <th>이수구분</th>
+                     <th>학점</th>
+                     <th>성적</th>
+                  </tr>
+                  <c:forEach var='a' items="${totalbyyear}">
+                     <tr>
+                        <td>${a.year}</td>
+                        <td>${a.semester}</td>
+                        <td>${a.lec_ID }</td>
+                        <td>${a.lec_name }</td>
+                        <td>${a.completion }</td>
+                        <td>${a.credits }</td>
+                        <td>${a.gpa }</td>
+                     </tr>
+                  </c:forEach>
+               </table>
+
+            </section>
+
+         </c:forEach>
+      </div>
+   </section>
 </body>
 </html>
+

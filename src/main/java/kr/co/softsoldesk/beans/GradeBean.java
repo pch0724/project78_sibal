@@ -37,5 +37,16 @@ public class GradeBean {
 	   private String completion;
 	   private int credits;
 	   //private int total;
+	   
+	   //전체성적조회 정보 
+	   private int year;
+	   private int semester;
+	   private int en_a;
+	   private int en_b;
+	   private int en_all;
+	   private int ac_a;
+	   private int ac_b;
+	   private int ac_all;
+	   private double avg_grade;
    
 }

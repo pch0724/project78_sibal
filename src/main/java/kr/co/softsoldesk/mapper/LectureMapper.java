@@ -8,7 +8,10 @@ import kr.co.softsoldesk.beans.LectureBean;
 import kr.co.softsoldesk.beans.MemberBean;
 
 public interface LectureMapper {
-
+	
+	@Select("select ID, Name from member where ID = #{ID}")
+	MemberBean getMemberInfo(int ID);
+	
 	@Select("select lec_id, lec_name, completion, grade, credits, c_id, capacity, day, starttime, endtime from lecture where p_id = #{p_id} and semester = 1 order by lec_id")
 	List<LectureBean> getLectureList(int P_ID);
 	

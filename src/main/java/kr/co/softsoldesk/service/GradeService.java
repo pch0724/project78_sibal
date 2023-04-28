@@ -46,4 +46,13 @@ public class GradeService {
       model.addAttribute("getGradeCheckInfo", getGradeCheckInfo);
       return getGradeCheckInfo;
    }
+   
+   public List<GradeBean> getallchk(int ID) {
+	  return gradeDao.getallchk(ID);
+   }
+
+   public List<GradeBean> gradebyyear(int ID, int year, int semester) {
+	  return gradeDao.gradebyyear(ID, year, semester);
+   }
+	 
 }

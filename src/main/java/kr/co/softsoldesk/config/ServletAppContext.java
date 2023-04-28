@@ -1,6 +1,8 @@
 package kr.co.softsoldesk.config;
 
 
+import javax.annotation.Resource;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -21,7 +23,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import kr.co.softsoldesk.interceptor.MemberInterceptor;
+import kr.co.softsoldesk.beans.MemberBean;
+import kr.co.softsoldesk.interceptor.CheckLoginInterceptor;
+import kr.co.softsoldesk.interceptor.MemberSessionInterceptor;
 import kr.co.softsoldesk.mapper.BoardMapper;
 import kr.co.softsoldesk.mapper.ClassroomMapper;
 import kr.co.softsoldesk.mapper.DepartmentMapper;
@@ -33,8 +37,6 @@ import kr.co.softsoldesk.mapper.ProfessorMapper;
 import kr.co.softsoldesk.mapper.RoleMapper;
 import kr.co.softsoldesk.mapper.Std_HistioryMapper;
 import kr.co.softsoldesk.mapper.StudentMapper;
-import kr.co.softsoldesk.service.MemberService;
-import kr.co.softsoldesk.service.EvaluationService;
 
 @PropertySource("/WEB-INF/properties/db.properties")
 @ComponentScan("kr.co.softsoldesk.controller") // 스캔할 패키지 지정
@@ -57,12 +59,9 @@ public class ServletAppContext implements WebMvcConfigurer{
 	@Value("${db.password}")
 	private String db_password;
 	
-	@Autowired
-	private EvaluationService midEvaService;
-
-	/*
-	 * @Autowired private MemberService memberService;
-	 */
+	@Resource(name = "loginMemberBean")
+	private MemberBean loginMemberBean;
+	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		// view 경로와 확장자 셋팅
@@ -212,17 +211,24 @@ public class ServletAppContext implements WebMvcConfigurer{
 		
 		return factoryBean;
 	}
-	/*
-	 * @Override public void addInterceptors(InterceptorRegistry registry) {
-	 * 
-	 * WebMvcConfigurer.super.addInterceptors(registry); MemberInterceptor
-	 * memberInterceptor = new MemberInterceptor(memberService);
-	 * InterceptorRegistration reg1 = registry.addInterceptor(memberInterceptor);
-	 * //작동시기 reg1.addPathPatterns("/**");// 모든 요청에 대하여 작동
-	 * 
-	 * 
-	 * }
-	 */
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		WebMvcConfigurer.super.addInterceptors(registry);
+		// 로그인 세션정보
+		MemberSessionInterceptor memberSessionInterceptor = new MemberSessionInterceptor(loginMemberBean);
+		InterceptorRegistration reg1 = registry.addInterceptor(memberSessionInterceptor);
+		
+		reg1.addPathPatterns("/**");
+		
+		// 로그인처리
+		CheckLoginInterceptor checkLoginInterceptor=new CheckLoginInterceptor(loginMemberBean);
+		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
+		// 작동시기
+		reg2.addPathPatterns("/academy/*","/enrollment/*","/evaluation/*","/ma/*", "/password_change"); //잠금
+		//reg2.excludePathPatterns("/login"); // 허용
+		
+	}
 	
 	//Properties와 충돌되어 오류가 발생되므로 분리하여 등록
 	@Bean

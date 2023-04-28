@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-sacle=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>칠팔대학교 통합시스템 로그인</title>
-<script src="js/jquery-3.6.4.min.js"></script>
 <style type="text/css">
 * {
 	padding: 0;

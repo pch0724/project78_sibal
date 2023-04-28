@@ -1,6 +1,7 @@
 package kr.co.softsoldesk.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -172,31 +173,27 @@ public class AcademyController {
 		gradeService.getMemberInfo2(getInfoMemberBean2);
 		List<GradeBean> getGradeCheckInfo = gradeService.getGradeCheckInfo2(model);
 		model.addAttribute("getGradeCheckInfo", getGradeCheckInfo);
-		for (GradeBean grade : getGradeCheckInfo) {
-			System.out.println(grade.getLec_name());
-			System.out.println(grade.getName());
-			System.out.println(grade.getCompletion());
-			System.out.println(grade.getCredits());
-			System.out.println(grade.getAt_score());
-			System.out.println(grade.getM_score());
-			System.out.println(grade.getF_score());
-			System.out.println(grade.getA_score());
-			System.out.println(grade.getGpa());
-		}
+
 		return "academy/grade_check";
 	}
 
 	//전체 성적조회
-	@GetMapping("/all_grade_check")
-	public String academy_all_grade_check(Model model) {
-		// 권한
-		int r_ID = loginMemberBean.getR_ID();		
-		model.addAttribute("r_ID", r_ID);
+   @GetMapping("/all_grade_check")
+   public String academy_all_grade_check(@RequestParam(value = "year") Optional<Integer> yeargOpt,
+                                         @RequestParam(value = "semester") Optional<Integer> semesterOpt, Model model) {
+	   // 권한
+	   int r_ID = loginMemberBean.getR_ID();		
+	   model.addAttribute("r_ID", r_ID);
 
-		
-		return "academy/all_grade_check";
-	}
-	//전체 성적조회
+       List<GradeBean> totalGPA = gradeService.getallchk(loginMemberBean.getID());
+       model.addAttribute("totalGPA", totalGPA);
+       int size1 = totalGPA.size() - 1;
+       model.addAttribute("size1", size1);
+
+       return "academy/all_grade_check";
+   }
+	
+	//성적입력
 	@GetMapping("/grade_input")
 	public String academy_grade_input(Model model) {
 		// 권한

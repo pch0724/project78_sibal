@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-sacle=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>비밀번호 초기화</title>
-<script src="js/jquery-3.6.4.min.js"></script>
 <style type="text/css">
 * {
 	padding: 0;
