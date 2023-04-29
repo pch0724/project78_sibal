@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>강의평가 입력</title>
+<title>중간 강의평가 입력</title>
 <style type="text/css">
 .course-info{
 	display: flex;

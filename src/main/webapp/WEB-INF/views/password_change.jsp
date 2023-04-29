@@ -154,12 +154,7 @@ div > .login-wrapper {
 					            <form:password path="password"/>
 					            <form:errors path="password" style='color:red'/>
 				            </div>
-				            
-				            <div>
-					            <form:label path="password2">비밀번호 확인</form:label>
-				            	<form:password path="password2"/>
-					            <form:errors path="password2" style='color:red'/>
-				            </div>
+				           
 							<form:button type="submit" id="login">비밀번호 변경</form:button>
 				        </form:form>
 			        </div><!-- login_background -->

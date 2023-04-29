@@ -2,6 +2,7 @@ package kr.co.softsoldesk.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,8 @@ public class LectureDao {
 	@Autowired
 	private MemberMapper memberMapper;
 	   
-	public List<LectureBean> timeTableUserInfo(int ID) {
-	      return memberMapper.timeTableUserInfo(ID);            
-	}
+	public List<LectureBean> getTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester) {
+        return memberMapper.getTimeTableUserInfo(ID,year,semester);            
+  }
 	
 }

@@ -3,6 +3,7 @@ package kr.co.softsoldesk.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -36,10 +37,11 @@ public interface MemberMapper {
 	         + "where ID=#{ID}")
 	MemberBean getTimeTableinfo(int ID);
 	   
-	@Select("select lec_ID, lec_name, completion, credits, day, starttime, endtime, c_ID from lecture "
-	         + "where exists ( "
-	         + "  select 1 from std_history where std_ID = #{ID} and (lec_id1 = lec_id or lec_id2 = lec_id or lec_id3 = lec_id or lec_id4 = lec_id or lec_id6 = lec_id) "
-	         + ") and year = 2022 and semester = 2")
-	List<LectureBean> timeTableUserInfo(int ID);
+	// 시간표 year, semester 값 받기       LectureDAO
+    @Select("select lec_ID, lec_name, completion, credits, day, starttime, endtime, c_ID, capacity from lecture "
+             + "where exists ( "
+             + "  select 1 from std_history where std_ID = #{ID} and (lec_id1 = lec_id or lec_id2 = lec_id or lec_id3 = lec_id or lec_id4 = lec_id or lec_id6 = lec_id) "
+             + ") and year = #{year} and semester = #{semester}")
+    List<LectureBean> getTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester);
 	
 }

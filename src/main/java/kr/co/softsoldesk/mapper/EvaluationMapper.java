@@ -24,7 +24,7 @@ public interface EvaluationMapper {
 	@Select("SELECT Distinct L.lec_ID, L.lec_name, M.name, L.credits, "
 	 		+ "       CASE WHEN EXISTS (SELECT 1 FROM evaluation WHERE lec_ID = L.lec_ID AND std_ID = #{ID}) THEN 1 ELSE 0 END AS completed "
 	 		+ "FROM lecture L, member M, grade G "
-	 		+ "WHERE L.p_id = M.id AND L.lec_ID = G.lec_ID AND G.std_ID = #{ID} and L.year = 2022 AND L.semester = 1 order by l.lec_id")
+	 		+ "WHERE L.p_id = M.id AND L.lec_ID = G.lec_ID AND G.std_ID = #{ID} and L.year = 2022 AND G.g_semester = 1 order by l.lec_id")
 	 @Results(id = "EvaluationBean", value = {
 	            @Result(property = "completed", column = "completed", javaType = Boolean.class)
 	 		})

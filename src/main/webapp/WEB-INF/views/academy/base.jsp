@@ -107,10 +107,10 @@ function collapse(element) {
 </script>
 <body style="margin: 0;">
    <div style="position: absolute; background-color: navy; width: 100%; height: 8%;">
-      <div class="logo"><a href="${root }ma/index"><img src="${root }images/78_2.png" alt="Logo" /></a></div>
+      <div class="logo"><a href="${root }ma/index"><img src="${root }images/logo_78.png" alt="Logo" /></a></div>
    </div>
    <div style="width: 100%; height: 734px; float: left; display: flex;">
-      <div style="position: absolute; top:8%; width: 15%; height: 100%; background-color: #424242;">
+      <div style="position: absolute; top:8%; width: 15%; height: 92%; background-color: #424242;">
          <ul>
             <li style="margin-bottom: 5px;">
                <button type="button" class="collapsible" onclick="collapse(this);">
@@ -147,7 +147,9 @@ function collapse(element) {
                   <ul>
                   	<c:if test="${r_ID == 3 }">
 	                    <li><a href="${root }academy/grade_check">금학기 성적조회</a></li>
-	                    <li><a href="${root }academy/all_grade_check">전체 성적조회</a></li>
+	                    <c:if test="${grade != 1 and s_semeseter != 1 }">
+		                    <li><a href="${root }academy/all_grade_check">전체 성적조회</a></li>
+	                    </c:if>
                     </c:if>
                     <c:if test="${r_ID == 2 }">
                      	<li><a href="${root }academy/grade_input">성적 입력</a></li>

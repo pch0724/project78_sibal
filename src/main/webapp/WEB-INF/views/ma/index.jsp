@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
 * {
    box-sizing: border-box;
@@ -128,13 +130,13 @@ div.square2 {
 }
 </style>
 <meta charset="UTF-8">
-<title>칠전팔디</title>
+<title>칠팔대학교 통합시스템</title>
 </head>
-<body onload="showTime()">
+<body>
    <header>
       <div class="row">
          <div id="logo">
-            <img src="${root }images/78.png" alt="Logo" />
+            <img src="${root }images/logo_78.png" alt="Logo" />
          </div>
          <div id="top_menu">
             <a href="#">화면 배치 저장</a><a href="${root }logout">&nbsp; 로그아웃</a>
@@ -155,13 +157,14 @@ div.square2 {
    </header>
    <section id="contents">
       <div class="row dflex">
-         <div class="square"></div>
+         <div class="square">
+            <div class="weather-container">
+             
+         </div>
+         </div>
          <div class="square"></div>
          <div class="square">
-            <div id="calendar">
-               <div id="calendar-header"></div>
-               <table id="calendar-body"></table>
-            </div>
+            
          </div>
       </div>
       <div class="long"></div>
@@ -173,93 +176,22 @@ div.square2 {
    </section>
    <footer> </footer>
    <script>
-      function showTime() {
-         var date = new Date(); // 현재 시간 가져오기
-         var hours = date.getHours();
-         var minutes = date.getMinutes();
-         var seconds = date.getSeconds();
-         var ampm = hours >= 12 ? 'PM' : 'AM'; // 오전/오후 구분
-   
-         hours = hours % 12; // 12시간 형식으로 변경
-         hours = hours ? hours : 12; // 0시일 경우 12시로 변경
-         minutes = minutes < 10 ? '0' + minutes
-               : minutes;
-         seconds = seconds < 10 ? '0' + seconds
-               : seconds;
-   
-         var time = hours + ':' + minutes + ':'
-               + seconds + ' ' + ampm; // 시간 표시
-         document.getElementById('clock').innerHTML = time; // 시계 표시
-         setTimeout(showTime, 1000); // 1초마다 시간 갱신
-      }
-      
-      // 달력
-	   function showCalendar() {
-	    const today = new Date();
-	    let year = today.getFullYear();
-	    let month = today.getMonth() + 1;
-	
-	    const calendarHeader = document.getElementById("calendar-header");
-	    const calendarBody = document.getElementById("calendar-body");
-	
-	    // 달력 헤더에 연도와 월을 출력합니다.
-	    const yearMonth = year + "년 " + month + "월";
-	    const headerHTML = "<div style='text-align:center; font-size: 24px; font-weight: bold;'>" + yearMonth + "</div>";
-	    calendarHeader.innerHTML = headerHTML;
-	
-	    let calendarHTML = "<tr>";
-	
-	    // 첫 번째 행에는 요일명을 출력합니다.
-	    calendarHTML += "<th>일</th>";
-	    calendarHTML += "<th>월</th>";
-	    calendarHTML += "<th>화</th>";
-	    calendarHTML += "<th>수</th>";
-	    calendarHTML += "<th>목</th>";
-	    calendarHTML += "<th>금</th>";
-	    calendarHTML += "<th>토</th>";
-	    calendarHTML += "</tr>";
-	
-	    // 달력에 출력할 날짜를 계산합니다.
-	    const firstDay = new Date(year, month - 1, 1);
-	    const lastDay = new Date(year, month, 0);
-	    const daysInMonth = lastDay.getDate();
-	
-	    let date = 1; // 첫 번째 날짜부터 시작합니다.
-	
-	    // 현재 요일을 구합니다.
-	    const todayIndex = today.getDay();
-	
-	    // 달력의 행을 출력합니다.
-	    for (let i = 0; i < 6; i++) {
-	        calendarHTML += "<tr>";
-	
-	        for (let j = 0; j < 7; j++) {
-	            if (i === 0 && j < firstDay.getDay()) {
-	                calendarHTML += "<td></td>"; // 이번 달이 시작되는 요일 이전의 빈 칸을 출력합니다.
-	            } else if (date > daysInMonth) {
-	                calendarHTML += "<td></td>"; // 이번 달이 끝난 이후의 빈 칸을 출력합니다.
-	            } else {
-	                // 현재 날짜와 같으면 클래스에 "today"를 추가합니다.
-	                const className = (year === today.getFullYear() && month === today.getMonth() + 1 && date === today.getDate()) ? "today yellow" : "";
-	
-	                // 현재 요일이면 클래스에 "today"를 추가합니다.
-	                if (j === todayIndex && i !== 0 && date <= daysInMonth) {
-	                    calendarHTML += `<td class="${className}">` + date + "</td>";
-	                } else {
-	                    calendarHTML += `<td class="${className}">` + date + "</td>";
-	                }
-	
-	                date++;
-	            }
-	        }
-	
-	        calendarHTML += "</tr>";
-	    }
-	
-	    calendarBody.innerHTML = calendarHTML;
-	}
-	
-	showCalendar();
+   $(document).ready(function() {
+       
+       // AJAX 요청을 사용하여 weather.jsp의 내용을 가져옵니다.
+       $.ajax({
+           url: '${root }ma/weather',
+           dataType: 'html',
+           success: function(data) {
+               // 가져온 내용을 index.jsp의 해당 div에 삽입합니다.
+               $('.weather-container').html(data);
+           },
+           error: function(xhr, status, error) {
+               console.log('Error fetching weather data: ' + error);
+           }
+       });
+   });
+
    </script>
 </body>
 </html>

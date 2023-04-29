@@ -36,7 +36,7 @@ public class TimeTableService {
 	   }
 	   
 	   public List<LectureBean> allTimeTableInfo(Model model) {
-	      List<LectureBean> timeTableUserInfo=lectureDao.timeTableUserInfo(loginMemberBean.getID());
+	      List<LectureBean> timeTableUserInfo=lectureDao.getTimeTableUserInfo(loginMemberBean.getID(), loginMemberBean.getYear(), loginMemberBean.getSemester());
 	      
 	      model.addAttribute("timeTableUserInfo",timeTableUserInfo);
 	      return timeTableUserInfo;

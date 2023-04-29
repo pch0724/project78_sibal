@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>성적 입력</title>
+<title>중간 강의평가 조회</title>
 <style>
 /*강의 선택*/
 	.sec{

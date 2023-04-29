@@ -44,6 +44,7 @@ public class MemberBean {
 	
 	private int r_ID;
 	
+	//최초로그인 여부
 	private String first_login;
 	
 	private String member_file;
@@ -58,10 +59,9 @@ public class MemberBean {
 	
 	private String d_name;
 	
-	
+	private int year;
 	
 	private boolean memberIdExist;
-	//최초로그인 여부
 	
 	private boolean memberLogin;
 	

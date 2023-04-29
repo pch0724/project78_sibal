@@ -152,14 +152,14 @@ div.list7 {
 		<section class="sec">
 			<div class = "contents">
 				<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean" enctype="multipart/form-data">
-					 
+					 <input type="hidden" value = "${r_ID }" />
 					<div class="form-group">
 						<form:label path="member_file">사진</form:label>
 						<c:if test="${modifyMemberBean.member_file == null }">
 							<img src="${root }images/defaultProfile.png"/>
 						</c:if>
 						<c:if test="${modifyMemberBean.member_file != null}">
-							<img src="${root }upload/${modifyMemberBean.member_file}" width="100%"/>
+							<img src="${root }upload/${modifyMemberBean.member_file}"/>
 						</c:if>
 						<form:hidden path="member_file"/>
 						<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
@@ -191,11 +191,6 @@ div.list7 {
 						<form:label path="password">비밀번호</form:label>
 						<form:password path="password" class="form-control"/>
 						<form:errors path="password" style="color:red"/>
-					</div>
-					<div class="form-group">
-						<form:label path="password2">비밀번호 확인</form:label>
-						<form:password path="password2" class="form-control"/>
-						<form:errors path="password2" style="color:red"/>
 					</div>
 					<div class="form-group">
 						<form:label path="birth">생년월일</form:label>
@@ -235,64 +230,6 @@ div.list7 {
 				</form:form>
 			</div>
 		</section>
-	<!-- <section class="sec">
-		<div class = "contents">
-		.contents 안에 html 추가 바람
-		<div class="all">
-		<div id="photo">사진 정보</div>
-		<div class=info>
-		<div class="info1">
-			<div class="list1">학번</div>
-			<div class="list2">성명</div>
-			<div class="list3">학과</div>
-			<div class="list4">학년</div>
-			
-		</div>
-		<div class="info1_1">
-			<div class="list1">2004487</div>
-			<div class="list2">이세정</div>
-			<div class="list3">소프트웨어융합과</div>
-			<div class="list4">2</div>
-		</div>
-		<div class="info2">
-			<div class="list1">주민번호</div>
-			<div class="list2">학적상태</div>
-			<div class="list3">학기구분</div>
-		</div>
-		<div class="info2_1">
-			<div class="list1">960108-******</div>
-			<div class="list2">재학</div>
-			<div class="list3">2학기</div>
-		</div>
-
-	<div class="info3">
-			<div class="list1">성별</div>
-			<div class="list2">계열</div>
-			<div class="list3">수강학년도</div>
-		</div>
-		<div class="info3_1">
-			<div class="list1">여자</div>
-			<div class="list2">공학</div>
-			<div class="list3">2023</div>
-			</div>
-		</div>
-	</div>
-	<button class="info_modify" style="margin-left: 145px;">개인정보수정</button>
-	<div class="all2">
-		<div class="info4">
-			<div class="list5">휴대폰번호</div>
-			<div class="list6">주소</div>
-		</div>
-
-		<div class="info4_1">
-			<div class="list5">010-1234-5678</div>
-			<div class="list7">서울시 종로구 코아빌딩 어쩌꾸 저쩌구</div>
-		</div>
-	
-	</div>
-
-		</div>
-	</section> -->
 
 </body>
 </html>

@@ -21,8 +21,8 @@ body {
 }
 
 main {
-    background-image: url("${root}images/login_background2.png");
-	height: 600px;
+    background-image: url("${root}images/login_bg.jpg");
+	height: 849px;
 }
 
 .login_section{
@@ -30,7 +30,7 @@ main {
 }
 .login-wrapper{
 	position:relative;
-	top: 150px;
+	top: 350px;
 	left: 450px;
     width: 40%;
     height: 55%;

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중간 강의평가 입력</title>
+<title>기말 강의평가 입력</title>
 <style>
 	.sec{
 	 position:absolute;

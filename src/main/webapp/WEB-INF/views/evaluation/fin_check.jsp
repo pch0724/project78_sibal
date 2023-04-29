@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>성적 입력</title>
+<title>기말 강의평가 조회</title>
 <style>
 /*강의 선택*/
 	.sec{
@@ -154,7 +154,7 @@
 						<div class="lec-type">${list.get(i).completion }</div>
 						<div class="lec-grade">${list.get(i).grade }</div>
 						<div class="lec-credit">${list.get(i).credits }</div>
-						<div class="lec-class">${list.get(i).c_id }</div>
+						<div class="lec-class">${list.get(i).c_ID }</div>
 						<div class="lec-number">${list.get(i).capacity }</div>
 						<div class="lec-day">${list.get(i).day }</div>
 						<div class="lec-time">${list.get(i).starttime }교시 ~ ${list.get(i).endtime }교시</div>

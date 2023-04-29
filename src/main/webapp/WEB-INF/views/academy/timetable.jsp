@@ -25,7 +25,7 @@
       display: absolute;
       width: 18%;  
       height:100%; 
-      background-color: #999999; 
+      background-color: #ededed; 
       border: 1px;
       
       
@@ -36,7 +36,7 @@
       display: absolute;
       width: 82%; 
       height:100%; 
-      background-color: #dedede; 
+      background-color: #ffffff; 
       border: 1px;
    }
    .readonly{
@@ -46,6 +46,7 @@
       width: 100%;
       height: 100%;
       float: right;
+      
    }
    
    timetable {
@@ -87,9 +88,21 @@
   }
 
   td, th {
+     overflow:auto;
     width: 20%; /* 각 칸의 너비를 20%로 설정 */
     height: 46px; /* 각 칸의 높이를 100px로 설정 */
     border: 1px solid black;
+    
+    
+  }
+ .lecture-cell {
+    background-color: yellow;
+    display: inline-block;
+    padding: 5px;
+  }
+
+  .highlight {
+    background-color: yellow;
   }
 </style>
 </head>
@@ -99,14 +112,28 @@
       <div class="contents" style="display: flex;">
          <div class="left-div">
             <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
-               <br />
-               이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
-               <br />
-               학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
-               <br />
-               학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
-            </form:form>
-            <div></div>
+           <br />
+           이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
+           <br />
+           학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
+           <br />
+           학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
+           <br />
+           연도 :&nbsp;
+           <form:select path="year">
+             <form:option value="2022">2022</form:option>
+             <form:option value="2023">2023</form:option>
+             <!-- 필요한 만큼 연도 옵션 추가 -->
+           </form:select>
+           <br />
+           학기 :&nbsp;
+           <form:select path="semester">
+             <form:option value="1">1학기</form:option>
+             <form:option value="2">2학기</form:option>
+           </form:select>
+           <br />
+           <input type="submit" value="시간표 조회"/>
+         </form:form>
          </div>
          <div class="right-div">
             <div class="main_timetable">
@@ -121,13 +148,14 @@
                   </tr>
                   <c:forEach var="time" begin="1" end="14">
                      <tr>
-                        <td>${time}</td>
-                        <c:forEach var="day" items="${['월', '화', '수', '목', '금']}">
-                           <td>
+                        <td align="center" style="width: 40px;">${time}</td>
+                        <c:forEach var="day" items="${day}">
+                           <td align="center">
                               <c:forEach var="lecture" items="${getTimeTableUserInfo}">
                                  <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                         ${lecture.lec_name}
-                                    </c:if>
+                                    <span class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}</span>
+                               <c:set var="highlight" value="${lecture.lec_name}-highlight" />
+                                 </c:if>
                               </c:forEach>
                            </td>
                         </c:forEach>
