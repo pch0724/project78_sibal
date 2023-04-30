@@ -43,5 +43,13 @@ public interface MemberMapper {
              + "  select 1 from std_history where std_ID = #{ID} and (lec_id1 = lec_id or lec_id2 = lec_id or lec_id3 = lec_id or lec_id4 = lec_id or lec_id6 = lec_id) "
              + ") and year = #{year} and semester = #{semester}")
     List<LectureBean> getTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester);
-	
+    
+	//============================================================================================================================================================================
+    // 관리자 회원 추가
+    @Insert("insert into member(ID, password, name, birth, phone, emergency, address, entrance, r_ID, first_login, member_file) "
+    		+ "values(#{ID}, #{password}, #{name}, #{birth}, #{phone}, #{emergency}, #{address}, #{entrance},#{r_ID}, #{first_login}, #{member_file})")
+    void addMemberInfo(MemberBean joinMemberBean);
+    
+    
+    
 }

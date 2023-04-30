@@ -57,6 +57,38 @@ public class MemberService {
 			return false;
 		}
 	}
+	//관리자 권한 회원가입
+	public void addMemberInfo(MemberBean joinMemberBean) {
+		// 첨부파일 처리
+		MultipartFile upload_file = joinMemberBean.getUpload_file();
+		
+		if(upload_file.getSize() > 0) {
+			String file_name = saveUploadFile(upload_file);
+			//System.out.println(file_name);
+			joinMemberBean.setMember_file(file_name);
+		}
+		//=============================================================
+		
+		memberDao.addMemberInfo(joinMemberBean);
+	}
+	
+	//회원가입 학생
+	public void addStudentInfo(StudentBean joinStudentBean) {
+		memberDao.addStudentInfo(joinStudentBean);
+	}
+	
+	//회원가입 교수
+	public void addProfessorInfo(ProfessorBean joinProfessorBean) {
+		memberDao.addProfessorInfo(joinProfessorBean);
+	}
+	
+	//학과 정보 가져오기
+	public DepartmentBean getDepartmentInfo() {
+		return memberDao.getDepartmentInfo();
+	}
+	
+	//==================================================================
+	
 	// 최초 로그인
 	public String checkFirstLogin(int ID) {
 		return memberDao.checkFirstLogin(ID);

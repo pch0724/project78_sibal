@@ -103,7 +103,7 @@ public class AcademyController {
 			StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
 			String D_Name = memberService.getDepartmentName(stdBean.getD_ID());	
 			
-			modifyMemberBean.setSemester(stdBean.getS_semester());
+			modifyMemberBean.setS_semester(stdBean.getS_semester());
 			modifyMemberBean.setGrade(stdBean.getGrade());
 			modifyMemberBean.setD_ID(stdBean.getD_ID());
 			modifyMemberBean.setD_name(D_Name);

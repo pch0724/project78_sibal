@@ -112,6 +112,21 @@ function collapse(element) {
    <div style="width: 100%; height: 734px; float: left; display: flex;">
       <div style="position: absolute; top:8%; width: 15%; height: 92%; background-color: #424242;">
          <ul>
+         	<c:if test="${r_ID == 1 }">
+	            <li style="margin-bottom: 5px;">
+	               <button type="button" class="collapsible" onclick="collapse(this);">
+	                  관리자 메뉴
+	               </button>
+	               <div class="content">
+	                  <ul>
+	                     <li><a href="${root }admin/addMember_role">이용자 추가</a></li>
+	                     <li><a href="${root }admin/notice">공지사항 관리</a></li>
+	                  </ul>
+	               </div>
+	            </li>
+            </c:if>
+            
+            <c:if test="${r_ID == 3 or r_ID == 2 }">
             <li style="margin-bottom: 5px;">
                <button type="button" class="collapsible" onclick="collapse(this);">
                   학적정보
@@ -122,58 +137,65 @@ function collapse(element) {
                   </ul>
                </div>
             </li>
+            </c:if>
+            
+            <c:if test ="${r_ID == 3 or r_ID == 2}">
+	            <li style="margin-bottom: 5px;">
+	              <button type="button" class="collapsible" onclick="collapse(this);">
+	                  수업
+	              </button>
+	              <div class="content">
+	                  <ul>
+	                  	<c:if test="${r_ID == 3}">
+		                     <li><a href="${root }enrollment/index">수강신청</a></li>
+		                     <li><a href="${root }academy/enrollment">수강신청현황</a></li>
+		                </c:if>
+		                     <li><a href="${root }academy/timetable">시간표조회</a></li>
+		                     
+	                  </ul>
+	               </div>
+	            </li>
+            </c:if>
+			
+			<c:if test="${r_ID == 3 or r_ID == 2}">
             <li style="margin-bottom: 5px;">
-              <button type="button" class="collapsible" onclick="collapse(this);">
-                  수업
-               </button>
-              <div class="content">
-                  <ul>
-                  	<c:if test="${r_ID == 3}">
-	                     <li><a href="${root }enrollment/index">수강신청</a></li>
-	                     <li><a href="${root }academy/enrollment">수강신청현황</a></li>
-	                </c:if>
-	                <c:if test ="${r_ID == 3 or r_ID == 2}">
-	                     <li><a href="${root }academy/timetable">시간표조회</a></li>
-	                </c:if>
-	                     
-                  </ul>
-               </div>
-            </li>
-            <li style="margin-bottom: 5px;">
-              <button type="button" class="collapsible" onclick="collapse(this);">
-                  성적
-               </button>
-               <div class="content">
-                  <ul>
-                  	<c:if test="${r_ID == 3 }">
-	                    <li><a href="${root }academy/grade_check">금학기 성적조회</a></li>
-	                    <c:if test="${grade != 1 and s_semeseter != 1 }">
-		                    <li><a href="${root }academy/all_grade_check">전체 성적조회</a></li>
+	              <button type="button" class="collapsible" onclick="collapse(this);">
+	                  성적
+	               </button>
+	               <div class="content">
+	                  <ul>
+	                  	<c:if test="${r_ID == 3 }">
+		                    <li><a href="${root }academy/grade_check">금학기 성적조회</a></li>
+		                    <c:if test="${grade != 1 and s_semeseter != 1 }">
+			                    <li><a href="${root }academy/all_grade_check">전체 성적조회</a></li>
+		                    </c:if>
 	                    </c:if>
-                    </c:if>
-                    <c:if test="${r_ID == 2 }">
-                     	<li><a href="${root }academy/grade_input">성적 입력</a></li>
-                    </c:if>
-                  </ul>
-               </div>
-            </li>
-            <li style="margin-bottom: 5px;">
-               <button type="button" class="collapsible" onclick="collapse(this);">
-                  강의평가
-               </button>
-               <div class="content">
-                  <ul>
-                  	<c:if test="${r_ID == 3 }">
-                     <li><a href="${root }evaluation/mid">중간강의평가</a></li>
-                     <li><a href="${root }evaluation/fin">기말강의평가</a></li>
-                    </c:if> 
-                  	<c:if test="${r_ID == 2 }">
-                     <li><a href="${root }evaluation/mid_check">중간강의평가조회</a></li>
-                     <li><a href="${root }evaluation/fin_check">기말강의평가조회</a></li>
-                    </c:if>             
-                  </ul>
-               </div>
-            </li>
+	                    <c:if test="${r_ID == 2 }">
+	                     	<li><a href="${root }academy/grade_input">성적 입력</a></li>
+	                    </c:if>
+	                  </ul>
+	               </div>
+	            </li>
+            </c:if>
+            
+            
+			<c:if test="${r_ID == 3 or r_ID == 2}">
+	            <li style="margin-bottom: 5px;">
+	               <button type="button" class="collapsible" onclick="collapse(this);">
+	                  강의평가
+	               </button>
+	               <div class="content">
+	                  <ul>
+	                  	<c:if test="${r_ID == 3 }">
+	                     <li><a href="${root }evaluation/mid">강의평가</a></li>
+	                    </c:if> 
+	                  	<c:if test="${r_ID == 2 }">
+	                     <li><a href="${root }evaluation/mid_check">강의평가조회</a></li>
+	                    </c:if>             
+	                  </ul>
+	               </div>
+	            </li>
+            </c:if>
          </ul>
       </div>
    

@@ -36,6 +36,26 @@ public class MemberDao {
 		return memberMapper.checkMemberIdExist(ID);
 	}
 	
+	
+	//===========================================================
+	//관리자 권한 회원가입
+	public void addMemberInfo(MemberBean joinMemberBean) {
+		memberMapper.addMemberInfo(joinMemberBean);
+	}
+	//회원가입 학생
+	public void addStudentInfo(StudentBean joinStudentBean) {
+		studentMapper.addStudentInfo(joinStudentBean);
+	}
+	//회원가입 교수
+	public void addProfessorInfo(ProfessorBean joinProfessorBean) {
+		professorMapper.addProfessorInfo(joinProfessorBean);
+	}
+	//학과 정보
+	public DepartmentBean getDepartmentInfo() {
+		return departmentMapper.getDepartmentInfo();
+	}
+	
+	//------------------------------------------------------------
 	// 최초로그인
 	public String checkFirstLogin(int ID) {
 		return memberMapper.checkFirstLoginMember(ID);

@@ -51,7 +51,7 @@ public class MemberBean {
 	//MultipartFile : 정적파일
 	private MultipartFile upload_file; //oracle엔추가안함
 	//---------------------------------------
-	private int semester;
+	private int s_semester;
 	
 	private int grade;
 	
@@ -60,6 +60,8 @@ public class MemberBean {
 	private String d_name;
 	
 	private int year;
+	
+	private int semester;
 	
 	private boolean memberIdExist;
 	

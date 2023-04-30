@@ -225,7 +225,7 @@ public class ServletAppContext implements WebMvcConfigurer{
 		CheckLoginInterceptor checkLoginInterceptor=new CheckLoginInterceptor(loginMemberBean);
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
 		// 작동시기
-		reg2.addPathPatterns("/academy/*","/enrollment/*","/evaluation/*","/ma/*", "/password_change"); //잠금
+		reg2.addPathPatterns("/academy/*","/enrollment/*","/evaluation/*","/ma/*", "/password_change", "admin/*"); //잠금
 		//reg2.excludePathPatterns("/login"); // 허용
 		
 	}

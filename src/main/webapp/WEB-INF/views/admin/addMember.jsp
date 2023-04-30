@@ -151,42 +151,59 @@ div.list7 {
 	<c:import url="/WEB-INF/views/academy/base.jsp"/>
 		<section class="sec">
 			<div class = "contents">
-				<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean" enctype="multipart/form-data">
-					 <input type="hidden" value = "${r_ID }" />
+				<form:form action="${root }admin/addMember_Pro" method="post" modelAttribute="joinMemberBean" enctype="multipart/form-data">
+					<form:input type = "hidden" path="r_ID" value = "${r_ID2 }"/>
+					<form:input type = "hidden" path="first_login" value = "false"/>
 					<div class="form-group">
-						<form:label path="member_file">사진</form:label>
-						<c:if test="${modifyMemberBean.member_file == null }">
-							<img src="${root }images/defaultProfile.png"/>
-						</c:if>
-						<c:if test="${modifyMemberBean.member_file != null}">
-							<img src="${root }upload/${modifyMemberBean.member_file}"/>
-						</c:if>
-						<form:hidden path="member_file"/>
+						<form:label path="upload_file">사진</form:label>
 						<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
-					</div>
-					
-					<div class="form-group">
-						<form:label path="name">이름</form:label>
-						<form:input path="name" class="form-control" readonly="true"/>
 					</div>
 					<div class="form-group">
 						<form:label path="ID">학번/교직원번호</form:label>
-						<form:input path="ID" class="form-control" readonly="true"/>
+						<form:input path="ID" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<form:label path="d_name">학과</form:label>
-						<form:input path="d_name" class="form-control" readonly="true"/>
+						<form:label path="name">이름</form:label>
+						<form:input path="name" class="form-control"/>
 					</div>
-					<c:if test="${r_ID == 3 }">
+					<c:if test="${r_ID2 == 2 or r_ID2 == 3 }">
 						<div class="form-group">
-							<form:label path="grade">학년</form:label>
-							<form:input path="grade" class="form-control" readonly="true"/>
-						</div>
-						<div class="form-group">
-							<form:label path="s_semester">학기</form:label>
-							<form:input path="s_semester" class="form-control" readonly="true"/>
+							<form:label path="d_ID">학과</form:label>
+							<form:select path="d_ID">
+								<form:option value="110">가족복지학과</form:option>
+								<form:option value="120">행정학과</form:option>
+								<form:option value="210">컴퓨터공학과</form:option>
+								<form:option value="220">생명공학과</form:option>
+								<form:option value="310">무용예술학과</form:option>
+							</form:select>
 						</div>
 					</c:if>
+					<c:if test="${r_ID2 == 3 }">
+						<div class="form-group">
+							<form:label path="grade">학년</form:label>
+							<form:select path="grade">
+								<form:option value="1">1학년</form:option>
+								<form:option value="2">2학년</form:option>
+								<form:option value="3">3학년</form:option>
+								<form:option value="4">4학년</form:option>
+							</form:select>
+						</div>
+						
+						<div class="form-group">
+							<form:label path="s_semester">이수학기</form:label>
+							<form:select path = "s_semester">
+								<form:option value="1">1</form:option>
+								<form:option value="2">2</form:option>
+								<form:option value="3">3</form:option>
+								<form:option value="4">4</form:option>
+								<form:option value="5">5</form:option>
+								<form:option value="6">6</form:option>
+								<form:option value="7">7</form:option>
+								<form:option value="8">8</form:option>
+							</form:select>
+						</div>
+					</c:if>
+
 					<div class="form-group">
 						<form:label path="password">비밀번호</form:label>
 						<form:password path="password" class="form-control"/>
@@ -194,7 +211,7 @@ div.list7 {
 					</div>
 					<div class="form-group">
 						<form:label path="birth">생년월일</form:label>
-						<form:input path="birth" class="form-control" readonly="true"/>
+						<form:input path="birth" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<form:label path="phone">전화번호</form:label>
@@ -211,20 +228,18 @@ div.list7 {
 						<form:input path="address" class="form-control"/>
 						<form:errors path="address" style="color:red"/>
 					</div>
-					<c:if test="${r_ID == 3 }">
-					<div class="form-group">
-						<form:label path="entrance">입학일자</form:label>
-						<form:input path="entrance" class="form-control" readonly="true"/>
-					</div>
-					</c:if>
 					<div class="form-group">
 						<form:label path="email">이메일</form:label>
 						<form:input path="email" class="form-control" />
 						<form:errors path="email" style="color:red"/>
 					</div>
 					<div class="form-group">
+						<form:label path="entrance">등록일자</form:label>
+						<form:input path="entrance" class="form-control"/>
+					</div>
+					<div class="form-group">
 						<div class="text-right">
-							<form:button class="btn btn-primary">정보수정</form:button>
+							<form:button class="btn btn-primary">이용자 추가</form:button>
 						</div>
 					</div>
 				</form:form>
