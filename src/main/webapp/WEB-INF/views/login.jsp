@@ -29,6 +29,7 @@ main {
 	position: relative;
 }
 .login-wrapper{
+	border-radius : 15px;
 	position:relative;
 	top: 350px;
 	left: 450px;
@@ -46,6 +47,7 @@ main {
 
 
 div > .login-wrapper {
+	 
 	 background-color:#BDBDBD;
 	 
 }

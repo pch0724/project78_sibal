@@ -24,7 +24,9 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import kr.co.softsoldesk.beans.MemberBean;
+import kr.co.softsoldesk.interceptor.CheckBoardAccessInterceptor;
 import kr.co.softsoldesk.interceptor.CheckLoginInterceptor;
+import kr.co.softsoldesk.interceptor.CheckWriterInterceptor;
 import kr.co.softsoldesk.interceptor.MemberSessionInterceptor;
 import kr.co.softsoldesk.mapper.BoardMapper;
 import kr.co.softsoldesk.mapper.ClassroomMapper;
@@ -35,8 +37,8 @@ import kr.co.softsoldesk.mapper.LectureMapper;
 import kr.co.softsoldesk.mapper.MemberMapper;
 import kr.co.softsoldesk.mapper.ProfessorMapper;
 import kr.co.softsoldesk.mapper.RoleMapper;
-import kr.co.softsoldesk.mapper.Std_HistioryMapper;
 import kr.co.softsoldesk.mapper.StudentMapper;
+import kr.co.softsoldesk.service.BoardService;
 
 @PropertySource("/WEB-INF/properties/db.properties")
 @ComponentScan("kr.co.softsoldesk.controller") // 스캔할 패키지 지정
@@ -58,6 +60,9 @@ public class ServletAppContext implements WebMvcConfigurer{
 	
 	@Value("${db.password}")
 	private String db_password;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@Resource(name = "loginMemberBean")
 	private MemberBean loginMemberBean;
@@ -181,16 +186,7 @@ public class ServletAppContext implements WebMvcConfigurer{
 		
 		return factoryBean;
 	}
-	
-	@Bean
-	public MapperFactoryBean<Std_HistioryMapper> getStd_HistioryMapper(SqlSessionFactory factory) throws Exception {
-		
-		MapperFactoryBean<Std_HistioryMapper> factoryBean = new MapperFactoryBean<Std_HistioryMapper>(Std_HistioryMapper.class);
-		
-		factoryBean.setSqlSessionFactory(factory);
-		
-		return factoryBean;
-	}
+
 	
 	@Bean
 	public MapperFactoryBean<StudentMapper> getStudentMapper(SqlSessionFactory factory) throws Exception {
@@ -218,16 +214,25 @@ public class ServletAppContext implements WebMvcConfigurer{
 		// 로그인 세션정보
 		MemberSessionInterceptor memberSessionInterceptor = new MemberSessionInterceptor(loginMemberBean);
 		InterceptorRegistration reg1 = registry.addInterceptor(memberSessionInterceptor);
-		
+		// 작동 시기
 		reg1.addPathPatterns("/**");
 		
-		// 로그인처리
+		// 로그인 처리
 		CheckLoginInterceptor checkLoginInterceptor=new CheckLoginInterceptor(loginMemberBean);
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
-		// 작동시기
-		reg2.addPathPatterns("/academy/*","/enrollment/*","/evaluation/*","/ma/*", "/password_change", "admin/*"); //잠금
-		//reg2.excludePathPatterns("/login"); // 허용
+		// 작동 시기
+		reg2.addPathPatterns("/academy/*","/enrollment/*","/evaluation/*","/ma/*", "/password_change", "/admin/*", "/board/*"); //잠금
 		
+		// 게시글 작성자 체크
+		CheckWriterInterceptor checkWriterInterceptor = new CheckWriterInterceptor(loginMemberBean, boardService);
+		InterceptorRegistration reg3 = registry.addInterceptor(checkWriterInterceptor);
+		
+		reg3.addPathPatterns("/board/modify", "/board/delete");
+		
+		CheckBoardAccessInterceptor checkBoardAccessInterceptor = new CheckBoardAccessInterceptor(loginMemberBean);
+		InterceptorRegistration reg4 = registry.addInterceptor(checkBoardAccessInterceptor);
+		
+		reg4.addPathPatterns("/board/write", "/board/modify", "/board/delete");
 	}
 	
 	//Properties와 충돌되어 오류가 발생되므로 분리하여 등록

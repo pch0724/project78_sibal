@@ -1,5 +1,7 @@
 package kr.co.softsoldesk.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.softsoldesk.beans.MemberBean;
 import kr.co.softsoldesk.service.MemberService;
@@ -30,6 +33,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
 						@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
+		tempLoginMemberBean.setID(0);
 		
 		model.addAttribute("fail", fail);
 		
@@ -97,5 +101,42 @@ public class LoginController {
 	public String password_change() {
 		return "password_change";
 	}
-	 
+
+	// index페이지 취득학점 그래프
+	@GetMapping("/ma/credits")
+	@ResponseBody
+	public Map<String, Integer> getStudentCredits() {
+		int loggedInUserId = loginMemberBean.getID();
+		// 학생의 교양 및 전공 학점 데이터를 가져오는 서비스를 호출합니다.
+		Map<String, Integer> credits = memberService.getStudentCredits(loggedInUserId);
+		// System.out.println("Credits for user " + loggedInUserId + ": " + credits); //
+		// 로그 추가
+
+		return credits;
+	}
+
+	// index페이지 신청학점
+	@GetMapping("/ma/appliedcredits")
+	@ResponseBody
+	public Map<String, Integer> getStudentappliedCredits() {
+		int loggedInUserId = loginMemberBean.getID();
+		Map<String, Integer> appliedcredits = memberService.getStudentappliedCredits(loggedInUserId);
+
+		return appliedcredits;
+	}
+
+	@GetMapping("/credits_check")
+	public String credits_check() {
+
+		return "credits_check";
+	}
+
+	@GetMapping("/GPA_check")
+	public String gpaCheck(Model model) {
+		int stdID = loginMemberBean.getID();
+		Map<String, Integer> gradeDistribution = memberService.getGradeDistribution(stdID);
+		model.addAttribute("gradeDistribution", gradeDistribution);
+		// System.out.println(gradeDistribution);
+		return "GPA_check";
+	}
 }

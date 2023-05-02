@@ -31,10 +31,10 @@ public class RestAcademyController {
    @GetMapping("/all_grade_check.do")
    @ResponseBody
    public ResponseEntity<List<GradeBean>> academy_all_grade_check(@RequestParam(value = "year") int year,
-                                                                  @RequestParam(value = "semester") int semester) {
+                                                                  @RequestParam(value = "g_semester") int g_semester) {
        List<GradeBean> totalbyyear = new ArrayList<>();
        try {
-           totalbyyear = gradeService.gradebyyear(loginMemberBean.getID(), year, semester);
+           totalbyyear = gradeService.gradebyyear(loginMemberBean.getID(), year, g_semester);
        } catch (Exception e) {
            e.printStackTrace();
        }

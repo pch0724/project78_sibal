@@ -7,6 +7,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 * {
@@ -71,25 +72,16 @@ div.dflex {
 }
 
 div.square {
-   display: inline-block;
-   width: 33%;
+   flex-basis: calc(33.333% - 10px);
+   flex-shrink: 0;
+   flex-grow: 0;
    height: 300px;
    background: white;
-   margin-right: 5px;
+   margin-right: 1%;
    border: solid 2px white;
    border-radius: 10px;
-}
-
-<!--
-달력 -->#calendar-header {
-   font-weight: bold;
-   text-align: center;
-   padding: 5px;
-}
-
-#calendar-body {
-   width: 100%;
-   border-collapse: collapse;
+   margin-bottom: 1%;
+   
 }
 
 table {
@@ -107,24 +99,13 @@ th, td {
    background-color: yellow;
 }
 
-<!--달력 -->
-div.long {
-   width: 80%;
-   height: 60px;
-   background-color: navy;
-   border: solid 2px navy;
-   border-radius: 10px;
-   margin: 0 auto;
-   margin-top: 10px;
-}
-
 div.square2 {
-   display: inline-block;
-   width: 32.5%;
+   flex-basis: calc(33.333% - 10px);
+   flex-shrink: 0;
+   flex-grow: 0;
    height: 300px;
    background: white;
-   margin-right: 5px;
-   margin-top: 10px;
+   margin-right: 1%;
    border: solid 2px white;
    border-radius: 10px;
 }
@@ -136,10 +117,10 @@ div.square2 {
    <header>
       <div class="row">
          <div id="logo">
-            <img src="${root }images/logo_78.png" alt="Logo" />
+            <img src="${root }images/logo_78_2.png" alt="Logo" />
          </div>
          <div id="top_menu">
-            <a href="#">화면 배치 저장</a><a href="${root }logout">&nbsp; 로그아웃</a>
+            <a href="${root }logout">&nbsp; 로그아웃</a>
             <div id="clock"></div>
          </div>
       </div>
@@ -158,24 +139,44 @@ div.square2 {
    <section id="contents">
       <div class="row dflex">
          <div class="square">
-            <div class="weather-container">
-             
+            <div id="credits-check-container"></div>
          </div>
+         <div class="square">
+			<!-- 공지사항 -->
+	     	<h3 class="card-title">공지사항</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="text-center w-25">글번호</th>
+						<th>제목</th>
+						<th class="text-center w-25 d-none d-xl-table-cell">작성날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var ='obj' items= "${list }">
+						<tr>
+							<td class="text-center">${obj.board_idx }</td>
+							<th><a href='${root }board/read?board_idx=${obj.board_idx}&page=1'>${obj.title }</a></th>
+							<td class="text-center d-none d-xl-table-cell">${obj.boarddate }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>						
+			<a href="${root }board/main" class="btn btn-primary">더보기</a>
          </div>
-         <div class="square"></div>
          <div class="square">
             
          </div>
       </div>
-      <div class="long"></div>
-      <div class="row dflex_bottom">
+      <div class="row dflex">
+         <div class="square2" style="padding-left: 1%;"><div id="gpa-check-container"></div></div>
          <div class="square2"></div>
-         <div class="square2"></div>
-         <div class="square2"></div>
+         <div class="square2"><div class="weather-container"></div></div>
       </div>
    </section>
    <footer> </footer>
-   <script>
+<script>
+   // 날씨 api 호출
    $(document).ready(function() {
        
        // AJAX 요청을 사용하여 weather.jsp의 내용을 가져옵니다.
@@ -191,7 +192,46 @@ div.square2 {
            }
        });
    });
+   
+   //학점취득현황 호출
+   $(document).ready(function() {
+       // AJAX 요청을 사용하여 credits_check.jsp의 내용을 가져옵니다.
+       $.ajax({
+           url: '${root }credits_check',
+           dataType: 'html',
+           success: function(data) {
+               // 가져온 내용을 index.jsp의 해당 div에 삽입합니다.
+               $('#credits-check-container').html(data);
+               
+               
+           },
+           error: function(xhr, status, error) {
+               console.log('Error fetching credits_check data: ' + error);
+           }
+       });
+   });
 
-   </script>
+    //GPA 그래프 호출
+   $(document).ready(function() {
+       // AJAX 요청을 사용하여 GPA_check.jsp의 내용을 가져옵니다.
+       $.ajax({
+           url: '${root }GPA_check',
+           dataType: 'html',
+           success: function(data) {
+               // 가져온 내용을 index.jsp의 해당 div에 삽입합니다.
+               $('#gpa-check-container').html(data);
+           },
+           error: function(xhr, status, error) {
+               console.log('Error fetching GPA_check data: ' + error);
+           }
+       });
+   });
+   
+   
+   
+   
+
+</script>
+
 </body>
 </html>

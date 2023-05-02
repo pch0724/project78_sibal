@@ -1,5 +1,6 @@
 package kr.co.softsoldesk.controller;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -39,6 +40,7 @@ public class AdminController {
 	
 	@PostMapping("/addMember")
 	public String join(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean, HttpServletRequest request, Model model) {
+		// 권한 구분
 		int r_ID = loginMemberBean.getR_ID();
 		model.addAttribute("r_ID", r_ID);
 		
@@ -50,6 +52,7 @@ public class AdminController {
 	
 	@PostMapping("/addMember_Pro")
 	public String join_pro(@Valid @ModelAttribute("joinMemberBean") MemberBean joinMemberBean, BindingResult result, Model model) {
+		// 권한 구분
 		int r_ID = loginMemberBean.getR_ID();
 		model.addAttribute("r_ID", r_ID);
 		

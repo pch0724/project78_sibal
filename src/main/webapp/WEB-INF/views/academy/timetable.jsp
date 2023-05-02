@@ -88,22 +88,20 @@
   }
 
   td, th {
-     overflow:auto;
+    
     width: 20%; /* 각 칸의 너비를 20%로 설정 */
     height: 46px; /* 각 칸의 높이를 100px로 설정 */
     border: 1px solid black;
     
     
   }
- .lecture-cell {
-    background-color: yellow;
+td .lecture-cell {
+    background-color: #7794fc;
     display: inline-block;
-    padding: 5px;
+    width: 95%;
+    padding: 17px 4.25px 17.2px;
   }
 
-  .highlight {
-    background-color: yellow;
-  }
 </style>
 </head>
 <body>
@@ -113,58 +111,58 @@
          <div class="left-div">
             <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
            <br />
-           이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
+           &nbsp;이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
            <br />
-           학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
+           &nbsp;학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
            <br />
-           학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
+           &nbsp;학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
+           <br />
            <br />
            연도 :&nbsp;
            <form:select path="year">
              <form:option value="2022">2022</form:option>
              <form:option value="2023">2023</form:option>
-             <!-- 필요한 만큼 연도 옵션 추가 -->
            </form:select>
-           <br />
            학기 :&nbsp;
            <form:select path="semester">
              <form:option value="1">1학기</form:option>
              <form:option value="2">2학기</form:option>
            </form:select>
            <br />
-           <input type="submit" value="시간표 조회"/>
+           <br />
+           <input type="submit" value="조회" style="margin-left: 90px;"/>
          </form:form>
          </div>
-         <div class="right-div">
-            <div class="main_timetable">
-               <table>
-                  <tr>
-                     <th></th>
-                     <th>월</th>
-                     <th>화</th>
-                     <th>수</th>
-                     <th>목</th>
-                     <th>금</th>
-                  </tr>
-                  <c:forEach var="time" begin="1" end="14">
+            <div class="right-div">
+               <div class="main_timetable">
+                  <table>
                      <tr>
-                        <td align="center" style="width: 40px;">${time}</td>
-                        <c:forEach var="day" items="${day}">
-                           <td align="center">
-                              <c:forEach var="lecture" items="${getTimeTableUserInfo}">
-                                 <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                    <span class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}</span>
-                               <c:set var="highlight" value="${lecture.lec_name}-highlight" />
-                                 </c:if>
-                              </c:forEach>
-                           </td>
-                        </c:forEach>
+                        <th></th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
                      </tr>
-                  </c:forEach>
-               </table>
+                     <c:forEach var="time" begin="1" end="14">
+                        <tr>
+                           <td align="center" style="width: 40px;">${time}</td>
+                           <c:forEach var="day" items="${day}">
+                              <td align="center" style="padding: 0; margin: 0;" >
+                                 <c:forEach var="lecture" items="${getTimeTableUserInfo}">
+                                    <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
+                                       <b><span style="font-size: 13px; margin: 0;" class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}</span></b>
+                                  <c:set var="highlight" value="${lecture.lec_name}-highlight" />
+                                    </c:if>
+                                 </c:forEach>
+                              </td>
+                           </c:forEach>
+                        </tr>
+                     </c:forEach>
+                  </table>
+               </div>
             </div>
          </div>
-      </div>
    </section>
 </body>
 </html>

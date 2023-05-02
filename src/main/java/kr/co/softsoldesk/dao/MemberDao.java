@@ -1,5 +1,8 @@
 package kr.co.softsoldesk.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -100,9 +103,39 @@ public class MemberDao {
 		memberMapper.modifyMemberInfo(modifyMemberBean);
 	}
 	
-	// 시간표
-	public MemberBean getTimeTableinfo(int ID) {
-	      return memberMapper.getTimeTableinfo(ID);
-	}
+	// 시간표 - 학생
+   public MemberBean getTimeTableinfo(int ID) {
+         return memberMapper.getTimeTableinfo(ID);
+   }
+   
+   // 시간표 - 교수
+   public MemberBean getTimeTableProInfo(int ID) {
+      return memberMapper.getTimeTableProInfo(ID);
+   }
 	
+	// index페이지 취득학점 그래프
+	public List<Map<String, Object>> getStudentCredits(int ID) {
+		List<Map<String, Object>> creditList = memberMapper.getStudentCredits(ID);
+
+		// 결과를 로그로 출력합니다.
+		/*
+		 * for (Map<String, Object> map : creditList) {
+		 * System.out.println("MemberDao result: " + map); }
+		 */
+
+		return creditList;
+	}
+
+	// index페이지 신청학점
+	public List<Map<String, Object>> getStudentappliedCredits(int ID) {
+		List<Map<String, Object>> appliedCreditList = memberMapper.getStudentappliedCredits(ID);
+
+		return appliedCreditList;
+	}
+
+	// index페이지 GPA그래프
+	public Map<String, Integer> getGradeDistribution(int ID) {
+		return memberMapper.getGradeDistribution(ID);
+	}
+
 }

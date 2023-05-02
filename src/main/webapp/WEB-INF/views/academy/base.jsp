@@ -107,7 +107,7 @@ function collapse(element) {
 </script>
 <body style="margin: 0;">
    <div style="position: absolute; background-color: navy; width: 100%; height: 8%;">
-      <div class="logo"><a href="${root }ma/index"><img src="${root }images/logo_78.png" alt="Logo" /></a></div>
+      <div class="logo"><a href="${root }ma/index"><img src="${root }images/logo_78_2.png" alt="Logo" /></a></div>
    </div>
    <div style="width: 100%; height: 734px; float: left; display: flex;">
       <div style="position: absolute; top:8%; width: 15%; height: 92%; background-color: #424242;">
@@ -120,11 +120,21 @@ function collapse(element) {
 	               <div class="content">
 	                  <ul>
 	                     <li><a href="${root }admin/addMember_role">이용자 추가</a></li>
-	                     <li><a href="${root }admin/notice">공지사항 관리</a></li>
+                     	 <li><a href="${root }board/write">공지사항 등록</a></li>
 	                  </ul>
 	               </div>
 	            </li>
             </c:if>
+            <li style="margin-bottom: 5px;">
+               <button type="button" class="collapsible" onclick="collapse(this);">
+                  공지사항
+               </button>
+               <div class="content">
+                  <ul>
+                     <li><a href="${root }board/main">공지사항</a></li>
+                  </ul>
+               </div>
+            </li>
             
             <c:if test="${r_ID == 3 or r_ID == 2 }">
             <li style="margin-bottom: 5px;">
@@ -149,9 +159,11 @@ function collapse(element) {
 	                  	<c:if test="${r_ID == 3}">
 		                     <li><a href="${root }enrollment/index">수강신청</a></li>
 		                     <li><a href="${root }academy/enrollment">수강신청현황</a></li>
-		                </c:if>
 		                     <li><a href="${root }academy/timetable">시간표조회</a></li>
-		                     
+		                </c:if>
+		                <c:if test="${r_ID == 2}">
+		                     <li><a href="${root }academy/timetable_professor">시간표조회</a></li>
+						</c:if>                     
 	                  </ul>
 	               </div>
 	            </li>
@@ -172,6 +184,7 @@ function collapse(element) {
 	                    </c:if>
 	                    <c:if test="${r_ID == 2 }">
 	                     	<li><a href="${root }academy/grade_input">성적 입력</a></li>
+	                        <li><a href="${root }academy/grade_output">성적 입력 확인</a></li>
 	                    </c:if>
 	                  </ul>
 	               </div>

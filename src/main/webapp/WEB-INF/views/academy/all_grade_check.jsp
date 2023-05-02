@@ -43,20 +43,20 @@ $(document).ready(function(){
 
     function loadSectionData(index, button) {
         var year = Number(button.getAttribute("data-year"));
-        var semester = Number(button.getAttribute("data-semester"));
+        var g_semester = Number(button.getAttribute("data-g_semester"));
 
         $.ajax({
             type: "GET",
             url: "${root}/all_grade_check.do",
             data: {
                 "year": year,
-                "semester": semester
+                "g_semester": g_semester
             },
             dataType: "json",
             success: function (data) {
                updateTable(index, data);
                 var sectionTitle = document.getElementById("section-title-" + index);
-                sectionTitle.textContent = year + "년 " + semester + "학기 성적조회";
+                sectionTitle.textContent = year + "년 " + g_semester + "학기 성적조회";
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("Error: " + textStatus + " " + errorThrown);
@@ -72,14 +72,15 @@ $(document).ready(function(){
 
         // 테이블에 데이터 추가
         $.each(data, function (i, grade) {
-            var row = $("<tr>");
+            var row = $("<tr style='text-align:center'>");
             row.append($("<td>").text(grade.year));
-            row.append($("<td>").text(grade.semester));
+            row.append($("<td>").text(grade.g_semester));
             row.append($("<td>").text(grade.lec_ID));
             row.append($("<td>").text(grade.lec_name));
             row.append($("<td>").text(grade.completion));
             row.append($("<td>").text(grade.credits));
             row.append($("<td>").text(grade.gpa));
+            row.append($("<td>").text(grade.gradeLetter));
             table.append(row);
         });
     }
@@ -212,8 +213,7 @@ td {
 
    <section class="sec">
       <div class="contents">
-         <div style="text-align: left; font-size: 18px; padding: 5px;">년도/학기별취득학점
-            현황</div>
+         <div style="padding-left:20px"><h2>년도/학기별취득학점</h2></div>
          <table>
             <tr>
                <th rowspan=2>학년도</th>
@@ -232,9 +232,9 @@ td {
                <th width=80px>총취득학점</th>
             </tr>
             <c:forEach var="i" begin="0" end="${size1}">
-               <tr>
+               <tr style='text-align:center'>
                   <td>${totalGPA.get(i).year}</td>
-                  <td>${totalGPA.get(i).semester}</td>
+                  <td>${totalGPA.get(i).g_semester}</td>
                   <td>${totalGPA.get(i).en_a }</td>
                   <td>${totalGPA.get(i).en_b }</td>
                   <td>${totalGPA.get(i).en_all }</td>
@@ -243,16 +243,30 @@ td {
                   <td>${totalGPA.get(i).ac_all }</td>
                   <td>${totalGPA.get(i).avg_grade }</td>
                   <td>
-                     <input type="button" value="조회" onclick="selectSection(${i}, this)" data-year="${totalGPA.get(i).year}" data-semester="${totalGPA.get(i).semester}" />
+                     <input type="button" value="조회" onclick="selectSection(${i}, this)" data-year="${totalGPA.get(i).year}" data-g_semester="${totalGPA.get(i).g_semester}" />
                   </td>
                </tr>
             </c:forEach>
+            
+            <tr style="border-top : double 5px #ddd">
+            
+            <th colspan="2">총합계</th>
+            <th>${totalBean.en_a }</th>
+            <th>${totalBean.en_b }</th>
+            <th>${totalBean.en_all }</th>
+            <th>${totalBean.ac_a }</th>
+            <th>${totalBean.ac_b }</th>
+            <th>${totalBean.ac_all }</th>
+            <th>평균평점</th>
+            <th>${totalBean.avg_grade }</th>
+            </tr>
+            
          </table>
-
+      
 
          <c:forEach var="i" begin="0" end="${size1}">
             <section id="test${i}" style="display: none">
-               <h4 id="section-title-${i}">${year }년${semester }학기 성적조회</h4>
+               <h3 style="padding-left:20px" id="section-title-${i}">${year }년${g_semester }학기 성적조회</h3>
                <table>
                   <tr>
                      <th>학년도</th>
@@ -262,18 +276,9 @@ td {
                      <th>이수구분</th>
                      <th>학점</th>
                      <th>성적</th>
+                     <th>등급</th>
                   </tr>
-                  <c:forEach var='a' items="${totalbyyear}">
-                     <tr>
-                        <td>${a.year}</td>
-                        <td>${a.semester}</td>
-                        <td>${a.lec_ID }</td>
-                        <td>${a.lec_name }</td>
-                        <td>${a.completion }</td>
-                        <td>${a.credits }</td>
-                        <td>${a.gpa }</td>
-                     </tr>
-                  </c:forEach>
+                
                </table>
 
             </section>
@@ -283,4 +288,3 @@ td {
    </section>
 </body>
 </html>
-

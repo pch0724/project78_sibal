@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보수정</title>
+<title>이용자 등록</title>
 <style>
 	.sec{
 	 position:absolute;
@@ -152,6 +152,7 @@ div.list7 {
 		<section class="sec">
 			<div class = "contents">
 				<form:form action="${root }admin/addMember_Pro" method="post" modelAttribute="joinMemberBean" enctype="multipart/form-data">
+					<form:hidden path = "memberIdExist"/>
 					<form:input type = "hidden" path="r_ID" value = "${r_ID2 }"/>
 					<form:input type = "hidden" path="first_login" value = "false"/>
 					<div class="form-group">

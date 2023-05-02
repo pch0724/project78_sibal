@@ -1,6 +1,9 @@
 package kr.co.softsoldesk.service;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -162,5 +165,49 @@ public class MemberService {
 	      
 	      memberDao.getTimeTableinfo(timeTableUserInfo.getID());
 	      
+	}
+
+	// index페이지 취득학점 그래프
+	public Map<String, Integer> getStudentCredits(int ID) {
+		List<Map<String, Object>> creditList = memberDao.getStudentCredits(ID);
+		// System.out.println("MemberService creditList: " + creditList);
+
+		Map<String, Integer> resultMap = new HashMap<>();
+		resultMap.put("교양", 0);
+		resultMap.put("전공", 0);
+
+		for (Map<String, Object> map : creditList) {
+			String completion = (String) map.get("COMPLETION");
+			Integer totalCredits = ((Number) map.get("TOTAL_CREDITS")).intValue();
+
+			// Add the totalCredits to the resultMap under the corresponding completion key
+			resultMap.put(completion, totalCredits);
+		}
+
+		// System.out.println("MemberService resultMap: " + resultMap);
+		return resultMap;
+	}
+
+	// index페이지 신청학점
+	public Map<String, Integer> getStudentappliedCredits(int ID) {
+		List<Map<String, Object>> appliedCreditList = memberDao.getStudentappliedCredits(ID);
+
+		Map<String, Integer> appliedresultMap = new HashMap<>();
+		appliedresultMap.put("교양", 0);
+		appliedresultMap.put("전공", 0);
+
+		for (Map<String, Object> map : appliedCreditList) {
+			String completion = (String) map.get("COMPLETION");
+			Integer totalCredits = ((Number) map.get("TOTAL_CREDITS")).intValue();
+
+			appliedresultMap.put(completion, totalCredits);
+		}
+
+		return appliedresultMap;
+	}
+
+	// index페이지 GPA 그래프
+	public Map<String, Integer> getGradeDistribution(int ID) {
+		return memberDao.getGradeDistribution(ID);
 	}
 }
