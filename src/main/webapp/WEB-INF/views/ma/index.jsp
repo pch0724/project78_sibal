@@ -8,7 +8,9 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
 * {
    box-sizing: border-box;
@@ -20,6 +22,7 @@ div.row {
 }
 
 div.nav {
+   font-family: 'Noto Sans KR', sans-serif;
    background-color: navy;
    height: 50px;
    padding: 14px 0;
@@ -60,10 +63,10 @@ div.nav nav li a {
 }
 
 #contents {
-   background: url("${root }images/blue.jpg");
+   background: url("${root }images/back2.jpg");
    background-size: 100%;
    background-repeat: no-repeat;
-   min-height: 1300px;
+   min-height: 704px;
    padding-top: 30px;
 }
 
@@ -72,6 +75,7 @@ div.dflex {
 }
 
 div.square {
+   font-family: 'Noto Sans KR', sans-serif;
    flex-basis: calc(33.333% - 10px);
    flex-shrink: 0;
    flex-grow: 0;
@@ -81,12 +85,14 @@ div.square {
    border: solid 2px white;
    border-radius: 10px;
    margin-bottom: 1%;
+   box-shadow : 0pc 6px 15px #001c4d;
    
 }
 
 table {
    width: 100%;
    border-collapse: collapse;
+   
 }
 
 th, td {
@@ -100,6 +106,7 @@ th, td {
 }
 
 div.square2 {
+   font-family: 'Noto Sans KR', sans-serif;
    flex-basis: calc(33.333% - 10px);
    flex-shrink: 0;
    flex-grow: 0;
@@ -108,19 +115,32 @@ div.square2 {
    margin-right: 1%;
    border: solid 2px white;
    border-radius: 10px;
+   box-shadow : 0pc 6px 15px #001c4d;
+}
+#login {
+   font-family: 'Noto Sans KR', sans-serif;
+   margin-right:10px;
+   margin-left:-20px;
+   margin-top:20px;
+   border-radius: 10px;
+   border: 2px solid black;
+   width: 80px;
+   height:30px;
+   background-color:#000087;
+   
 }
 </style>
 <meta charset="UTF-8">
 <title>칠팔대학교 통합시스템</title>
 </head>
-<body>
+<body style="margin: 0px;">
    <header>
       <div class="row">
          <div id="logo">
-            <img src="${root }images/logo_78_2.png" alt="Logo" />
+            <img src="${root }images/logo_ex5.png" alt="Logo" />
          </div>
          <div id="top_menu">
-            <a href="${root }logout">&nbsp; 로그아웃</a>
+            <button id="login" ><a href="${root }logout" style="text-decoration: none; color: white;">로그아웃</a></button> 
             <div id="clock"></div>
          </div>
       </div>
@@ -130,8 +150,7 @@ div.square2 {
                <ul>
                   <li class="menu"><a href="${root }academy/index">학사행정시스템</a></li>
                   <li class="menu"><a href="${root }enrollment/index">수강신청</a></li>
-                  <li class="menu"><a href="#">칠전팔디시스템</a></li>
-               </ul>
+           </ul>
             </nav>
          </div>
       </div>
@@ -142,27 +161,27 @@ div.square2 {
             <div id="credits-check-container"></div>
          </div>
          <div class="square">
-			<!-- 공지사항 -->
-	     	<h3 class="card-title">공지사항</h3>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="text-center w-25">글번호</th>
-						<th>제목</th>
-						<th class="text-center w-25 d-none d-xl-table-cell">작성날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var ='obj' items= "${list }">
-						<tr>
-							<td class="text-center">${obj.board_idx }</td>
-							<th><a href='${root }board/read?board_idx=${obj.board_idx}&page=1'>${obj.title }</a></th>
-							<td class="text-center d-none d-xl-table-cell">${obj.boarddate }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>						
-			<a href="${root }board/main" class="btn btn-primary">더보기</a>
+         <!-- 공지사항 -->
+           <h3 class="card-title">공지사항</h3>
+         <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th class="text-center w-25">글번호</th>
+                  <th>제목</th>
+                  <th class="text-center w-25 d-none d-xl-table-cell">작성날짜</th>
+               </tr>
+            </thead>
+            <tbody>
+               <c:forEach var ='obj' items= "${list }">
+                  <tr>
+                     <td class="text-center">${obj.board_idx }</td>
+                     <th><a href='${root }board/read?board_idx=${obj.board_idx}&page=1'>${obj.title }</a></th>
+                     <td class="text-center d-none d-xl-table-cell">${obj.boarddate }</td>
+                  </tr>
+               </c:forEach>
+            </tbody>
+         </table>                  
+         <a href="${root }board/main" class="btn btn-primary">더보기</a>
          </div>
          <div class="square">
             

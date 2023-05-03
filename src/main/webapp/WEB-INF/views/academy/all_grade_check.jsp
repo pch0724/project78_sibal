@@ -190,20 +190,31 @@ $(document).ready(function(){
    justify-content: center;
 }
 
-table {
-   width: 100%;
+table{
    border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
 }
-
-th {
-   border-right: 2px solid #4444ff;
-   padding: 10px;
+table th {
+      color: #168;
+      background: #f0f6f9;
+      text-align: center;
 }
-
-td {
-   border-right: 1px solid #ccc;
-   padding: 10px;
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ddd;
 }
+table th:first-child, table td:first-child {
+  border-left: 0;
+}
+table th:last-child, table td:last-child {
+  border-right: 0;
+}
+table tr td:first-child{
+  text-align: center;
+}
+table caption{caption-side: bottom; display: none;}
 </style>
 
 </head>
@@ -213,8 +224,10 @@ td {
 
    <section class="sec">
       <div class="contents">
-         <div style="padding-left:20px"><h2>년도/학기별취득학점</h2></div>
-         <table>
+         <p>
+              <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>년도/학기별취득학점</b></span>
+          </p>
+         <table class="credits-table">
             <tr>
                <th rowspan=2>학년도</th>
                <th rowspan=2>학기</th>
@@ -266,7 +279,10 @@ td {
 
          <c:forEach var="i" begin="0" end="${size1}">
             <section id="test${i}" style="display: none">
-               <h3 style="padding-left:20px" id="section-title-${i}">${year }년${g_semester }학기 성적조회</h3>
+               
+               <p>
+                 <b><span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;" id="section-title-${i}">${year }년${g_semester }학기 성적조회</span></b>
+             </p>
                <table>
                   <tr>
                      <th>학년도</th>

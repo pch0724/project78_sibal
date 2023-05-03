@@ -64,6 +64,43 @@
 .grade-info>div:last-child {
    border-right: none;
 }
+
+.grades-table{
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
+}
+.student-info-table{
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    border-bottom: 3px solid #168;
+    width: 100%;
+    
+}
+.student-info-table td{
+   border: 1px solid #ddd;
+}
+.grades-table th {
+      color: #168;
+      background: #f0f6f9;
+      text-align: center;
+    }
+    .grades-table th, .grades-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .grades-table th:first-child, .grades-table td:first-child {
+      border-left: 0;
+    }
+    .grades-table th:last-child, .grades-table td:last-child {
+      border-right: 0;
+    }
+    .grades-table tr td:first-child{
+      text-align: center;
+    }
+    .grades-table caption{caption-side: bottom; display: none;}
+
 </style>
 </head>
 <body>
@@ -74,54 +111,61 @@
       <div class="contents">
          <!-- 학생정보  -->
          <form:form action="" method="post"
-            modelAttribute="modifyMemberBean">
-            <div style="text-align: left; font-size: 18px; padding: 5px;">학생
-               정보</div>
-            <div class="student-info">
-               <div class="name-label" style="font-weight: bold">이름</div>
-               <div class="name-value">${modifyMemberBean.name }</div>
-               <div class="student-id-label" style="font-weight: bold">학번</div>
-               <div class="student-id-value">${modifyMemberBean.ID }</div>
-            </div>
-
-            <div class="student-info">
-               <div class="major-label" style="font-weight: bold">학과</div>
-               <div class="major-value">${modifyMemberBean.d_name }</div>
-               <div class="grade-label" style="font-weight: bold">학년</div>
-               <div class="grade-value">${modifyMemberBean.grade }</div>
-               <div class="semester-label" style="font-weight: bold">학기</div>
-               <div class="semester-value">${modifyMemberBean.semester }</div>
-            </div>
+            modelAttribute="modifyMemberBean">   
+            <p>
+               <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>학생정보</b></span>
+            </p>
+            <table class="student-info-table">
+             <tr>
+                 <th class="name-label" style="font-weight: bold">이름</th>
+                 <td class="name-value">${modifyMemberBean.name }</td>
+                 <th class="student-id-label" style="font-weight: bold">학번</th>
+                 <td class="student-id-value">${modifyMemberBean.ID }</td>
+                 <th class="major-label" style="font-weight: bold">학과</th>
+                 <td class="major-value">${modifyMemberBean.d_name }</td>
+                 <th class="grade-label" style="font-weight: bold">학년</th>
+                 <td class="grade-value">${modifyMemberBean.grade }</td>
+                 <th class="semester-label" style="font-weight: bold">학기</th>
+                 <td class="semester-value">${modifyMemberBean.semester }</td>
+                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                 <td></td>
+             </tr>
+         </table>
          </form:form>
-         <div style="text-align: left; font-size: 18px; padding: 5px;">금학기
-            성적조회</div>
+            <p>
+               <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>금학기 성적조회</b></span>
+            </p>
          <!-- 성적정보 -->
-         <div class="grade-info" style="font-weight: bold">
-            <div class="subject-name">과목명</div>
-            <div class="professor">교수명</div>
-            <div class="subject-type">이수구분</div>
-            <div class="subject-credit">학점</div>
-            <div class="attendance">출석</div>
-            <div class="midterm">중간</div>
-            <div class="final">기말</div>
-            <div class="assignment">과제</div>
-            <div class="grade">등급</div>
-         </div>
-   
-
-         <c:forEach var="grade" items="${getGradeCheckInfo}">
-            <div class="grade-info">
-               <div class="subject-name">${grade.lec_name }</div>
-               <div class="professor">${grade.name }</div>
-               <div class="subject-type">${grade.completion }</div>
-               <div class="subject-credit">${grade.credits }</div>
-               <div class="attendance">${grade.at_score }</div>
-               <div class="midterm">${grade.m_score }</div>
-               <div class="final">${grade.f_score }</div>
-               <div class="assignment">${grade.a_score }</div>
-               <div class="grade">${grade.gpa }</div>
-            </div>
-         </c:forEach>
+         <table class="grades-table">
+         <thead>
+            <tr>
+               <th>과목명</th>
+               <th>교수명</th>
+               <th>이수구분</th>
+               <th>학점</th>
+               <th>출석</th>
+               <th>중간</th>
+               <th>기말</th>
+               <th>과제</th>
+               <th>등급</th>
+            </tr>
+         </thead>
+         <tbody>
+            <c:forEach var="grade" items="${getGradeCheckInfo}">
+               <tr>
+                  <td>${grade.lec_name }</td>
+                  <td>${grade.name }</td>
+                  <td>${grade.completion }</td>
+                  <td>${grade.credits }</td>
+                  <td>${grade.at_score }</td>
+                  <td>${grade.m_score }</td>
+                  <td>${grade.f_score }</td>
+                  <td>${grade.a_score }</td>
+                  <td>${grade.gpa }</td>
+               </tr>
+            </c:forEach>
+         </tbody>
+      </table>
 
       </div>
       </section>

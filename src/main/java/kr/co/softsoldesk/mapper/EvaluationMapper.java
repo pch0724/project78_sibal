@@ -18,7 +18,7 @@ public interface EvaluationMapper {
 	@Select("select grade.lec_id,lec_name,name,credits from lecture inner join member on id=p_id inner join grade on lecture.lec_id=grade.lec_id where year=2022 and semester = 1 and std_id=#{ID}")
 	List<EvaluationBean> getEvalInfo(int ID);
 	*/
-	@Insert("insert into evaluation(lec_ID, std_ID, items1, items2, items3, items4, feedback) values(#{lec_ID},#{std_ID},#{items1},#{items2},#{items3},#{items4},#{feedback})")
+	@Insert("insert into evaluation(lec_ID, std_ID, items1, items2, items3, items4, feedback, year, semester) values(#{lec_ID},#{std_ID},#{items1},#{items2},#{items3},#{items4},#{feedback},2022,1)")
 	void addEvalInfo(EvaluationBean writeEvalBean);
 	
 	@Select("SELECT Distinct L.lec_ID, L.lec_name, M.name, L.credits, "

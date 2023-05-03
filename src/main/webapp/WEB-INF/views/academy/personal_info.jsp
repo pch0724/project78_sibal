@@ -7,229 +7,239 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보수정</title>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
 <style>
-	.sec{
-	 position:absolute;
-	 top:8%;
-	 left:15%;
-	 width: 85%;
-	 height: 92%;
-	}
+.sec {
+	position: absolute;
+	top: 8%;
+	left: 15%;
+	width: 85%;
+	height: 92%;
+}
 
-	.contents{
-		width: 100%;
-		height: 100%;
-	}
-	div.all {
+.contents {
 	width: 100%;
-	height: 200px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	height: 92%;
 }
 
-div#photo {
-	float: left;
-	width: 3.5cm;
-	height: 4.5cm;
-	border: 1px solid black;
-	background-color: white;
-	margin: 10px;
-	display: inline-block;
-	vertical-align: top;
+table {
+	table-layout: fixed;
+	margin-top: 3%;
+	margin-left: 7%;
+	width: 87%;
+	height: 60%;
+	border-collapse: collapse;
+	border: 2.5px solid #168;
 }
 
-div#infomodify {
-	background-color: #007bff;
-	color: #fff;
-	font-size: 16px;
+td {
+	width: 40%;
+	padding: 10px;
+	border: 0.5px solid #168;
+	color: #168;
+	text-align: center;
+	vertical-align: middle;
+}
+
+td img {
+	align-self: center;
+	width: 80%;
+	height: 100%;
+}
+
+label {
 	font-weight: bold;
-	height: 40px;
-	width: 120px;
-	border: none;
-	border-radius: 5px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-	margin-top: 200px;
-	margin-left: 10px;
 }
 
-div.info1 {
+.form-control {
+	display: block;
+	width: 80%;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn {
 	display: inline-block;
-	float: left;
-	margin-top: 50px;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #007bff;
+	border: 1px solid #007bff;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-div.info1_1 {
-	display: inline-block;
-	vertical-align: top;
-	float: left;
-	margin-top: 50px;
+.btn-primary {
+	background-color: #007bff;
+	border-color: #007bff;
 }
 
-div.list1 {
-	border: solid black 1px;
-	width: 150px;
+.btn-primary:hover {
+	background-color: #0069d9;
+	border-color: #0062cc;
 }
 
-div.list2 {
-	border: solid black 1px;
-	width: 150px;
+.btn-primary:focus, .btn-primary.focus {
+	box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5);
 }
 
-div.list3 {
-	border: solid black 1px;
-	width: 150px;
+.btn-primary:active, .btn-primary.active {
+	background-color: #0062cc;
+	border-color: #005cbf;
 }
-
-div.list4 {
-	border: solid black 1px;
-	width: 150px;
-}
-
-div.info2 {
-	display: inline-block;
-	float: left;
-	margin-top: 50px;
-}
-
-div.info2_1 {
-	display: inline-block;
-	vertical-align: top;
-	float: left;
-	margin-top: 50px;
-}
-
-div.info3 {
-	display: inline-block;
-	float: left;
-	margin-top: 50px;
-}
-
-div.info3_1 {
-	display: inline-block;
-	vertical-align: top;
-	float: left;
-	margin-top: 50px;
-}
-
-div.all2 {
-	width: 100%;
-	margin-top: 10px;
-	height: 200px;
-}
-
-div.info4 {
-	display: inline-block;
-	float: left;
-	margin-left: 25.5%;
-}
-
-div.info4_1 {
-	display: inline-block;
-	float: left;
-	vertical-align: top;
-}
-
-div.list5 {
-	border: solid black 1px;
-	width: 150px;
-}
-
-div.list6 {
-	border: solid black 1px;
-	width: 150px;
-}
-
-div.list7 {
-	border: solid black 1px;
-	width: 400px;
-}
-	/* css 추가 바람 */
 </style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/academy/base.jsp"/>
-		<section class="sec">
-			<div class = "contents">
-				<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean" enctype="multipart/form-data">
-					 <input type="hidden" value = "${r_ID }" />
-					<div class="form-group">
-						<form:label path="member_file">사진</form:label>
-						<c:if test="${modifyMemberBean.member_file == null }">
-							<img src="${root }images/defaultProfile.png"/>
-						</c:if>
-						<c:if test="${modifyMemberBean.member_file != null}">
-							<img src="${root }upload/${modifyMemberBean.member_file}"/>
-						</c:if>
-						<form:hidden path="member_file"/>
-						<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
-					</div>
+	
+	<section class="sec">
+		<div class = "contents">
+			<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean" enctype="multipart/form-data">
+			<input type="hidden" value = "${r_ID }" />
+				<table>
+					<tr>
+					<td colspan="6" style ="padding: 0.5em 0.6em; text-align: left; font-size: 22px; color: #168"><b>개인정보수정</b></td>
+					</tr>
 					
-					<div class="form-group">
-						<form:label path="name">이름</form:label>
-						<form:input path="name" class="form-control" readonly="true"/>
-					</div>
-					<div class="form-group">
-						<form:label path="ID">학번/교직원번호</form:label>
-						<form:input path="ID" class="form-control" readonly="true"/>
-					</div>
-					<div class="form-group">
-						<form:label path="d_name">학과</form:label>
-						<form:input path="d_name" class="form-control" readonly="true"/>
-					</div>
+					<tr>
+						<td colspan="2" rowspan="3">
+							<form:label path="member_file"></form:label>
+							<c:if test="${modifyMemberBean.member_file == null }">
+								<img src="${root }images/defaultProfile.png"/>
+							</c:if>
+							<c:if test="${modifyMemberBean.member_file != null}">
+								<img src="${root }upload/${modifyMemberBean.member_file}"/>
+							</c:if>
+							<form:hidden path="member_file"/>
+							<br />
+						</td>
+						<td>
+							<form:label path="ID">학번/교직원번호</form:label>
+						</td>
+						<td>
+							<form:input path="ID" class="form-control" readonly="true"/>
+						</td>
+						<td>
+							<form:label path="name">이름</form:label>
+						</td>
+						<td>
+							<form:input path="name" class="form-control" readonly="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form:label path="d_name">학과</form:label>
+						</td>
+						<td>
+							<form:input path="d_name" class="form-control" readonly="true"/>
+						</td>
+						<td>
+							<form:label path="password">비밀번호</form:label>
+						</td>
+						<td>
+							<form:password path="password" class="form-control"/>
+							<form:errors path="password" style="color:red"/>
+						</td>
+					</tr>
+					<tr>
 					<c:if test="${r_ID == 3 }">
-						<div class="form-group">
+						<td>
 							<form:label path="grade">학년</form:label>
+						</td>
+						<td>
 							<form:input path="grade" class="form-control" readonly="true"/>
-						</div>
-						<div class="form-group">
+						</td>
+						<td>
 							<form:label path="s_semester">학기</form:label>
+						</td>
+						<td>
 							<form:input path="s_semester" class="form-control" readonly="true"/>
-						</div>
+						</td>
 					</c:if>
-					<div class="form-group">
-						<form:label path="password">비밀번호</form:label>
-						<form:password path="password" class="form-control"/>
-						<form:errors path="password" style="color:red"/>
-					</div>
-					<div class="form-group">
-						<form:label path="birth">생년월일</form:label>
-						<form:input path="birth" class="form-control" readonly="true"/>
-					</div>
-					<div class="form-group">
-						<form:label path="phone">전화번호</form:label>
-						<form:input path="phone" class="form-control"/>
-						<form:errors path="phone" style="color:red"/>
-					</div>
-					<div class="form-group">
-						<form:label path="emergency">비상연락처</form:label>
-						<form:input path="emergency" class="form-control"/>
-						<form:errors path="emergency" style="color:red"/>
-					</div>
-					<div class="form-group">
-						<form:label path="address">주소</form:label>
-						<form:input path="address" class="form-control"/>
-						<form:errors path="address" style="color:red"/>
-					</div>
-					<c:if test="${r_ID == 3 }">
-					<div class="form-group">
-						<form:label path="entrance">입학일자</form:label>
-						<form:input path="entrance" class="form-control" readonly="true"/>
-					</div>
-					</c:if>
-					<div class="form-group">
-						<form:label path="email">이메일</form:label>
-						<form:input path="email" class="form-control" />
-						<form:errors path="email" style="color:red"/>
-					</div>
-					<div class="form-group">
-						<div class="text-right">
+					</tr>
+					<tr>
+						<td colspan="2">
+							<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
+						</td>
+						<c:if test="${r_ID == 3 }">
+							<td>
+								<form:label path="entrance">입학일자</form:label>
+							</td>
+							<td>
+								<form:input path="entrance" class="form-control" readonly="true"/>					
+							</td>
+						</c:if>
+						<td>
+							<form:label path="birth">생년월일</form:label>
+						</td>
+						<td>
+							<form:input path="birth" class="form-control" readonly="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form:label path="address">주소</form:label>
+						</td>
+						<td colspan="2">
+							<form:input path="address" class="form-control"/>
+							<form:errors path="address" style="color:red"/>
+						</td>
+						<td>
+							<form:label path="email">이메일</form:label>
+						</td>
+						<td colspan="2">
+							<form:input path="email" class="form-control" />
+							<form:errors path="email" style="color:red"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form:label path="phone">연락처</form:label>
+						</td>
+						<td colspan="2">
+							<form:input path="phone" class="form-control"/>
+							<form:errors path="phone" style="color:red"/>
+						</td>
+						<td>
+							<form:label path="emergency">비상연락처</form:label>
+						</td>
+						<td colspan="2">
+							<form:input path="emergency" class="form-control"/>
+							<form:errors path="emergency" style="color:red"/>
+						</td>
+					</tr>
+					
+					<tr align="center">
+						<td colspan="6">
 							<form:button class="btn btn-primary">정보수정</form:button>
-						</div>
-					</div>
-				</form:form>
-			</div>
-		</section>
-
+						</td>
+					</tr>
+				</table>
+			</form:form>
+		</div>
+	</section>
+	
 </body>
 </html>

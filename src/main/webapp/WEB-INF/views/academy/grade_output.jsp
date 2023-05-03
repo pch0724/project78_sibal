@@ -23,34 +23,7 @@
    height: 100%;
 }
 
-.lec-sel {
-   display: flex; /* Flexbox 레이아웃 적용 */
-   flex-wrap: nowrap;
-   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
-}
 
-.lec-sel2 {
-   display: flex; /* Flexbox 레이아웃 적용 */
-   flex-wrap: nowrap;
-   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
-}
-
-.lec-sel>div {
-   flex-basis: 0;
-   flex-grow: 1;
-   text-align: center;
-   border-right: 2px solid #44f;
-   padding: 10px;
-   height: 10px;
-}
-
-.lec-sel2>div {
-   flex-basis: 0;
-   flex-grow: 1;
-   text-align: center;
-   border-right: 1px solid #ccc;
-   padding: 5px;
-}
 /* 교수정보 css  */
 .lecture-info {
    display: flex;
@@ -71,50 +44,90 @@
 }
 
 /* 성적입력 css  */
-.gradeinput-info {
-   display: flex;
-   align-items: center;
-   justify-content: flex-start;
-   padding: 10px;
-   border: none;
-}
 
-.gradeinput-info>div {
-   flex: 1;
-   text-align: center;
-   border-left: 1px solid #ccc;
-   border-right: 1px solid #ccc;
-}
 
-.gradeinput-info input[type="button"] {
+.info-button {
    width: 100%;
-   height: 100%;
+   height: 100%;   
    margin: 0;
    padding: 0;
+   border: none;
+   background-color: #f0f6f9;
+   color: #168;
+   font-weight: bold;
+   font-size: 12pt;
+   
 }
 
-.gradeinput-info>div:first-child {
-   border-left: none;
-   font
-}
 
-.gradeinput-info>div:last-child {
-   border-right: none;
-}
 
-.gradeinput-info>div.attendance, .gradeinput-info>div.midterm,
-   .gradeinput-info>div.final, .gradeinput-info>div.save, .gradeinput-info>div.assignment,
-   .gradeinput-info>div.total, .gradeinput-info>div.gpa, .gradeinput-info>div.rank
-   {
-   display: inline-flex;
-   flex-wrap: nowrap;
-   align-items: center;
-   justify-content: center;
-}
 .overflow-section {
   height: 360px; /* 스크롤이 필요한 높이 */
   overflow-y: auto; /* 세로축 스크롤바를 자동으로 추가합니다 */
 }
+
+
+.lec-tbl{
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
+}
+.lec-tbl th {
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+}
+.lec-tbl th, .lec-tbl td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.lec-tbl th:first-child, .lec-tbl td:first-child {
+  border-left: 0;
+}
+.lec-tbl th:last-child, .lec-tbl td:last-child {
+  border-right: 0;
+}
+.lec-tbl tr td:first-child{
+  text-align: center;
+}
+.lec-tbl caption{caption-side: bottom; display: none;}
+
+.input-info-tbl{
+   display: table;
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
+}
+
+#tr{
+   display: table-row;
+}
+#td{
+   display: table-cell;
+}
+#th{
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+  display: table-cell;
+}
+#th, #td{
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+#th:first-child, #td:first-child {
+  border-left: 0;
+}
+#th:last-child, #td:last-child {
+  border-right: 0;
+}
+#tr #td:first-child{
+  text-align: center;
+}
+.input-info-tbl caption{caption-side: bottom; display: none;}
+
 </style>
 <script>
  function LecSection(i) {
@@ -139,152 +152,170 @@
       <div class="contents">
 
          <!-- 강의선택  -->
-         <div style="text-align: left; font-size: 18px; padding: 5px;">강의
-            선택</div>
-         <div class="lec-sel" style="font-weight: bold">
-            <div class="lec-id">학수번호</div>
-            <div class="lec-name">과목명</div>
-            <div class="lec-type">이수구분</div>
-            <div class="lec-grade">학년</div>
-            <div class="lec-credit">학점</div>
-            <div class="lec-class">강의실</div>
-            <div class="lec-number">수강인원</div>
-            <div class="lec-day">요일</div>
-            <div class="lec-time">시간</div>
-            <div>비고</div>
-         </div>
+         <p>
+             <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>강의 선택</b></span>
+          </p>
+          <table class="lec-tbl">
+         <tr class="lec-sel" style="font-weight: bold">
+            <th class="lec-id">학수번호</th>
+            <th class="lec-name">과목명</th>
+            <th class="lec-type">이수구분</th>
+            <th class="lec-grade">학년</th>
+            <th class="lec-credit">학점</th>
+            <th class="lec-class">강의실</th>
+            <th class="lec-number">수강인원</th>
+            <th class="lec-day">요일</th>
+            <th class="lec-time">시간</th>
+            <th>비고</th>
+         </tr>
+          
          <c:forEach var="i" begin="0" end="${size }">
-            <div class="lec-sel2">
-               <div class="lec-id">${list.get(i).lec_ID }</div>
-               <div class="lec-name">${list.get(i).lec_name }</div>
-               <div class="lec-type">${list.get(i).completion }</div>
-               <div class="lec-grade">${list.get(i).grade }</div>
-               <div class="lec-credit">${list.get(i).credits }</div>
-               <div class="lec-class">${list.get(i).c_ID }</div>
-               <div class="lec-number">${counts[i] }</div>
-               <div class="lec-day">${list.get(i).day }</div>
-               <div class="lec-time">${list.get(i).starttime }교시~
-                  ${list.get(i).endtime }교시</div>
-               <div>
+            <tr class="lec-sel2" style="text-align: center;">
+               <td class="lec-id">${list.get(i).lec_ID }</td>
+               <td class="lec-name">${list.get(i).lec_name }</td>
+               <td class="lec-type">${list.get(i).completion }</td>
+               <td class="lec-grade">${list.get(i).grade }</td>
+               <td class="lec-credit">${list.get(i).credits }</td>
+               <td class="lec-class">${list.get(i).c_ID }</td>
+               <td class="lec-number">${counts[i] }</td>   
+               <td class="lec-day">${list.get(i).day }</td>
+               <td class="lec-time">${list.get(i).starttime }교시~
+                  ${list.get(i).endtime }교시</td>
+               <td>
                   <input type="button" value="선택" onclick="LecSection(${i})" />
-               </div>
-            </div>
+               </td>
+            </tr>
          </c:forEach>
-         <hr />
+         </table>
+         
          
          <p></p>
          <!-- 과목정보  -->
+         
             <c:forEach var="i" begin="0" end="${size }">
             <section id="LecSection${i }" style="display: none">
-               <div style="text-align: left; font-size: 18px; padding: 5px;">과목정보</div>
-               <div class="lecture-info">
-                  <div class="name-label" style="font-weight: bold">과목명</div>
-                  <div class="name-value">${list.get(i).lec_name }</div>
-                  <div class="lecture-id-label" style="font-weight: bold">학수번호</div>
-                  <div class="lecture-id-value">${list.get(i).lec_ID }</div>
-               </div>
+            
+               <p>
+                   <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>과목 정보</b></span>
+                </p>
+          <table class="lec-tbl">
+               <tr class="lecture-info">
+                  <th class="name-label" style="width: 5%">과목명</th>
+                  <td class="name-value" style="width: 26%">${list.get(i).lec_name }</td>
+                  <th class="lecture-id-label" style="width: 8%">학수번호</th>
+                  <td class="lecture-id-value" style="width: 13%">${list.get(i).lec_ID }</td>
+               
 
-               <div class="lecture-info">
-                  <div class="class-label" style="font-weight: bold">강의실</div>
-                  <div class="class-value">${list.get(i).c_ID }</div>
-                  <div class="day-label" style="font-weight: bold">요일</div>
-                  <div class="day-value">${list.get(i).day }</div>
-                  <div class="time-label" style="font-weight: bold">시간</div>
-                  <div class="time-value">${list.get(i).starttime }교시~
-                     ${list.get(i).endtime }교시</div>
-               </div>
+               
+                  <th class="class-label" style="width: 5%">강의실</th>
+                  <td class="class-value" style="width: 10%">${list.get(i).c_ID }</td>
+                  <th class="day-label" style="width: 5%">요일</th>
+                  <td class="day-value" style="width: 8%">${list.get(i).day }</td>
+                  <th class="time-label" style="width: 5%">시간</th>
+                  <td class="time-value" style="width: 15%">${list.get(i).starttime }교시~
+                     ${list.get(i).endtime }교시</td>
+               </tr>
 
-
+         </table>
 
                <!-- 개별성적보기 -->
                
                
                <div
-                  style="text-align: left; font-size: 18px; padding: 5px; display: flex; justify-content: space-between;">
-                  <div>성적입력</div>
+                  style="text-align: left; font-size: 18px; display: flex; justify-content: space-between;">
+                  <p>
+                   <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>성적 조회</b></span>
+                  </p>
                </div>
                
+            <div class="input-info-tbl">
             
-               <div class="gradeinput-info" style="font-weight: bold">
-                  <div class="std-id">
-                     <input type="button" value="학번"
+               <div class="gradeinput-info" id="tr" style="font-weight: bold">
+                  <div class="std-id" id="th" style="width: 12%">
+                     <input class="info-button" type="button" value="학번"
                         style="width: 100%; height: 100%;" />
                   </div>
-                  <div class="std-name">
-                     <input type="button" value="이름" />
+                  <div class="std-name" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="이름" />
                   </div>
-                  <div class="major">
-                     <input type="button" value="학과" />
+                  <div class="major" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="학과" />
                   </div>
-                  <div class="std-grade">
-                     <input type="button" value="학년" />
+                  <div class="std-grade" id="th" style="width: 8.1%">
+                     <input class="info-button" type="button" value="학년" />
                   </div>
-                  <div class="attendance">
-                     <input type="button" value="출석" />
+                  <div class="attendance" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="출석" />
                   </div>
-                  <div class="midterm">
-                     <input type="button" value="중간점수" />
+                  <div class="midterm" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="중간점수" />
                   </div>
-                  <div class="final">
-                     <input type="button" value="기말점수" />
+                  <div class="final" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="기말점수" />
                   </div>
-                  <div class="assignment">
-                     <input type="button" value="과제점수" />
+                  <div class="assignment" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="과제점수" />
                   </div>
-                  <div class="total">
-                     <input type="button" value="총점" />
+                  <div class="total" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="총점" />
                   </div>
-                  <div class="gpa">
-                     <input type="button" value="점수" />
+                  <div class="gpa" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="점수" />
                   </div>
-                  <div class="gradeletter">
-                     <input type="button" value="등급" />
+                  <div class="gradeletter" id="th" style="width: 8.15%">
+                     <input class="info-button" type="button" value="등급" />
                   </div>
-                  <div class="rank">
-                     <input type="button" value="순위" />
+                  <div class="rank" id="th" style="width: 8%">
+                     <input class="info-button" type="button" value="순위" />
                   </div>
+                  <div id="th"style="width: 1%"></div>
                </div>
+               </div>
+               <div class="input-info-tbl">
                <section class="overflow-section">
+               
                <c:forEach var="grade1" items="${stdList[i] }">
-                  <div class="gradeinput-info">
-                     <div class="std-id">${grade1.std_ID }</div>
-                     <div class="std-name">${grade1.name }</div>
-                     <div class="major">${grade1.d_name }</div>
-                     <div class="std-grade">${grade1.grade }</div>
-                     <div class="attendance">
+                  <div class="gradeinput-info" id="tr" >
+                     <div class="std-id" id="td" style="width: 4%">${grade1.std_ID }</div>
+                     <div class="std-name" id="td" style="width: 4%">${grade1.name }</div>
+                     <div class="major" id="td" style="width: 4%">${grade1.d_name }</div>
+                     <div class="std-grade" id="td" style="width: 4%">${grade1.grade }</div>
+                     <div class="attendance" id="td" style="width: 4%">
                         <div>${grade1.at_score }</div>
                         <div style="color: gray; font-size: 11px;">/20</div>
                      </div>
-                     <div class="midterm">
+                     <div class="midterm" id="td" style="width: 4%">
                         <div>${grade1.m_score }</div>
                         <div style="color: gray; font-size: 11px;">/30</div>
                      </div>
-                     <div class="final">
+                     <div class="final" id="td" style="width: 4%">
                         <div>${grade1.f_score }</div>
                         <div style="color: gray; font-size: 11px">/30</div>
                      </div>
-                     <div class="assignment">
+                     <div class="assignment" id="td" style="width: 4%">
                         <div>${grade1.a_score }</div>
                         <div style="color: gray; font-size: 11px">/30</div>
                      </div>
-                     <div class="total">
+                     <div class="total" id="td" style="width: 4%">
                         <div>${grade1.at_score + grade1.m_score +grade1.f_score + grade1.a_score}</div>
                         <div style="color: gray; font-size: 11px">/100</div>
                      </div>
-                     <div class="gpa">${grade1.gpa }</div>
-                     <div class="gpa">${grade1.gradeLetter }</div>
-                     <div class="rank">
+                     <div class="gpa" id="td" style="width: 4%">${grade1.gpa }</div>
+                     <div class="gpa" id="td" style="width: 4%">${grade1.gradeLetter }</div>
+                     <div class="rank" id="td" style="width: 4%">
                         <div>${grade1.rank }</div>
                         <div style="color: gray; font-size: 11px">/${counts[i] }</div>
                      </div>
                   </div>
                </c:forEach>
-            <hr />
+               
+                  <hr />
                </section>
 
+            </div>
          </section>
          </c:forEach>
-      </div>
+   </div>
    </section>
 </body>
 </html>

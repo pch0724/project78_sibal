@@ -118,8 +118,21 @@ public class AcademyController {
 
 	@PostMapping("/personal_info_pro")
 	public String personal_info_pro(@Valid @ModelAttribute("modifyMemberBean") MemberBean modifyMemberBean,
-			BindingResult result) {
+			BindingResult result, Model model) {
+		// 권한 구분
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+		if (r_ID == 3) {
 
+			StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
+			int grade = stdBean.getGrade();
+			int s_semester = stdBean.getS_semester();
+
+			model.addAttribute("grade", grade);
+			model.addAttribute("s_semester", s_semester);
+		}
+		
+		
 		if (result.hasErrors()) {
 
 			return "academy/personal_info";
@@ -223,6 +236,20 @@ public class AcademyController {
 	         @ModelAttribute("getTimeTableGradeAnSemeInfo") LectureBean getTimeTableGradeAnSemeInfo,
 	         BindingResult result, Model model) {
 	      
+			// 권한 구분
+			int r_ID = loginMemberBean.getR_ID();
+			model.addAttribute("r_ID", r_ID);
+			if (r_ID == 3) {
+	
+				StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
+				int grade = stdBean.getGrade();
+				int s_semester = stdBean.getS_semester();
+	
+				model.addAttribute("grade", grade);
+				model.addAttribute("s_semester", s_semester);
+			}
+
+		   
 	      if (result.hasErrors()) {
 	         System.out.println(result.getAllErrors());
 	         return "academy/timetable";
@@ -250,6 +277,9 @@ public class AcademyController {
 	         @ModelAttribute("getProfessorTimeTableUserInfo") LectureBean getProfessorTimeTableUserInfo,
 	         BindingResult result, Model model) {
 	      
+		  int r_ID = loginMemberBean.getR_ID();
+		  model.addAttribute("r_ID", r_ID); 
+		   
 	      if (result.hasErrors()) {
 	         System.out.println(result.getAllErrors());
 	         return "academy/timetable_professor";
@@ -276,9 +306,10 @@ public class AcademyController {
 	public String academy_grade_check(@ModelAttribute("modifyMemberBean") MemberBean modifyMemberBean, Model model,
 			@RequestParam(value = "year", defaultValue = "2022") int year,
 			@RequestParam(value = "g_semester", defaultValue = "1") int g_semester) {
-		// 권한
+		// 권한 구분
 		int r_ID = loginMemberBean.getR_ID();
 		model.addAttribute("r_ID", r_ID);
+		
 		MemberBean tempModifyMemberBean = memberService.getModifyMemberInfo(loginMemberBean.getID());
 
 		StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
