@@ -5,102 +5,115 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>시간표 조회</title>
 <style>
-   .sec{
-      position:absolute;
-      top:8%;
-      left:15%;
-      width: 85%;
-      height: 92%;
-   }
+* {
    
-   .contents{
-      width: 100%;
-      height: 100%;
-   }
-         
-   .left-div{ /* 내부 왼쪽 */
-      display: absolute;
-      width: 18%;  
-      height:100%; 
-      background-color: #ededed; 
-      border: 1px;
-      
-      
-   
-   }
-   
-   .right-div{ /* 내부 오른쪽 */
-      display: absolute;
-      width: 82%; 
-      height:100%; 
-      background-color: #ffffff; 
-      border: 1px;
-   }
-   .readonly{
-      margin-bottom: 5px;
-   }
-   .main_timetable {
-      width: 100%;
-      height: 100%;
-      float: right;
-      
-   }
-   
-   timetable {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
-   }
-   
-   .row {
-      display: table-row;
-      border-bottom: 1px solid black;
-   }
-   
-   .cell {
-      display: table-cell;
-      border-right: 1px solid black;
-      border-top: 1px solid black;
-      padding: 10px;
-      width: 19.2%;
-      height: 39px;
-      border-collapse: collapse;
-   }
-   .cellheader{
-      display: table-cell;
-      border-right: 1px solid black;
-      border-top: 1px solid black;
-      padding: 10px;
-      width: 50px;
-      
-   }
-      /* css 추가 바람 */
-       table {
-       align-content:center;
-       table-layout: fixed;
-       border-collapse: collapse;
-       width: 100%; /* 테이블이 화면 전체를 차지하도록 설정 */
-       height: 100%;
-  }
+   font-family: 'Noto Sans KR', sans-serif;
+}
 
-  td, th {
-    
-    width: 20%; /* 각 칸의 너비를 20%로 설정 */
-    height: 46px; /* 각 칸의 높이를 100px로 설정 */
-    border: 1px solid black;
-    
-    
-  }
+.sec {
+   position: absolute;
+   top: 8%;
+   left: 15%;
+   width: 85%;
+   height: 92%;
+}
+
+.contents {
+   width: 100%;
+   height: 100%;
+}
+
+.left-div { /* 내부 왼쪽 */
+   display: absolute;
+   width: 18%;
+   height: 100%;
+   background-color: #ededed;
+   border: 1px;
+}
+
+
+.readonly {
+   margin-bottom: 5px;
+}
+
+.row {
+   display: table-row;
+   border-bottom: 1px solid black;
+}
+
+.cell {
+   display: table-cell;
+   border-right: 1px solid black;
+   border-top: 1px solid black;
+   padding: 10px;
+   width: 19.2%;
+   height: 39px;
+   border-collapse: collapse;
+}
+
+.cellheader {
+   display: table-cell;
+   border-right: 1px solid black;
+   border-top: 1px solid black;
+   padding: 10px;
+   width: 50px;
+}
+.right-div {
+  overflow: auto;
+  width: 82%;
+  height: 764px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+}
+
+.main_timetable {
+  width: 100%;
+  height: 764px;
+  float: right;
+}
+
+table {
+  align-content: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+td,th {
+  overflow: auto;
+  width: 20%;
+  height: 46px;
+  border: 1px solid #ddd;
+}
+
 td .lecture-cell {
-    background-color: #7794fc;
-    display: inline-block;
-    width: 95%;
-    padding: 17px 4.25px 17.2px;
-  }
+  background-color: #bfcfff;
+  display: inline-block;
+  width: 95%;
+  padding: 17px 4.25px 17.2px;
+  color: #2e2e2e;
+}
+
+tr:first-child {
+  border-top: 2px solid #444;
+  background-color: #bfcfff;
+  color: #2e2e2e;
+}
+
+th {
+  border: 1px solid #ddd;
+}
+
+td {
+  border: 1px solid #ddd;
+}
 
 </style>
 </head>
@@ -111,11 +124,11 @@ td .lecture-cell {
          <div class="left-div">
             <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
            <br />
-           &nbsp;이름 :&nbsp;<form:input class="readonly" path="name" disabled="true"/>
+           &nbsp;이름 :&nbsp;<form:input class="readonly" path="name" disabled="true" size="15"/>
            <br />
-           &nbsp;학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true"/>
+           &nbsp;학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true" size="15"/>
            <br />
-           &nbsp;학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true"/>
+           &nbsp;학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true" size="15"/>
            <br />
            <br />
            연도 :&nbsp;
@@ -130,28 +143,28 @@ td .lecture-cell {
            </form:select>
            <br />
            <br />
-           <input type="submit" value="조회" style="margin-left: 90px;"/>
+           <input class="" type="submit" value="조회" style="margin-left: 90px;"/>
          </form:form>
          </div>
             <div class="right-div">
                <div class="main_timetable">
                   <table>
-                     <tr>
-                        <th></th>
-                        <th>월</th>
-                        <th>화</th>
-                        <th>수</th>
-                        <th>목</th>
-                        <th>금</th>
+                     <tr style="border-top: 2px solid #444; border-bottom: 2px solid #444;background-color: #697cd1;">
+                        <th style=" border: 1px solid #ccc;"></th>
+                        <th style=" border: 1px solid #ccc;">월</th>
+                        <th style=" border: 1px solid #ccc;">화</th>
+                        <th style=" border: 1px solid #ccc;">수</th>
+                        <th style=" border: 1px solid #ccc;">목</th>
+                        <th style=" border: 1px solid #ccc;">금</th>
                      </tr>
                      <c:forEach var="time" begin="1" end="14">
-                        <tr>
-                           <td align="center" style="width: 40px;">${time}</td>
+                        <tr style="border: 1px solid #ccc;">
+                           <td align="center" style="width: 40px; border: 1px solid #ccc;">${time}</td>
                            <c:forEach var="day" items="${day}">
-                              <td align="center" style="padding: 0; margin: 0;" >
+                              <td align="center" style="padding: 0; margin: 0; border: 1px solid #ccc;" >
                                  <c:forEach var="lecture" items="${getTimeTableUserInfo}">
                                     <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                       <b><span style="font-size: 13px; margin: 0;" class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}</span></b>
+                                       <b><span style="font-size: 13px; margin: 0; " class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}&nbsp;[${lecture.c_ID}]</span></b>
                                   <c:set var="highlight" value="${lecture.lec_name}-highlight" />
                                     </c:if>
                                  </c:forEach>

@@ -53,5 +53,21 @@ public interface GradeMapper {
          + "where std_id=#{ID} and grade.year=#{year} and g_semester=#{g_semester}")
    List<GradeBean> gradebyyear(@Param("ID") int ID, @Param("year") int year, @Param("g_semester") int g_semester);
    
+   
+   //수강 내역 조회
+   @Select("select grade.lec_ID, lecture.lec_name, completion, credits, day, starttime, endtime "
+   		+ "from grade "
+   		+ "inner join member on  grade.std_ID = member.id "
+   		+ "inner join lecture on  grade.lec_id = lecture.lec_id and lecture.year=grade.year and lecture.semester=grade.g_semester "
+   		+ "where std_ID = #{std_ID} and grade.year = #{year} and g_semester = #{g_semester}")
+   List<GradeBean> getLectureList(int std_ID, int year, int g_semester);
+   
+   //수강교과목 교수 이름 조회
+   @Select("select name from member "
+   		+ "inner join professor on ID = p_ID "
+   		+ "inner join lecture on professor.p_ID = lecture.p_ID "
+   		+ "where lec_ID =#{lec_ID}")
+   String getProfessorName(String lec_ID);
+   
 }
  

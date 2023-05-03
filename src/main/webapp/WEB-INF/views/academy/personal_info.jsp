@@ -107,6 +107,19 @@ label {
 	border-color: #005cbf;
 }
 </style>
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+			document.getElementById('preview').src = e.target.result;
+			};
+			reader.readAsDataURL(input.files[0]);
+		} else {
+			document.getElementById('preview').src = "";
+		}
+	}
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/academy/base.jsp"/>
@@ -124,10 +137,10 @@ label {
 						<td colspan="2" rowspan="3">
 							<form:label path="member_file"></form:label>
 							<c:if test="${modifyMemberBean.member_file == null }">
-								<img src="${root }images/defaultProfile.png"/>
+								<img id="preview" src="${root }images/defaultProfile.png"/>
 							</c:if>
 							<c:if test="${modifyMemberBean.member_file != null}">
-								<img src="${root }upload/${modifyMemberBean.member_file}"/>
+								<img id="preview" src="${root }upload/${modifyMemberBean.member_file}"/>
 							</c:if>
 							<form:hidden path="member_file"/>
 							<br />
@@ -179,7 +192,7 @@ label {
 					</tr>
 					<tr>
 						<td colspan="2">
-							<form:input type ="file" path="upload_file" class="form-control" accept ="image/*"/>
+							<form:input type ="file" path="upload_file" class="form-control" accept ="image/*" onchange="readURL(this);"/>
 						</td>
 						<c:if test="${r_ID == 3 }">
 							<td>

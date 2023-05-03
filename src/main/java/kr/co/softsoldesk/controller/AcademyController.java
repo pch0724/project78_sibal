@@ -1,6 +1,8 @@
 package kr.co.softsoldesk.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -158,7 +160,22 @@ public class AcademyController {
 			model.addAttribute("grade", grade);
 			model.addAttribute("s_semester", s_semester);
 		}
-
+		
+		Calendar now = Calendar.getInstance();
+		int year = now.get(Calendar.YEAR);
+		int month = now.get(Calendar.MONTH);
+		int semester;
+		if(month >= 9) {
+			semester = 2;
+			List<GradeBean> lec_list = gradeService.getLectureList(loginMemberBean.getID(), year, semester);
+			model.addAttribute("lec_list", lec_list);
+		}else {
+			semester = 1;
+			List<GradeBean> lec_list = gradeService.getLectureList(loginMemberBean.getID(), year, semester);
+			model.addAttribute("lec_list", lec_list);
+		}
+		
+		
 		return "academy/enrollment";
 	}
 

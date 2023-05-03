@@ -20,6 +20,7 @@
 .contents {
    width: 100%;
    height: 100%;
+   overflow: auto;
 }
 
 /* 학생정보 css  */

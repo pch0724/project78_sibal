@@ -62,4 +62,14 @@ public class GradeService {
    public void grade_input(GradeBean grade_input) {
       gradeDao.grade_input(grade_input);
    }
+   
+   //수강강의목록 조회
+   public List<GradeBean> getLectureList(int std_ID, int year, int g_semester) {
+	   return gradeDao.getLectureList(std_ID, year, g_semester);
+   }
+   
+   //교수이름조회
+   public String getProfessorName(String lec_ID) {
+	   return gradeDao.getProfessorName(lec_ID);
+}
 }

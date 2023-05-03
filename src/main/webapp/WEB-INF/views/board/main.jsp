@@ -24,6 +24,7 @@
 .contents {
    width: 100%;
    height: 100%;
+   overflow: auto;
 }
 </style>
 </head>
@@ -34,7 +35,7 @@
 	<section class ="sec">
 		<div class ="contents">
 			<!-- 게시글 리스트 -->
-			<div class="container" style="margin-top:100px">
+			<div class="container" style="margin-top:4%; ">
 				<div class="card shadow">
 					<div class="card-body">
 						<h4 class="card-title">공지사항</h4>
@@ -51,7 +52,7 @@
 								<c:forEach var="obj" items="${contentList }">
 									<tr>
 										<td class="text-center d-none d-md-table-cell">${obj.board_idx}</td>
-										<td><a href='${root }board/read?board_idx=${obj.board_idx}&page=${page}'>${obj.title}</a></td>
+										<td><a href='${root }board/read?board_idx=${obj.board_idx}&page=${page}' style="text-decoration: none; color: inherit;">${obj.title}</a></td>
 										<td class="text-center d-none d-md-table-cell">${obj.w_name}</td>
 										<td class="text-center d-none d-md-table-cell">${obj.boarddate}</td>
 									</tr>

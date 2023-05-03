@@ -64,4 +64,16 @@ public class GradeDao {
    public void grade_input(GradeBean grade_input) {
        profMapper.grade_input(grade_input);
    }
+   
+   //수강강의 목록 조회
+   public List<GradeBean> getLectureList(int std_ID, int year, int g_semester) {
+	   return gradeMapper.getLectureList(std_ID, year, g_semester);
+   }
+   // 교수 이름 조회
+   public String getProfessorName(String lec_ID) {
+	   return gradeMapper.getProfessorName(lec_ID);
+	
+}
+   
+   
 }

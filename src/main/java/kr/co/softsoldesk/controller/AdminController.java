@@ -1,6 +1,9 @@
 package kr.co.softsoldesk.controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -46,6 +49,11 @@ public class AdminController {
 		
 		int r_ID2 = Integer.parseInt(request.getParameter("r_ID"));
 		model.addAttribute("r_ID2", r_ID2);
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		String entrance = sdf.format(date);
+		model.addAttribute("entrance", entrance);
 		
 		return "admin/addMember";
 	}

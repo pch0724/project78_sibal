@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>미니 프로젝트</title>
+<title>게시물</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,6 +24,7 @@
 .contents {
    width: 100%;
    height: 100%;
+   overflow: auto;
 }
 </style>
 </head>
@@ -33,7 +34,7 @@
 	
 	<section class ="sec">
 		<div class ="contents">
-			<div class="container" style="margin-top:100px">
+			<div class="container" style="margin-top:4%">
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
@@ -57,7 +58,9 @@
 								</div>
 								<div class="form-group">
 									<label for="content_file">첨부 이미지</label>
-									<img src="${root }upload/${readContentBean.content_file}" width="100%"/>						
+									<c:if test="${readContentBean.content_file != null}">
+									<img src="${root }upload/${readContentBean.content_file}" width="100%"/>
+									</c:if>						
 								</div>
 								<div class="form-group">
 									<div class="text-right">

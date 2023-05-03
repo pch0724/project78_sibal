@@ -260,19 +260,19 @@
                            <div class="major">${grade1.d_name }</div>
                            <div class="std-grade">${grade1.grade }</div>
                            <div class="attendance" style="display: inline-block;">
-                              <form:input path="at_score" cssClass="input-field" id="at_input${loop.index } "name="at_input${loop.index }" style="width:20px" disabled="true"  />
+                              <form:input path="at_score" cssClass="input-field" id="at_input${loop.index }" name="at_input${loop.index }" style="width:20px" disabled="true"/>
                               <div style="color: gray; font-size: 11px;">/20</div>
                            </div>
                            <div class="midterm" style="display: inline-block;">
-                              <form:input path="m_score" cssClass="input-field" id="m_input${loop.index }" style="width:20px" name="m_input${loop.index }" disabled="true"  />
+                              <form:input path="m_score" cssClass="input-field" id="m_input${loop.index }" style="width:20px" name="m_input${loop.index }" disabled="true"/>
                               <div style="color: gray; font-size: 11px;">/30</div>
                            </div>
                            <div class="final" style="display: inline-block;">
-                              <form:input path="f_score" cssClass="input-field" id="f_input${loop.index }" style="width:20px" name="f_input${loop.index }" disabled="true"  />
+                              <form:input path="f_score" cssClass="input-field" id="f_input${loop.index }" style="width:20px" name="f_input${loop.index }" disabled="true"/>
                               <div style="color: gray; font-size: 11px">/30</div>
                            </div>
                            <div class="assignment" style="display: inline-block;">
-                              <form:input path="a_score" cssClass="input-field" id="a_input${loop.index }" style="width:20px"  name="a_input${loop.index }"disabled="true"  />
+                              <form:input path="a_score" cssClass="input-field" id="a_input${loop.index }" style="width:20px"  name="a_input${loop.index }" disabled="true"/>
                               <div style="color: gray; font-size: 11px">/30</div>
                            </div>
                            <div class="selection">

@@ -125,7 +125,7 @@ button {
       <form:radiobutton path="items4" value="4" />4
       <form:radiobutton path="items4" value="5" />5
       <p>
-      <form:label path="feedback"><h4>교수님께 하고 싶은 말(최대 400자)</h4></form:label><br />
+      <form:label path="feedback"><h4>교수님께 하고 싶은 말이 있다면 적어주세요(최대 400자)</h4></form:label><br />
       <form:textarea path="feedback" rows="4" cols="50" />
    </div>
    <form:button type = "submit">제출</form:button>
@@ -172,8 +172,8 @@ button {
             }
         }
 
-        if (!items1_checked || !items2_checked || !items3_checked || !items4_checked || feedback.value.trim() === "") {
-            alert("모든 항목을 입력해야 합니다.");
+        if (!items1_checked || !items2_checked || !items3_checked || !items4_checked) {
+            alert("선택하지 않은 항목이 있습니다.");
             return false;
         }
         return true;

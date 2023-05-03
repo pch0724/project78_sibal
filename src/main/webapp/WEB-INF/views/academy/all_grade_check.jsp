@@ -100,6 +100,7 @@ $(document).ready(function(){
 .contents {
    width: 100%;
    height: 100%;
+   overflow: auto;
 }
 
 .lec-sel {

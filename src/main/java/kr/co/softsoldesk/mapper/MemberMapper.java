@@ -125,7 +125,7 @@ public interface MemberMapper {
 	//============================================================================================================================================================================
     // 관리자 회원 추가
     @Insert("insert into member(ID, password, name, birth, phone, emergency, address, entrance, r_ID, first_login, member_file) "
-    		+ "values(#{ID}, #{password}, #{name}, #{birth}, #{phone}, #{emergency}, #{address}, #{entrance},#{r_ID}, #{first_login}, #{member_file})")
+    		+ "values(#{ID}, #{password}, #{name}, #{birth}, #{phone}, #{emergency}, #{address}, sysdate, #{r_ID}, #{first_login}, #{member_file})")
     void addMemberInfo(MemberBean joinMemberBean);
     
     

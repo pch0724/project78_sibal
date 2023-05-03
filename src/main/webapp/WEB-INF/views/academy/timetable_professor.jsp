@@ -31,30 +31,10 @@
       
    
    }
-   
-   .right-div{ /* 내부 오른쪽 */
-      display: absolute;
-      width: 82%; 
-      height:100%; 
-      background-color: #ffffff; 
-      border: 1px;
-   }
    .readonly{
       margin-bottom: 5px;
    }
-   .main_timetable {
-      width: 100%;
-      height: 100%;
-      float: right;
-      
-   }
    
-   timetable {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
-   }
    
    .row {
       display: table-row;
@@ -78,29 +58,56 @@
       width: 50px;
       
    }
-      /* css 추가 바람 */
-       table {
-       align-content:center;
-       table-layout: fixed;
-       border-collapse: collapse;
-       width: 100%; /* 테이블이 화면 전체를 차지하도록 설정 */
-       height: 100%;
-  }
+.right-div {
+  overflow: auto;
+  width: 82%;
+  height: 764px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+}
 
-  td, th {
-    
-    width: 20%; /* 각 칸의 너비를 20%로 설정 */
-    height: 46px; /* 각 칸의 높이를 100px로 설정 */
-    border: 1px solid black;
-    
-    
-  }
+.main_timetable {
+  width: 100%;
+  height: 764px;
+  float: right;
+}
+
+table {
+  align-content: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+td,th {
+  overflow: auto;
+  width: 20%;
+  height: 46px;
+  border: 1px solid #ddd;
+}
+
 td .lecture-cell {
-    background-color: #7794fc;
-    display: inline-block;
-    width: 95%;
-    padding: 17px 4.25px 17.2px;
-  }
+  background-color: #bfcfff;
+  display: inline-block;
+  width: 95%;
+  padding: 17px 4.25px 17.2px;
+  color: #2e2e2e;
+}
+
+tr:first-child {
+  border-top: 2px solid #444;
+  background-color: #bfcfff;
+  color: #2e2e2e;
+}
+
+th {
+  border: 1px solid #ddd;
+}
+
+td {
+  border: 1px solid #ddd;
+}
 
 </style>
 </head>
