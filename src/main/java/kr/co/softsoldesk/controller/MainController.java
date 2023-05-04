@@ -36,6 +36,9 @@ public class MainController {
 	
 	@GetMapping("/index")
 	public String main_index(@ModelAttribute MemberBean tempMemberBean, Model model) {		
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+		
 		List<BoardBean> list = new ArrayList<BoardBean>();
 		for(int i=1; i<=4; i++) {
 			list = mainService.getMainList();

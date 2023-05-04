@@ -149,7 +149,9 @@ div.square2 {
             <nav>
                <ul>
                   <li class="menu"><a href="${root }academy/index">학사행정시스템</a></li>
-                  <li class="menu"><a href="${root }enrollment/index">수강신청</a></li>
+                  <c:if test="${r_ID == 3 }">
+                  	<li class="menu"><a href="${root }enrollment/index">수강신청</a></li>
+                  </c:if>
            </ul>
             </nav>
          </div>
