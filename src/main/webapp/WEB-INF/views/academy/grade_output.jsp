@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>성적 입력</title>
+<title>성적 입력 확인</title>
 <style>
 /*강의 선택*/
 .sec {
@@ -300,7 +300,7 @@
                         <div>${grade1.at_score + grade1.m_score +grade1.f_score + grade1.a_score}</div>
                         <div style="color: gray; font-size: 11px">/100</div>
                      </div>
-                     <div class="gpa" id="td" style="width: 4%">${grade1.gpa }</div>
+                     <div class="gpa" id="td" style="width: 4%">${grade1.gpacalc }</div>
                      <div class="gpa" id="td" style="width: 4%">${grade1.gradeLetter }</div>
                      <div class="rank" id="td" style="width: 4%">
                         <div>${grade1.rank }</div>

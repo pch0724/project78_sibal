@@ -87,7 +87,13 @@ $(document).ready(function(){
 
 </script>
 <title>전체 성적 조회</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
 /*강의 선택*/
 .sec {
    position: absolute;
@@ -257,7 +263,8 @@ table caption{caption-side: bottom; display: none;}
                   <td>${totalGPA.get(i).ac_all }</td>
                   <td>${totalGPA.get(i).avg_grade }</td>
                   <td>
-                     <input type="button" value="조회" onclick="selectSection(${i}, this)" data-year="${totalGPA.get(i).year}" data-g_semester="${totalGPA.get(i).g_semester}" />
+                     <input type="button" value="조회" onclick="selectSection(${i}, this)" data-year="${totalGPA.get(i).year}" data-g_semester="${totalGPA.get(i).g_semester}" 
+                           style="border-radius: 5px; border: 1px solid #168; color:#168; background: #f0f6f9;"/>
                   </td>
                </tr>
             </c:forEach>

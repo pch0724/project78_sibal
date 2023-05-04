@@ -78,4 +78,26 @@ public class GradeBean {
             return "F";
         }
     }
+   
+   @JsonProperty("gpacalc")
+   public double getgpacalc() {
+      if (at_score+m_score+f_score+a_score >= 95) {
+         return 4.5;
+      }else if(at_score+m_score+f_score+a_score >= 90) {
+         return 4;
+      }else if(at_score+m_score+f_score+a_score >= 85) {
+         return 3.5;
+      }else if(at_score+m_score+f_score+a_score >= 80) {
+         return 3;
+      }else if(at_score+m_score+f_score+a_score >= 75) {
+         return 2.5;
+      }else if(at_score+m_score+f_score+a_score >= 70) {
+         return 2;
+      }else if(at_score+m_score+f_score+a_score >= 65) {
+         return 1.5;
+      }else if(at_score+m_score+f_score+a_score >= 60) {
+         return 1;
+      }else 
+         return 0;
+   }
 }

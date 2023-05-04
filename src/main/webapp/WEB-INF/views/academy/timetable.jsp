@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
 <title>시간표 조회</title>
 <style>
 * {
@@ -115,11 +115,7 @@ th {
 td {
   border: 1px solid #ddd;
 }
-input[typr=submit]{
-   border-radius: 5px;
-   border: 2px solid #168;
-   margin-left: 90px;
-}
+
 </style>
 </head>
 <body>
@@ -154,7 +150,7 @@ input[typr=submit]{
                   </form:select>
                   <br />
                   <br />
-                  <input type="submit" value="조회" style="border-radius: 5px; border: 2px solid #168; margin-left: 90px; color:#168; background: #f0f6f9;"/>
+                  <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 90px; color:#168; background: #f0f6f9;"/>
                </form:form>
          </div>
          <div class="right-div">
@@ -175,7 +171,7 @@ input[typr=submit]{
                               <td align="center" style="padding: 0; margin: 0; border: 1px solid #ccc;" >
                                  <c:forEach var="lecture" items="${getTimeTableUserInfo}">
                                     <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                       <b><span style="font-size: 13px; margin: 0; " class="lecture-cell ${lecture.lec_name}-cell">${lecture.completion }<br />${lecture.lec_name}&nbsp;[${lecture.c_ID}]</span></b>
+                                       <b><span style="font-size: 13px; margin: 0; " class="lecture-cell ${lecture.lec_name}-cell">[&nbsp;${lecture.completion }&nbsp;]<br />${lecture.lec_name}&nbsp;(${lecture.c_ID})</span></b>
                                     </c:if>
                                  </c:forEach>
                               </td>

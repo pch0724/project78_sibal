@@ -133,8 +133,7 @@ public class AcademyController {
 			model.addAttribute("grade", grade);
 			model.addAttribute("s_semester", s_semester);
 		}
-		
-		
+
 		if (result.hasErrors()) {
 
 			return "academy/personal_info";
@@ -160,163 +159,156 @@ public class AcademyController {
 			model.addAttribute("grade", grade);
 			model.addAttribute("s_semester", s_semester);
 		}
-		
+
 		Calendar now = Calendar.getInstance();
 		int year = now.get(Calendar.YEAR);
 		int month = now.get(Calendar.MONTH);
 		int semester;
-		if(month >= 9) {
+		if (month >= 9) {
 			semester = 2;
 			List<GradeBean> lec_list = gradeService.getLectureList(loginMemberBean.getID(), year, semester);
 			model.addAttribute("lec_list", lec_list);
-		}else {
+		} else {
 			semester = 1;
 			List<GradeBean> lec_list = gradeService.getLectureList(loginMemberBean.getID(), year, semester);
 			model.addAttribute("lec_list", lec_list);
 		}
-		
-		
+
 		return "academy/enrollment";
 	}
 
 	// 시간표 조회
-	   @GetMapping("/timetable")
-	   public String academy_timetable(@ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
-	         @ModelAttribute("getTimeTableinfo") MemberBean getTimeTable,
-	         @ModelAttribute("getTimeTableUserInfo") LectureBean timeTableUserInfo, Model model) {
+	@GetMapping("/timetable")
+	public String academy_timetable(@ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
+			@ModelAttribute("getTimeTableinfo") MemberBean getTimeTable,
+			@ModelAttribute("getTimeTableUserInfo") LectureBean timeTableUserInfo, Model model) {
 
-	      // 권한 구분
-	      int r_ID = loginMemberBean.getR_ID();
-	      model.addAttribute("r_ID", r_ID);
-	      if (r_ID == 3) {
+		// 권한 구분
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+		if (r_ID == 3) {
 
-	         StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
-	         int grade = stdBean.getGrade();
-	         int s_semester = stdBean.getS_semester();
+			StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
+			int grade = stdBean.getGrade();
+			int s_semester = stdBean.getS_semester();
 
-	         model.addAttribute("grade", grade);
-	         model.addAttribute("s_semester", s_semester);
+			model.addAttribute("grade", grade);
+			model.addAttribute("s_semester", s_semester);
 
-	         // 표
-	         String[] day = { "월", "화", "수", "목", "금" };
-	         model.addAttribute("day", day);
+			// 표
+			String[] day = { "월", "화", "수", "목", "금" };
+			model.addAttribute("day", day);
 
-	         // 시간표-이름, 학번, 학과
-	         timeTableService.timeTableUserInfo(getTimeTable);
+			// 시간표-이름, 학번, 학과
+			timeTableService.timeTableUserInfo(getTimeTable);
 
-	         // 시간표- 년도, 학기 값 받아오기
-	         List<LectureBean> getTimeTableUserInfo = timeTableService.allTimeTableInfo(model);
-	         model.addAttribute("getTimeTableUserInfo", getTimeTableUserInfo);
+			// 시간표- 년도, 학기 값 받아오기
+			List<LectureBean> getTimeTableUserInfo = timeTableService.allTimeTableInfo(model);
+			model.addAttribute("getTimeTableUserInfo", getTimeTableUserInfo);
 
-	      }
-	      
+		}
 
-	      return "academy/timetable";
-	   }
-	   
-	   @GetMapping("/timetable_professor")
-	   public String academy_timetable_professor(@ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
-	                                   @ModelAttribute("getProfessorTimeTableUserInfo") LectureBean getProfessorTimeTableUserInfo,
-	                                   Model model) {
-	      int r_ID = loginMemberBean.getR_ID();
-	      model.addAttribute("r_ID", r_ID);
-	      if (r_ID == 2) {
+		return "academy/timetable";
+	}
 
-	         ProfessorBean proBean = memberService.getProfessorInfo(loginMemberBean.getID());
-	         int p_ID = proBean.getP_ID();
-	         int d_ID = proBean.getD_ID();
+	@GetMapping("/timetable_professor")
+	public String academy_timetable_professor(@ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
+			@ModelAttribute("getProfessorTimeTableUserInfo") LectureBean getProfessorTimeTableUserInfo, Model model) {
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+		if (r_ID == 2) {
 
-	         model.addAttribute("p_ID", p_ID);
-	         model.addAttribute("d_ID", d_ID);
+			ProfessorBean proBean = memberService.getProfessorInfo(loginMemberBean.getID());
+			int p_ID = proBean.getP_ID();
+			int d_ID = proBean.getD_ID();
 
-	         // 표
-	         String[] day = { "월", "화", "수", "목", "금" };
-	         model.addAttribute("day", day);
+			model.addAttribute("p_ID", p_ID);
+			model.addAttribute("d_ID", d_ID);
 
-	         // 시간표-이름, 학번, 학과
-	         timeTableService.getTimeTableProInfo(getTimeTableProInfo);
+			// 표
+			String[] day = { "월", "화", "수", "목", "금" };
+			model.addAttribute("day", day);
 
-	         // 시간표- 년도, 학기 값 받아오기
-	         List<LectureBean> getProfessorTimeTableUserInfo1 = timeTableService.getProfessorTimeTableUserInfo(model);
-	         model.addAttribute("getProfessorTimeTableUserInfo1", getProfessorTimeTableUserInfo1);
+			// 시간표-이름, 학번, 학과
+			timeTableService.getTimeTableProInfo(getTimeTableProInfo);
 
-	      }
-	      
-	      
-	      
-	      return "academy/timetable_professor";
-	   }
-	   
-	   @GetMapping("/timetable_pro")
-	   public String academy_timetable_pro(@Valid 
-	         @ModelAttribute("getTimeTableinfo") MemberBean getTimeTableinfo,
-	         @ModelAttribute("getTimeTableGradeAnSemeInfo") LectureBean getTimeTableGradeAnSemeInfo,
-	         BindingResult result, Model model) {
-	      
-			// 권한 구분
-			int r_ID = loginMemberBean.getR_ID();
-			model.addAttribute("r_ID", r_ID);
-			if (r_ID == 3) {
-	
-				StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
-				int grade = stdBean.getGrade();
-				int s_semester = stdBean.getS_semester();
-	
-				model.addAttribute("grade", grade);
-				model.addAttribute("s_semester", s_semester);
-			}
+			// 시간표- 년도, 학기 값 받아오기
+			List<LectureBean> getProfessorTimeTableUserInfo1 = timeTableService.getProfessorTimeTableUserInfo(model);
+			model.addAttribute("getProfessorTimeTableUserInfo1", getProfessorTimeTableUserInfo1);
 
-		   
-	      if (result.hasErrors()) {
-	         System.out.println(result.getAllErrors());
-	         return "academy/timetable";
-	      }
-	      // 학생
-	      timeTableService.timeTableUserInfo(getTimeTableinfo);
+		}
 
-	      loginMemberBean.setYear(getTimeTableinfo.getYear());
-	      loginMemberBean.setSemester(getTimeTableinfo.getSemester());
+		return "academy/timetable_professor";
+	}
 
-	      // 시간표 사용자 정보 조회
-	      List<LectureBean> getTimeTableinfo1 = lectureDao.getTimeTableUserInfo(getTimeTableinfo.getID(),
-	            getTimeTableinfo.getYear(), getTimeTableinfo.getSemester());
-	      model.addAttribute("getTimeTableinfo", getTimeTableinfo1);
-	      model.addAttribute("loginMemberBean", loginMemberBean.getID());
-	      timeTableService.timeTableUserInfo(getTimeTableinfo);
+	@GetMapping("/timetable_pro")
+	public String academy_timetable_pro(@Valid @ModelAttribute("getTimeTableinfo") MemberBean getTimeTableinfo,
+			@ModelAttribute("getTimeTableGradeAnSemeInfo") LectureBean getTimeTableGradeAnSemeInfo,
+			BindingResult result, Model model) {
 
-	      return "academy/timetable_success";
+		// 권한 구분
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+		if (r_ID == 3) {
 
-	   }
+			StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
+			int grade = stdBean.getGrade();
+			int s_semester = stdBean.getS_semester();
 
-	   @GetMapping("/timetable_professor_pro")
-	   public String academy_timetable_professor_pro(@Valid 
-	         @ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
-	         @ModelAttribute("getProfessorTimeTableUserInfo") LectureBean getProfessorTimeTableUserInfo,
-	         BindingResult result, Model model) {
-	      
-		  int r_ID = loginMemberBean.getR_ID();
-		  model.addAttribute("r_ID", r_ID); 
-		   
-	      if (result.hasErrors()) {
-	         System.out.println(result.getAllErrors());
-	         return "academy/timetable_professor";
-	      
-	      }
-	      
-	      // 교수
-	      timeTableService.getTimeTableProInfo(getTimeTableProInfo);
+			model.addAttribute("grade", grade);
+			model.addAttribute("s_semester", s_semester);
+		}
 
-	      loginMemberBean.setYear(getTimeTableProInfo.getYear());
-	      loginMemberBean.setSemester(getTimeTableProInfo.getSemester());
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "academy/timetable";
+		}
+		// 학생
+		timeTableService.timeTableUserInfo(getTimeTableinfo);
 
-	      List<LectureBean> getProfessorTimeTableUserInfo1 = lectureDao.getProfessorTimeTableUserInfo(getTimeTableProInfo.getID(),
-	            getTimeTableProInfo.getYear(), getTimeTableProInfo.getSemester());
-	      model.addAttribute("getProfessorTimeTableUserInfo1", getProfessorTimeTableUserInfo1);
-	      model.addAttribute("loginMemberBean", loginMemberBean.getID());
-	      timeTableService.getTimeTableProInfo(getTimeTableProInfo);
+		loginMemberBean.setYear(getTimeTableinfo.getYear());
+		loginMemberBean.setSemester(getTimeTableinfo.getSemester());
 
-	      return "academy/timetable_professor_success";
-	   }
+		// 시간표 사용자 정보 조회
+		List<LectureBean> getTimeTableinfo1 = lectureDao.getTimeTableUserInfo(getTimeTableinfo.getID(),
+				getTimeTableinfo.getYear(), getTimeTableinfo.getSemester());
+		model.addAttribute("getTimeTableinfo", getTimeTableinfo1);
+		model.addAttribute("loginMemberBean", loginMemberBean.getID());
+		timeTableService.timeTableUserInfo(getTimeTableinfo);
+
+		return "academy/timetable_success";
+
+	}
+
+	@GetMapping("/timetable_professor_pro")
+	public String academy_timetable_professor_pro(
+			@Valid @ModelAttribute("getTimeTableProInfo") MemberBean getTimeTableProInfo,
+			@ModelAttribute("getProfessorTimeTableUserInfo") LectureBean getProfessorTimeTableUserInfo,
+			BindingResult result, Model model) {
+
+		int r_ID = loginMemberBean.getR_ID();
+		model.addAttribute("r_ID", r_ID);
+
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "academy/timetable_professor";
+
+		}
+
+		// 교수
+		timeTableService.getTimeTableProInfo(getTimeTableProInfo);
+
+		loginMemberBean.setYear(getTimeTableProInfo.getYear());
+		loginMemberBean.setSemester(getTimeTableProInfo.getSemester());
+
+		List<LectureBean> getProfessorTimeTableUserInfo1 = lectureDao.getProfessorTimeTableUserInfo(
+				getTimeTableProInfo.getID(), getTimeTableProInfo.getYear(), getTimeTableProInfo.getSemester());
+		model.addAttribute("getProfessorTimeTableUserInfo1", getProfessorTimeTableUserInfo1);
+		model.addAttribute("loginMemberBean", loginMemberBean.getID());
+		timeTableService.getTimeTableProInfo(getTimeTableProInfo);
+
+		return "academy/timetable_professor_success";
+	}
 
 	// 금학기성적조회
 	@GetMapping("/grade_check")
@@ -326,7 +318,7 @@ public class AcademyController {
 		// 권한 구분
 		int r_ID = loginMemberBean.getR_ID();
 		model.addAttribute("r_ID", r_ID);
-		
+
 		MemberBean tempModifyMemberBean = memberService.getModifyMemberInfo(loginMemberBean.getID());
 
 		StudentBean stdBean = memberService.getStudentInfo(loginMemberBean.getID());
@@ -389,7 +381,8 @@ public class AcademyController {
 	@GetMapping("/grade_input")
 	public String academy_grade_input(@ModelAttribute("grade_input") GradeBean grade_input,
 			@RequestParam(value = "year", defaultValue = "2022") int year,
-			@RequestParam(value = "semester", defaultValue = "1") int semester, Model model) {
+			@RequestParam(value = "semester", defaultValue = "1") int semester,
+			@RequestParam(value = "g_semester", defaultValue = "1") int g_semester, Model model) {
 
 		// 권한 구분
 		int r_ID = loginMemberBean.getR_ID();
@@ -425,13 +418,14 @@ public class AcademyController {
 				tempStdInfoList.add(stdInfo);
 			}
 			stdInfoList.add(tempStdInfoList);
-		}
 
+		}
 		model.addAttribute("list", list);
 		model.addAttribute("size", size);
 		model.addAttribute("counts", counts);
 		model.addAttribute("stdList", stdList);
 		model.addAttribute("stdInfoList", stdInfoList);
+		gradeService.grade_input(grade_input);
 
 		return "academy/grade_input";
 	}

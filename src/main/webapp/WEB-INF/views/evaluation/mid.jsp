@@ -7,8 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>중간 강의평가 입력</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
-   .sec{
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.sec{
     position:absolute;
     top:8%;
     left:15%;
@@ -16,13 +22,13 @@
     height: 92%;
    }
 
-   .contents{
+.contents{
       width: 100%;
       height: 100%;
       overflow: auto;
    }
    
-   .enrolled{
+.enrolled{
       background-color: #f2f2f2;
       
       

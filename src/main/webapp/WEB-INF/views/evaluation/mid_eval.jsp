@@ -8,7 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>중간 강의평가 입력</title>
-<style type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<style>
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
 .contents {
    background: url("${root }images/blue.jpg");
    background-size: 100%;
@@ -75,10 +81,12 @@ button {
  h4{
     font-size: 11pt;
  }
-
+#textarea{
+   resize: none;
+}
 </style>
 </head>
-<body>
+<body style="margin: 0px;">
 <!-- 강의평가 입력 -->
    <div class = "contents">
    
@@ -126,7 +134,7 @@ button {
       <form:radiobutton path="items4" value="5" />5
       <p>
       <form:label path="feedback"><h4>교수님께 하고 싶은 말이 있다면 적어주세요(최대 400자)</h4></form:label><br />
-      <form:textarea path="feedback" rows="4" cols="50" />
+      <form:textarea id="textarea" path="feedback" rows="4" cols="50" />
    </div>
    <form:button type = "submit">제출</form:button>
    </form:form>

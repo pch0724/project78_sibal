@@ -6,8 +6,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,4 +46,23 @@ public class RestAcademyController {
     
        return ResponseEntity.ok(totalbyyear);
    }
+   
+
+   
+   @PostMapping("/grade_input.pro")
+   public ResponseEntity<Void> gradeInput(@RequestBody GradeBean gradeBean, @ModelAttribute("grade_input") GradeBean grade_input, Model model) {
+      
+      
+       try {
+          gradeService.grade_input(gradeBean);
+              System.out.println(gradeBean.getA_score());
+              System.out.println(gradeBean.getStd_ID());
+              System.out.println(gradeBean.getLec_ID());
+           return new ResponseEntity<>(HttpStatus.OK);
+       } catch (Exception e) {
+           e.printStackTrace();
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+   }
+
 }

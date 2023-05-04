@@ -42,8 +42,13 @@ public interface ProfessorMapper {
 	@Select("select at_score, m_score, f_score, a_score from grade where std_ID=#{std_ID} and lec_id=#{lec_ID} and g_semester=#{semester} and year=#{year}")
 	GradeBean getStdInfo(@Param("std_ID") int std_ID, @Param("lec_ID") String lec_ID, @Param("year") int year, @Param("semester") int semester);
 
-	// 성적입력수행
-	@Update("update grade set at_score=#{at_score}, m_score=#{m_score}, f_score=#{f_score}, a_score=#{a_score} where std_ID=#{ID} and lec_id=#{lec_ID} and g_semester=#{g_semester} and year=#{year}")
-	void grade_input(GradeBean grade_input);
+	//성적입력수행
+   @Update("update grade set at_score=#{at_score, jdbcType=INTEGER}, m_score=#{m_score, jdbcType=INTEGER}, f_score=#{f_score, jdbcType=INTEGER}, a_score=#{a_score, jdbcType=INTEGER} "
+           + "where std_ID=#{std_ID, jdbcType=INTEGER} "
+           + "and lec_ID=#{lec_ID, jdbcType=VARCHAR} "
+           + "and g_semester=#{g_semester, jdbcType=INTEGER} "
+           + "and year=#{year, jdbcType=INTEGER}")
+   void grade_input(GradeBean grade_input);
+
 
 }

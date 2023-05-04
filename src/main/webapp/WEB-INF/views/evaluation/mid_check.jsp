@@ -6,8 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>중간 강의평가 조회</title>
 <style>
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
 /*강의 선택*/
    .sec{
     position:absolute;
@@ -246,7 +258,7 @@ function loadFeedbackList(lec_id) {
                 </select>
             </td>
               <td>
-                 <input type="submit" value="조회">
+                 <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 10px; color:#168; background: #f0f6f9;">
               </td>
               
          </tr>
@@ -266,7 +278,6 @@ function loadFeedbackList(lec_id) {
             <th class="lec-grade">학년</th>
             <th class="lec-credit">학점</th>
             <th class="lec-class">강의실</th>
-            <th class="lec-number">수강인원</th>
             <th class="lec-day">요일</th>
             <th class="lec-time">시간</th>
             <th>비고</th>
@@ -280,11 +291,10 @@ function loadFeedbackList(lec_id) {
                <td class="lec-grade">${list.get(i).grade }</td>
                <td class="lec-credit">${list.get(i).credits }</td>
                <td class="lec-class">${list.get(i).c_ID }</td>
-               <td class="lec-number">${list.get(i).capacity }</td>
                <td class="lec-day">${list.get(i).day }</td>
                <td class="lec-time">${list.get(i).starttime }교시 ~ ${list.get(i).endtime }교시</td>
                <td>
-                  <input type="button" value="선택" onclick="inputg('${list.get(i).lec_ID}', ${year}, ${semester})"/>
+                  <input type="button" value="선택" onclick="inputg('${list.get(i).lec_ID}', ${year}, ${semester})" style="border-radius: 5px; border: 1px solid #168; color:#168; background: #f0f6f9;"/>
                   
                </td>
             </tr>
