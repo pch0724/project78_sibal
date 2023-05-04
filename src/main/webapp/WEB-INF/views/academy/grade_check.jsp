@@ -153,6 +153,7 @@
                <th>중간</th>
                <th>기말</th>
                <th>과제</th>
+               <th>점수</th>
                <th>등급</th>
             </tr>
          </thead>
@@ -167,7 +168,8 @@
                   <td>${grade.m_score }</td>
                   <td>${grade.f_score }</td>
                   <td>${grade.a_score }</td>
-                  <td>${grade.gpa }</td>
+                  <td>${grade.gpacalc }</td>
+                  <td>${grade.gradeLetter }</td>
                </tr>
             </c:forEach>
          </tbody>
