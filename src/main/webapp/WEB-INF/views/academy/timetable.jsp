@@ -12,7 +12,6 @@
 <title>시간표 조회</title>
 <style>
 * {
-   
    font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -33,7 +32,7 @@
    display: absolute;
    width: 18%;
    height: 100%;
-   background-color: #ededed;
+   background-color: #f0f6f9;
    border: 1px;
 }
 
@@ -82,6 +81,7 @@ table {
   align-content: center;
   table-layout: fixed;
   border-collapse: collapse;
+  border-top: 3px solid #168;
   width: 100%;
   height: 100%;
 }
@@ -94,16 +94,17 @@ td,th {
 }
 
 td .lecture-cell {
-  background-color: #bfcfff;
+  background-color: #f0f6f9;
   display: inline-block;
   width: 95%;
   padding: 17px 4.25px 17.2px;
   color: #2e2e2e;
+  border-bottom: 2px solid #168;
 }
 
 tr:first-child {
   border-top: 2px solid #444;
-  background-color: #bfcfff;
+  background-color: #f0f6f9;
   color: #2e2e2e;
 }
 
@@ -114,42 +115,52 @@ th {
 td {
   border: 1px solid #ddd;
 }
-
+input[typr=submit]{
+   border-radius: 5px;
+   border: 2px solid #168;
+   margin-left: 90px;
+}
 </style>
 </head>
 <body>
    <c:import url="/WEB-INF/views/academy/base.jsp"/>
       <section class="sec">
       <div class="contents" style="display: flex;">
+           <hr style="border-bottom: 2px solid #168;"/>
+
          <div class="left-div">
-            <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
-           <br />
-           &nbsp;이름 :&nbsp;<form:input class="readonly" path="name" disabled="true" size="15"/>
-           <br />
-           &nbsp;학번 :&nbsp;<form:input class="readonly" path="ID" disabled="true" size="15"/>
-           <br />
-           &nbsp;학과 :&nbsp;<form:input class="readonly" path="d_name" disabled="true" size="15"/>
-           <br />
-           <br />
-           연도 :&nbsp;
-           <form:select path="year">
-             <form:option value="2022">2022</form:option>
-             <form:option value="2023">2023</form:option>
-           </form:select>
-           학기 :&nbsp;
-           <form:select path="semester">
-             <form:option value="1">1학기</form:option>
-             <form:option value="2">2학기</form:option>
-           </form:select>
-           <br />
-           <br />
-           <input class="" type="submit" value="조회" style="margin-left: 90px;"/>
-         </form:form>
+               <form:form action="${root}academy/timetable_pro" method="get" modelAttribute="getTimeTableinfo">
+            <table style="border-top: 2px solid #168; border-bottom: 2px solid #168;">
+               <tr>
+                      <td>&nbsp;이름 :&nbsp;<form:input class="readonly" path="name" readonly="true" size="15"/></td>
+                   </tr> 
+                  
+                    <tr>
+                       <td>&nbsp;학번 :&nbsp;<form:input class="readonly" path="ID" readonly="true" size="15" /></td>
+                    </tr>
+                  
+                    <tr>
+                       <td>&nbsp;학과 :&nbsp;<form:input class="readonly" path="d_name" readonly="true" size="15" /></td>
+                    </tr>
+            </table>
+            <br />
+            &nbsp;연도 :&nbsp; <form:select path="year">
+                     <form:option value="2022">2022</form:option>
+                     <form:option value="2023">2023</form:option>
+                  </form:select>
+              학기 :&nbsp; <form:select path="semester">
+                     <form:option value="1">1학기</form:option>
+                     <form:option value="2">2학기</form:option>
+                  </form:select>
+                  <br />
+                  <br />
+                  <input type="submit" value="조회" style="border-radius: 5px; border: 2px solid #168; margin-left: 90px; color:#168; background: #f0f6f9;"/>
+               </form:form>
          </div>
-            <div class="right-div">
+         <div class="right-div">
                <div class="main_timetable">
                   <table>
-                     <tr style="border-top: 2px solid #444; border-bottom: 2px solid #444;background-color: #697cd1;">
+                     <tr style="border-top: 2px solid #444; border-bottom: 2px solid #168; background-color: #f0f6f9; color:#168;">
                         <th style=" border: 1px solid #ccc;"></th>
                         <th style=" border: 1px solid #ccc;">월</th>
                         <th style=" border: 1px solid #ccc;">화</th>
@@ -159,13 +170,12 @@ td {
                      </tr>
                      <c:forEach var="time" begin="1" end="14">
                         <tr style="border: 1px solid #ccc;">
-                           <td align="center" style="width: 40px; border: 1px solid #ccc;">${time}</td>
+                           <td align="center" style="width: 40px; border: 1px solid #ccc; font-weight: bold;">${time}</td>
                            <c:forEach var="day" items="${day}">
                               <td align="center" style="padding: 0; margin: 0; border: 1px solid #ccc;" >
                                  <c:forEach var="lecture" items="${getTimeTableUserInfo}">
                                     <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                       <b><span style="font-size: 13px; margin: 0; " class="lecture-cell ${lecture.lec_name}-cell">${lecture.lec_name}&nbsp;[${lecture.c_ID}]</span></b>
-                                  <c:set var="highlight" value="${lecture.lec_name}-highlight" />
+                                       <b><span style="font-size: 13px; margin: 0; " class="lecture-cell ${lecture.lec_name}-cell">${lecture.completion }<br />${lecture.lec_name}&nbsp;[${lecture.c_ID}]</span></b>
                                     </c:if>
                                  </c:forEach>
                               </td>
