@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>Books</title>
 <style>
+*{
+   font-family: 'Noto Sans KR', sans-serif;
+}
+
 .books {
     display: flex;
     flex-direction: column;
@@ -18,22 +22,26 @@
 
 .book-title {
     margin-bottom: 10px;
-    text-align: left;
     width: 100%;
 }
 
 .buttons {
-    display: flex;
+    display: flex; 
+    justify-content:space-around;
     
     width: 100%;
     
 }
 
 .buttons button{
-	width: 18%;
-	font-size: 9pt;
-	border: 1px solid black;
-	background-color: white;
+   width: 18%;
+   height: 5%;
+   font-size: 10pt;
+   color : black;
+   border-radius: 10px;
+   border: 2px;
+   border-color: #168;
+   background-color: transparent;
 }
 
 .bookinfo {
@@ -79,22 +87,34 @@ function fetchBooks(categoryId) {
 </script>
 </head>
 <body>
+    <h4 class="book-title" style="margin-left: 17px;">추천도서</h4>
     <div class="books">
-    <h4 class="book-title">추천도서</h4>
-	    <div class="buttons">
-		    <button onclick="fetchBooks('336')">자기계발</button>
-			<button onclick="fetchBooks('351')">컴퓨터</button>
-			<button onclick="fetchBooks('1196')">여행</button>
-			<button onclick="fetchBooks('1383')">수험/자격</button>
-	    </div>
-	    <div class="bookinfo">
-	        <c:forEach var="book" items="${books}">
-	            <div class="book-item">
-	                <img class="front_cover" src="${book.imgUrl}" alt="${book.title}">
-	                <p class="book-title-text">${book.title}</p>
-	            </div>
-	        </c:forEach>
-	    </div>
+       <div class="buttons">
+          <table style ="border-bottom: 1px; border-top: 1px;">
+          <tr height = "30px;">
+             <td>
+                <button onclick="fetchBooks('336')" style="width: 100%; font-weight: bold;">자기계발</button>
+             </td>
+             <td>
+               <button onclick="fetchBooks('351')" style="width: 100%; font-weight: bold;">컴퓨터</button>
+             </td>
+             <td>
+               <button onclick="fetchBooks('1196')" style="width: 100%; font-weight: bold;">여행</button>
+             </td>
+             <td>
+               <button onclick="fetchBooks('1383')" style="width: 100%; font-weight: bold;">수험/자격</button>
+             </td>
+         </tr>
+         </table>
+       </div>
+       <div class="bookinfo" style="margin-top: 20px;">
+           <c:forEach var="book" items="${books}">
+               <div class="book-item">
+                   <img class="front_cover" src="${book.imgUrl}" alt="${book.title}" style="height: 150px; width: 100px;">
+                   <p class="book-title-text" style="font-size: 10pt;" >${book.title}</p>
+               </div>
+           </c:forEach>
+       </div>
     </div>
 </body>
 </html>

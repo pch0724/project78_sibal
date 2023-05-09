@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,18 +108,18 @@ $(document).ready(function() {
 	          },
 	          success: function (data) {
 	              if (data === 'success') {
-	                  alert('수강 신청이 완료되었습니다.');
+	                  swal('성공','수강 신청이 완료되었습니다.',"success");
 	                  loadEnrolledLectures();
 	              } else if (data === 'daytimeError'){
-	            	  alert('이미 동일한 시간대의 강의를 수강하고 있습니다. 다른 강의를 선택해주세요.')  
+	            	  swal('실패','이미 동일한 시간대의 강의를 수강하고 있습니다.\n 다른 강의를 선택해주세요.',"error");  
 	              } else if (data === 'capacityError') {
-	                  alert('수강인원이 정원을 초과했습니다. 다른 강좌를 선택해주세요.');
+	                  swal('실패','수강인원이 정원을 초과했습니다.\n다른 강좌를 선택해주세요.','error');
 	              } else {
-	                  alert('수강 신청 중 오류가 발생했습니다.');
+	                  swal('실패','수강 신청 중 오류가 발생했습니다.','error');
 	              }
 	          },
 	          error: function () {
-	              alert('수강 신청 중 오류가 발생했습니다.');
+	        	  swal('실패','수강 신청 중 오류가 발생했습니다.','error');
 	          }
 	      });
 	       }
@@ -173,7 +174,7 @@ $(document).ready(function() {
                $('#select').trigger('click');
            },
            error: function() {
-               alert('수강 신청한 과목을 불러오는 중 오류가 발생했습니다.');
+               swal('실패','수강 신청한 과목을 불러오는 중 오류가 발생했습니다.','error');
            }
        });//ajx
        
@@ -190,7 +191,7 @@ $(document).ready(function() {
            },
            success: function(data) {
                // 삭제가 성공적으로 처리되었을 때 실행할 코드를 여기에 작성합니다.
-               alert('수강 취소가 완료되었습니다.');
+               swal('성공','수강 취소가 완료되었습니다.','success');
               
                loadEnrolledLectures();
             // 수강신청 성공 후에 enroll_count 업데이트
@@ -198,7 +199,7 @@ $(document).ready(function() {
            },
            error: function() {
                // 요청 처리 중 오류가 발생했을 때 실행할 코드를 여기에 작성합니다.
-               alert('수강 취소 중 오류가 발생했습니다.');
+               swal('실패','수강 취소 중 오류가 발생했습니다.','error');
            }
        });
    }
@@ -263,7 +264,7 @@ $(document).ready(function() {
                 });
             },
             error: function() {
-                alert('검색 중 오류가 발생했습니다.');
+                swal('실패','검색 중 오류가 발생했습니다.','error');
             }
         });
     });

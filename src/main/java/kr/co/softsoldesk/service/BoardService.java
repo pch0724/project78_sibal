@@ -63,7 +63,9 @@ public class BoardService {
 		
 		writeBoardBean.setW_ID(loginMemberBean.getID());
 		
-		boardDao.addContentInfo(writeBoardBean);
+		
+	         boardDao.addContentInfo(writeBoardBean);
+	       
 	}
 	
 	public List<BoardBean> getContentList(int page){

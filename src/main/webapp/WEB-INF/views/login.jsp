@@ -13,6 +13,7 @@
 <title>칠팔대학교 통합시스템 로그인</title>
 <style type="text/css">
 * {
+	cursor:
 	padding: 0;
 	margin: 0;
 	border: none;
@@ -26,7 +27,8 @@ h1 {
 }
 
 body {
-	background: url("${root }images/login_back3.png");
+	overflow: hidden;
+	background: url("${root }images/login_logo2.jpg");
 	background-size: 100%;
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
@@ -51,7 +53,8 @@ main {
 	font-size: 18px;
 	color: #050099;
 	margin-bottom: 20px;
-	margin-top: 200px;
+	margin-top: 260px;
+	margin-left:3px;
 	padding: 5px;
 	border: none;
 }
@@ -59,11 +62,28 @@ main {
 /* 로그인 버튼 */
 #login {
 	border-radius: 3px;
-	margin-top: 40px; 
+	margin-top: 20px; 
 	font-size: 16px;
 	width: 408px;
 	height: 40px;
 	background-color: #000087;
+}
+footer {
+	
+	height: 40px;
+	color: #595959;
+}
+
+.addr_info {
+	margin-top:15px;
+	margin-left:10px;
+	position: absolute;
+	left: 36.5%;
+	display: flex;
+	text-align: center;
+	font-size: xx-small;
+	
+	border-top: 1px solid #595959;
 }
 
 .login_logo {
@@ -141,23 +161,7 @@ button {
 	color: #ffffff;
 }
 
-footer {
-	
-	height: 80px;
-	color: #595959;
-}
 
-.addr_info {
-	margin-top:90px;
-	margin-left:10px;
-	position: absolute;
-	left: 36.5%;
-	display: flex;
-	text-align: center;
-	font-size: xx-small;
-	
-	border-top: 1px solid #595959;
-}
 
 #ID {
 	font-family: 'Nanum Gothic', sans-serif;

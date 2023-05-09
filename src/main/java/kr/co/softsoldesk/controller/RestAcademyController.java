@@ -52,7 +52,14 @@ public class RestAcademyController {
    @PostMapping("/grade_input.pro")
    public ResponseEntity<Void> gradeInput(@RequestBody GradeBean gradeBean, @ModelAttribute("grade_input") GradeBean grade_input, Model model) {
       
-      
+     if (gradeBean.getAt_score() > 20 || gradeBean.getM_score() > 30 || gradeBean.getF_score() > 30 || gradeBean.getA_score() > 20) {
+          return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } else if (gradeBean.getAt_score() == 0) {
+          gradeBean.setM_score(0);
+          gradeBean.setF_score(0);
+          gradeBean.setA_score(0);
+        }
+	   
        try {
           gradeService.grade_input(gradeBean);
               System.out.println(gradeBean.getA_score());

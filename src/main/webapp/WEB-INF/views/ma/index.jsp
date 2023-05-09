@@ -40,8 +40,17 @@
     });
   </script>
 <style>
+body{
+	background-image: url("${root}images/back____.png");
+	background-size: 100%;
+	background-repeat: repeat-y;
+}
+.fc-day .fc-widget-content .fc-thu .fc-future{
+	height: 30px;
+}
 .fc th, .fc td {
 	border-color: #eee;
+	height: 20px;
 }
 
 .fc-today {
@@ -109,15 +118,15 @@ div.nav nav li a {
 }
 
 #contents {
-	
 	background-size: 100%;
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	min-height: 704px;
 	padding-top: 30px;
 }
 
 div.dflex {
-	display: flex
+	display: flex;
+	justify-content: space-around;
 }
 
 div.square {
@@ -197,7 +206,7 @@ article>.carousel {
 }
 
 .carousel-images {
-   width: 5250px;
+   width: 6000px;
    position: relative;
    white-space: nowrap;
 }
@@ -257,23 +266,30 @@ a:visited {
    text-decoration: none;
    color: black;
 }
+footer {
+	background-color: #363636;
+	color: #b0b0b0;
+	font-size: 12px;
+	padding-bottom: 30px;
+	margin-top: 30px;
+}
 </style>
 <meta charset="UTF-8">
 <title>칠팔대학교 통합시스템</title>
 </head>
 <body style="margin: 0px; overflow-x: hidden; background-color: #d9d9d9;">
-   <header>
+   <header style="background-color: #f2f2f2;">
       <div class="row">
          <div id="logo">
             <img src="${root }images/logo_ex5.png" alt="Logo" />
          </div>
          
                   <div id="top_menu">
-            <div style="font-family: 'Noto Sans KR', sans-serif; padding-top: 5%;">
+            <div style="font-family: 'Noto Sans KR', sans-serif; padding-top: 5%; margin-left: -10px; width: 100px;">
                ${name }&nbsp;${r_name }
             </div>
-            <div><img src="${root }images/sessiontimer.png" style="width: 16px; height: 16px; margin-top: 39px; margin-right: 10px;" /></div>
-            <div id="session-time" style="font-family: 'Noto Sans KR', sans-serif; padding-top: 5%; font-size: small;">
+            <div><img src="${root }images/sessiontimer.png" style="width: 24px; height: 24px; margin-top: 30px; margin-left: 15px;" /></div>
+            <div id="session-time" style="font-family: 'Noto Sans KR', sans-serif; padding-top: 5%; font-size: small; margin-left: 9px;">
             <script>
                var sessionExpireTime = 30 * 60;
 
@@ -331,15 +347,17 @@ a:visited {
    	<section id="upper_contents">
    <article class="container">
      <div class="carousel-container" style="margin-top: -58px;">
-       <div class="carousel" data="1">
+       <div class="carousel" data="0">
          <ul class="carousel-images">
-           <li><img src="${root }images/campus1.jpg" style="margin-left: -40px;"></li>
-           <li><img src="${root }images/campus2.jpg"></li>
-           <li><img src="${root }images/campus3.jpg"></li>
-           <li><img src="${root }images/campus4.jpg"></li>
-           <li><img src="${root }images/campus5.jpg"></li>
-           <li><img src="${root }images/campus6.jpg"></li>
-           <li><img src="${root }images/campus7.jpg"></li>
+	           <li><img src="${root }images/campus1.jpg" style="margin-left: -40px;"></li>
+	           <li><img src="${root }images/campus2.jpg"></li>
+	           <li><img src="${root }images/campus3.jpg"></li>
+	           <li><img src="${root }images/campus4.jpg"></li>
+	           <li><img src="${root }images/campus5.jpg"></li>
+	           <li><img src="${root }images/campus6.jpg"></li>
+	           <li><img src="${root }images/campus7.jpg"></li>
+	           <li><img src="${root }images/campus8.jfif"></li>
+	       
          </ul>
          <div class="slide slide-left">
               <button class="transparent-button" style="background: transparent; border: none; margin-left: -10px;">
@@ -361,29 +379,27 @@ a:visited {
       		<ul>
       			<li style="display: inline-block; padding-right: 10%;">
       				<img src="${root }images/youtube.png" style="width: 16px; height: 16px;">
-      				<a href="https://www.youtube.com/@SOLDESK." style="text-decoration: none; color: white; padding-bottom: 10px;">유튜브</a>
+      				<a href="https://www.youtube.com/@SOLDESK." style="text-decoration: none; color: white; padding-bottom: 10px;" target="blank">유튜브</a>
       			</li>
       			<li style="display: inline-block;padding-right: 10%;">
       				<img src="${root }images/instagram.png" style="width: 16px; height: 16px;">
-      				<a href="https://www.instagram.com/soldesk_it/" style="text-decoration: none; color: white; padding-bottom: 10px;">인스타그램</a>
+      				<a href="https://www.instagram.com/soldesk_it/" style="text-decoration: none; color: white; padding-bottom: 10px;" target="blank">인스타그램</a>
       			</li>
       			<li style="display: inline-block;padding-right: 10%;">
       				<img src="${root }images/facebook.png" style="width: 16px; height: 16px;">
-      				<a href="https://www.facebook.com/soldesk0269017000/?ref=bookmarks" style="text-decoration: none; color: white; padding-bottom: 10px;">페이스북</a>
+      				<a href="https://www.facebook.com/soldesk0269017000/?ref=bookmarks" style="text-decoration: none; color: white; padding-bottom: 10px;" target="blank">페이스북</a>
       			</li>
       			<li style="display: inline-block;padding-right: 10%;">
       				<img src="${root }images/blog.png" style="width: 16px; height: 16px;">
-      				<a href="https://blog.naver.com/soldeskceo" style="text-decoration: none; color: white; padding-bottom: 10px;">블로그</a>
+      				<a href="https://blog.naver.com/soldeskceo" style="text-decoration: none; color: white; padding-bottom: 10px;" target="blank">블로그</a>
       			</li>
       		</ul>
       	</div>
       </div>
       <div class="row dflex">
-      	<c:if test="${r_ID == 2 or r_ID ==3 }">
+      	<c:if test="${r_ID ==3 }">
          <div class="square">
-         	<c:if test="${r_ID == 3 }">
-            	<div id="credits-check-container"></div>
-            </c:if>
+            <div id="credits-check-container"></div>
          </div>
         </c:if> 
          <div class="square">
@@ -415,19 +431,27 @@ a:visited {
       </div>
       
       <div class="row dflex">
-      	<c:if test="${r_ID == 2 or r_ID ==3 }">
+      	<c:if test="${r_ID ==3 }">
          <div class="square2" style="padding-left: 1%;">
-         	<c:if test="${r_ID == 3 }">
-        		<div id="gpa-check-container"></div>
-        	</c:if>
-        	<c:if test="${r_ID == 2 }"></c:if>
+        	<div id="gpa-check-container"></div>
          </div>
         </c:if>
         <div class="square2"><div class="books"></div></div>
         <div class="square2"><div class="weather-container"></div></div>
       </div>
    </section>
-   <footer> </footer>
+   <footer >
+      <hr />
+      <div>
+         <p class="addr_info" align="center">
+		      <br />
+            서울캠퍼스: 02-000-0000 (우 03016) 서울시 종로구 2길 20 솔대학교<br>
+            천안캠퍼스: 041-000-0000(우 31066) 충청남도 천안시 동남구 칠팔대길 31 솔대학교<br>
+            COPYRIGHT BY CHILPAL UNIVERSITY ALL RIGHTS RESERVED
+		      <br />
+         </p>
+         </div>
+      </footer> 
 <script>
    // 날씨 api 호출
    $(document).ready(function() {
@@ -497,6 +521,7 @@ a:visited {
        });
    }
    
+ 
    
    
 

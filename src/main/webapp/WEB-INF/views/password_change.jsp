@@ -25,7 +25,8 @@ h1 {
 }
 
 body {
-	background-image: url("${root}images/login_back3.png");
+	overflow: hidden;
+	background-image: url("${root}images/login_logo2.jpg");
 	background-size: 100%;
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
@@ -50,17 +51,36 @@ main {
 	font-size: 18px;
 	color: #050099;
 	margin-bottom: 20px;
+	margin-top:60px;
+	margin-left:3px;
 	padding: 5px;
 	border: none;
 }
 
 #login {
 	border-radius: 3px;
-	margin-top: 40px;
+	margin-top: 20px;
 	font-size: 16px;
 	width: 408px;
 	height: 40px;
 	background-color: #000087;
+}
+
+footer {
+	margin-top:125px;
+	height: 50px;
+	color: #595959;
+}
+
+.addr_info {
+	margin-left: 10px;
+	margin-top:90px;
+	position: absolute;
+	left: 36.5%;
+	display: flex;
+	text-align: center;
+	font-size: xx-small;
+	border-top: 1px solid #595959;
 }
 
 div>.login-wrapper {
@@ -128,22 +148,7 @@ button {
 	color: #FFFFFF;
 }
 
-footer {
-	margin-top:200px;
-	height: 200px;
-	color: #595959;
-}
 
-.addr_info {
-	margin-left: 10px;
-	margin-top:90px;
-	position: absolute;
-	left: 36.5%;
-	display: flex;
-	text-align: center;
-	font-size: xx-small;
-	border-top: 1px solid #595959;
-}
 
 #pass {
 	font-family: 'Nanum Gothic', sans-serif;

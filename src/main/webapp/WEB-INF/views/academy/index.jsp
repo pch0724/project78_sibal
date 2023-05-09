@@ -7,9 +7,22 @@
 <meta charset="UTF-8">
 <title>학사 메인</title>
 </head>
+<style>
+.sec {
+   position: absolute;
+   top: 8%;
+   left: 15%;
+   width: 85%;
+   height: 92%;
+   background-image: url("${root }images/sec_bg.jpg");
+   background-size: 100%;
+}
+</style>
 <body>
-	
-	<c:import url="/WEB-INF/views/academy/base.jsp"/>
-	
+   
+   <c:import url="/WEB-INF/views/academy/base.jsp"/>
+   
+   <section class="sec">
+    </section>
 </body>
 </html>

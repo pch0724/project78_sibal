@@ -122,7 +122,7 @@
                <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>학생정보</b></span>
             </p>
             <table class="student-info-table">
-             <tr>
+             <tr style="height:40px; text-align: center;">
                  <th class="name-label" style="font-weight: bold">이름</th>
                  <td class="name-value">${modifyMemberBean.name }</td>
                  <th class="student-id-label" style="font-weight: bold">학번</th>

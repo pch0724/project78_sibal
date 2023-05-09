@@ -22,6 +22,10 @@ a {
    text-decoration: none;
    color: white
 }
+a:hover{
+   text-decoration: none;
+   color: white;
+}
 
 ul {
    list-style: none;
@@ -194,7 +198,6 @@ ul {
                      <ul>
                         <c:if test="${r_ID == 3}">
                            <li><a href="${root }enrollment/index">수강신청</a></li>
-                           <li><a href="${root }academy/enrollment">수강신청현황</a></li>
                            <li><a href="${root }academy/timetable">시간표조회</a></li>
                       </c:if>
                       <c:if test="${r_ID == 2}">

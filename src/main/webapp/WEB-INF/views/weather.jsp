@@ -131,8 +131,8 @@
     <div style="float: right; font-size: 11pt;">서울시 종로구&nbsp;&nbsp;&nbsp;</div>
     <p><p>
     <div style="display: flex; padding-top: 5%; justify-content: space-between; width: 90%">
-       <img id="weatherImage" src="" alt="날씨 이미지" />
-       <table id="weatherTable">
+       <img id="weatherImage" src="" alt="날씨 이미지" style="margin-top: 25px;"/>
+       <table id="weatherTable" style="margin-top: 25px;">
        </table>
     </div>
     <div id="ptyValue"></div>   

@@ -26,6 +26,9 @@
    height: 100%;
    overflow: auto;
 }
+.active, .collapsible:hover{
+	background-color: white;
+}
 </style>
 </head>
 <body>
@@ -81,14 +84,14 @@
 								<c:forEach var = "idx" begin="${pageBean.min }" end="${pageBean.max }">
 									<c:choose>
 										<c:when test="${idx == pageBean.currentPage }">
-											<li class = "page-item active">
+											<li class = "page-item active" style="background-color: white; color: white;" >
 												<a href="${root }board/main?page=${idx}" class="page-link">${idx }</a>
 											</li>
 										</c:when>
 										
 										<c:otherwise>
-											<li class = "page-item">
-												<a href="${root }board/main?page=${idx}" class="page-link">${idx }</a>
+											<li class = "page-item" >
+												<a href="${root }board/main?page=${idx}" class="page-link" >${idx }</a>
 											</li>
 										</c:otherwise>
 									</c:choose>

@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
@@ -51,10 +52,10 @@ $(document).ready(function() {
                 contentType: "application/json",
                 data: JSON.stringify(gradeBean),
                 success: function() {
-                    alert("성공적으로 데이터가 업데이트되었습니다.");
+                    swal('성공',"성적 입력이 완료 되었습니다.",'success');
                 },
                 error: function() {
-                    alert("데이터 업데이트 중 오류가 발생했습니다.");
+                    swal('실패',"데이터 업데이트 중 오류가 발생했습니다.",'error');
                 }
             });
         });

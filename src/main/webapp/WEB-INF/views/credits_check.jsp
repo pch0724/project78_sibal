@@ -38,7 +38,7 @@
         <canvas id="creditChart"></canvas>
     </div>
     <div id="table-container">
-        <table border="1">
+        <table style="margin-top: 45px;">
             <tr>
                 <th></th>
                 <th>취득</th>
