@@ -110,6 +110,8 @@ $(document).ready(function() {
 	              if (data === 'success') {
 	                  swal('성공','수강 신청이 완료되었습니다.',"success");
 	                  loadEnrolledLectures();
+	              } else if (data === 'overcredits') {
+	            	  swal('실패','신청 가능한 학점이 초과되었습니다.','error');
 	              } else if (data === 'daytimeError'){
 	            	  swal('실패','이미 동일한 시간대의 강의를 수강하고 있습니다.\n 다른 강의를 선택해주세요.',"error");  
 	              } else if (data === 'capacityError') {

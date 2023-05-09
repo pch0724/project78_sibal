@@ -41,8 +41,8 @@
         <table style="margin-top: 45px;">
             <tr>
                 <th></th>
-                <th>취득</th>
                 <th>수강</th>
+                <th>취득</th>
             </tr>
             <tr>
                <td>전공</td>

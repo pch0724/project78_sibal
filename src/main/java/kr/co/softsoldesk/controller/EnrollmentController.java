@@ -66,7 +66,14 @@ public class EnrollmentController {
        List<LectureBean> checkValidList = enrollmentService.getEnrolledLectures(loginMemberBean.getID(), semester, year);
        int cnt = gradeService.count(lecId, year, semester);
        int capacity = enrollmentService.capacity(lecId, year, semester);
-      
+       
+       int selectCredit = enrollmentService.selectCredits(lecId, year, semester);
+       int credits = enrollmentService.getEnrolledCredits(loginMemberBean.getID(), semester, year);
+       
+       if(credits + selectCredit > 18) {
+    	   return "overcredits";
+       }
+       
        for(LectureBean valid : checkValidList) {
 			if (valid.getDay().equals(checkValidBean.getDay()) && valid.getStarttime() <= checkValidBean.getEndtime()
 					&& valid.getEndtime() >= checkValidBean.getStarttime()) {

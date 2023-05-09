@@ -69,6 +69,19 @@ public interface EnrollmentMapper {
  //수강정원
    @Select("select capacity from lecture where lec_id=#{lec_ID} and year=#{year} and semester=#{semester}")
    int capacity(@Param("lec_ID") String lec_ID, @Param("year") int year, @Param("semester") int semester);
+
+   @Select("SELECT NVL(SUM(credits), 0) AS total_credits "
+		   + "FROM LECTURE "
+		   + "INNER JOIN MEMBER ON MEMBER.ID = LECTURE.P_ID "
+		   + "INNER JOIN GRADE ON LECTURE.LEC_ID=GRADE.LEC_ID AND LECTURE.YEAR=GRADE.YEAR AND SEMESTER=G_SEMESTER "
+		   + "WHERE STD_ID= #{stdId} AND SEMESTER = #{semester} AND LECTURE.YEAR = #{year}")
+   int getEnrolledCredits(@Param("stdId") int stdId,
+		   @Param("semester") int semester,
+		   @Param("year") int year);
+   
+   
+   @Select("select credits from lecture where lec_id=#{lec_ID} and year=#{year} and semester=#{semester}")
+   int selectCredits(@Param("lec_ID") String lec_ID, @Param("year") int year, @Param("semester") int semester);
    
    
    

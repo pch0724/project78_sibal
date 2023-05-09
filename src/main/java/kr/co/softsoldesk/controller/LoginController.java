@@ -42,7 +42,7 @@ public class LoginController {
 
 	@PostMapping("/login_pro")
 	public String login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, BindingResult result) {
-			
+
 		if(result.hasErrors()) {
 			System.out.println("error");
 			System.out.println(result.getAllErrors()); 

@@ -59,4 +59,12 @@ public class EnrollmentService {
 			@Param("semester") int semester) {
 		return enrollmentDao.checkValidBean_Select(lec_ID, year, semester);
 	}
+	
+	public int getEnrolledCredits(@Param("stdId") int stdId, @Param("semester") int semester, @Param("year") int year) {
+		return enrollmentDao.getEnrolledCredits(stdId, semester, year);
+	}
+	
+	public int selectCredits(@Param("lec_ID") String lec_ID, @Param("year") int year, @Param("semester") int semester) {
+		return enrollmentDao.selectCredits(lec_ID, year, semester);
+	}
 }

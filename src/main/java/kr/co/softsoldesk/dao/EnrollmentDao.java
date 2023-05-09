@@ -45,4 +45,12 @@ public class EnrollmentDao {
 									@Param("semester") int semester) {
 			return lectureMapper.checkValidBean_Select(lec_ID, year, semester);
 		}
+		
+		public int getEnrolledCredits(@Param("stdId") int stdId, @Param("semester") int semester, @Param("year") int year) {
+			return enrollmentMapper.getEnrolledCredits(stdId, semester, year);
+		}
+		
+		public int selectCredits(@Param("lec_ID") String lec_ID, @Param("year") int year, @Param("semester") int semester) {
+			return enrollmentMapper.selectCredits(lec_ID, year, semester);
+		}
 }
