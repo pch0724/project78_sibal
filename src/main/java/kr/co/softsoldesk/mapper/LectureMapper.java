@@ -18,4 +18,9 @@ public interface LectureMapper {
 	                            		@Param("year") int year,
 	                            		@Param("semester") int semester);
 	
+	@Select("select day, starttime, endtime from lecture where lec_ID = '${lec_ID}' and year = ${year} and semester = ${semester}")
+	LectureBean checkValidBean_Select (@Param("lec_ID")  String lec_ID,
+								@Param("year") int year,
+								@Param("semester") int semester);
+	
 }

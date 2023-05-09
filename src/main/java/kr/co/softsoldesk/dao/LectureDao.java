@@ -12,16 +12,21 @@ import kr.co.softsoldesk.mapper.MemberMapper;
 
 @Repository
 public class LectureDao {
-	
+
 	@Autowired
-	   private MemberMapper memberMapper;
-	      
-	   public List<LectureBean> getTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester) {
-	        return memberMapper.getTimeTableUserInfo(ID,year,semester);  
-	        
-	  }
-	   public List<LectureBean> getProfessorTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester){
-	      
-	      return memberMapper.getProfessorTimeTableUserInfo(ID, year, semester);
-	   }
+	private MemberMapper memberMapper;
+	@Autowired
+	private LectureMapper lectureMapper;
+
+	public List<LectureBean> getTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester) {
+		return memberMapper.getTimeTableUserInfo(ID, year, semester);
+
+	}
+
+	public List<LectureBean> getProfessorTimeTableUserInfo(@Param("ID") int ID, @Param("year") int year, @Param("semester") int semester) {
+
+		return memberMapper.getProfessorTimeTableUserInfo(ID, year, semester);
+	}
+
+	
 }

@@ -31,6 +31,7 @@ import kr.co.softsoldesk.interceptor.MemberSessionInterceptor;
 import kr.co.softsoldesk.mapper.BoardMapper;
 import kr.co.softsoldesk.mapper.ClassroomMapper;
 import kr.co.softsoldesk.mapper.DepartmentMapper;
+import kr.co.softsoldesk.mapper.EnrollmentMapper;
 import kr.co.softsoldesk.mapper.EvaluationMapper;
 import kr.co.softsoldesk.mapper.GradeMapper;
 import kr.co.softsoldesk.mapper.LectureMapper;
@@ -202,6 +203,16 @@ public class ServletAppContext implements WebMvcConfigurer{
 	public MapperFactoryBean<EvaluationMapper> getEvaluationMapper(SqlSessionFactory factory) throws Exception {
 		
 		MapperFactoryBean<EvaluationMapper> factoryBean = new MapperFactoryBean<EvaluationMapper>(EvaluationMapper.class);
+		
+		factoryBean.setSqlSessionFactory(factory);
+		
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<EnrollmentMapper> getEnrollmentMapper(SqlSessionFactory factory) throws Exception {
+		
+		MapperFactoryBean<EnrollmentMapper> factoryBean = new MapperFactoryBean<EnrollmentMapper>(EnrollmentMapper.class);
 		
 		factoryBean.setSqlSessionFactory(factory);
 		

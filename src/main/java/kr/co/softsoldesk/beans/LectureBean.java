@@ -24,7 +24,11 @@ public class LectureBean {
 	
 	
 	//=======================
-	private int ID;
+	   private int ID;
+	   private int std_ID;
+	   private String name;
+	   private int available_seats;
+	   private int enroll_count;
 	
 
 }

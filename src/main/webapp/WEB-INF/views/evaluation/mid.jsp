@@ -71,6 +71,8 @@
   text-align: center;
 }
 .table caption{caption-side: bottom; display: none;}
+input:focus {outline:none;}
+
 </style>
 </head>
 <body >

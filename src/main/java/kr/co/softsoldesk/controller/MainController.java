@@ -39,6 +39,20 @@ public class MainController {
 		int r_ID = loginMemberBean.getR_ID();
 		model.addAttribute("r_ID", r_ID);
 		
+		String name = loginMemberBean.getName();
+		model.addAttribute("name", name);
+		
+		if(r_ID == 1) {
+			String r_name = "관리자";
+			model.addAttribute("r_name", r_name);
+		}else if(r_ID == 2) {
+			String r_name = "교수";
+			model.addAttribute("r_name", r_name);			
+		}else if(r_ID == 3) {
+			String r_name = "학생";
+			model.addAttribute("r_name", r_name);			
+		}
+		
 		List<BoardBean> list = new ArrayList<BoardBean>();
 		for(int i=1; i<=4; i++) {
 			list = mainService.getMainList();

@@ -89,8 +89,7 @@ label {
 }
 
 .btn-primary {
-	background-color: #007bff;
-	border-color: #007bff;
+	border-radius: 5px; border: 1px solid #168;color:#168; background: #f0f6f9;"
 }
 
 .btn-primary:hover {
@@ -106,6 +105,8 @@ label {
 	background-color: #0062cc;
 	border-color: #005cbf;
 }
+input:focus {outline:none;}
+
 </style>
 <script type="text/javascript">
 	function readURL(input) {
@@ -119,6 +120,7 @@ label {
 			document.getElementById('preview').src = "";
 		}
 	}
+
 </script>
 </head>
 <body>
@@ -128,7 +130,7 @@ label {
 		<div class = "contents">
 			<form:form action="${root }academy/personal_info_pro" method="post" modelAttribute="modifyMemberBean" enctype="multipart/form-data">
 			<input type="hidden" value = "${r_ID }" />
-				<table>
+				<table style="border-radius: 10px;">
 					<tr>
 					<td colspan="6" style ="padding: 0.5em 0.6em; text-align: left; font-size: 22px; color: #168"><b>개인정보수정</b></td>
 					</tr>
@@ -246,7 +248,7 @@ label {
 					
 					<tr align="center">
 						<td colspan="6">
-							<form:button class="btn btn-primary">정보수정</form:button>
+							<form:button id="btn1" class="btn btn-primary">정보수정</form:button>
 						</td>
 					</tr>
 				</table>

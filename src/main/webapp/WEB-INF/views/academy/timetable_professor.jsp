@@ -38,7 +38,9 @@
    
    }
    .readonly{
-      margin-bottom: 5px;
+      border-radius: 5px; 
+	border: 1px solid #168;
+	outline: none;
    }
    
    
@@ -116,7 +118,12 @@ th {
 td {
   border: 1px solid #ddd;
 }
-
+input:focus {outline:none;}
+#choose{
+	border-radius: 5px; 
+	border: 1px solid #168;
+	outline: none;
+}
 </style>
 </head>
 <body>
@@ -140,18 +147,18 @@ td {
             </table>
             <br />
            &nbsp;연도 :&nbsp;
-           <form:select path="year">
+           <form:select path="year" id="choose">
              <form:option value="2022">2022</form:option>
              <form:option value="2023">2023</form:option>
            </form:select>
            학기 :&nbsp;
-           <form:select path="semester">
+           <form:select path="semester" id="choose">
              <form:option value="1">1학기</form:option>
              <form:option value="2">2학기</form:option>
            </form:select>
            <br />
            <br />
-           <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 90px; color:#168; background: #f0f6f9;"/>
+           <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 90px; color:#168; background: white;"/>
          </form:form>
          </div>
             <div class="right-div">
@@ -166,20 +173,38 @@ td {
                         <th>금</th>
                      </tr>
                      <c:forEach var="time" begin="1" end="14">
-                        <tr>
-                           <td align="center" style="width: 40px;">${time}</td>
-                           <c:forEach var="day" items="${day}">
-                              <td align="center" style="padding: 0; margin: 0;" >
-                                 <c:forEach var="lecture" items="${getProfessorTimeTableUserInfo}">
-                                    <c:if test="${lecture.day eq day && lecture.starttime <= time && lecture.endtime >= time}">
-                                       <b><span style="font-size: 13px; margin: 0;" class="lecture-cell ${lecture.lec_name}-cell">[&nbsp;${lecture.completion }&nbsp;]<br />${lecture.lec_name}&nbsp;(${lecture.c_ID})</span></b>
-                                  <c:set var="highlight" value="${lecture.lec_name}-highlight" />
-                                    </c:if>
-                                 </c:forEach>
-                              </td>
-                           </c:forEach>
-                        </tr>
-                     </c:forEach>
+							<tr style="border: 1px solid #ccc;">
+								<td align="center"
+									style="width: 40px; height: 40px; border: 1px solid #ccc; font-weight: bold;">${time}</td>
+								<c:forEach var="day" items="${day}">
+									<c:set var="printed" value="false" />
+									<c:forEach var="lecture" items="${getProfessorTimeTableUserInfo}">
+										<c:if test="${lecture.day eq day && lecture.starttime == time}">
+											<c:set var="rowspan" value="${lecture.endtime - lecture.starttime + 1}" />
+											<td align="center" style="width: 75px; padding: 0; margin: 0; border: 1px solid #ccc; background: #f0f6f9; border-top: 2px solid #168; border-bottom: 2px solid #168;" rowspan="${rowspan}">
+											<span style="font-size: 13px;"> 
+												[&nbsp;${lecture.completion }&nbsp;] <br /> ${lecture.lec_name}&nbsp;(${lecture.c_ID})
+											</span>
+											</td>
+											<c:set var="printed" value="true" />
+										</c:if>
+									</c:forEach>
+									<c:if test="${!printed}">
+										<c:set var="skipCell" value="false" />
+										<c:forEach var="lecture" items="${getProfessorTimeTableUserInfo}">
+											<c:if
+												test="${lecture.day eq day && lecture.starttime < time && lecture.endtime >= time}">
+												<c:set var="skipCell" value="true" />
+											</c:if>
+										</c:forEach>
+										<c:if test="${!skipCell}">
+											<td align="center"
+												style="width: 75px; padding: 0; margin: 0; border: 1px solid #ccc;"></td>
+										</c:if>
+									</c:if>
+								</c:forEach>
+							</tr>
+						</c:forEach>
                   </table>
                </div>
             </div>

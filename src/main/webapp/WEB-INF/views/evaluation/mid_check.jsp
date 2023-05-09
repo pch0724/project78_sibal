@@ -245,20 +245,20 @@ function loadFeedbackList(lec_id) {
          <tr>
             <th style="font-weight: bold">년도</th>
             <td>
-                <select name="year">
+                &nbsp;<select name="year" style="border-radius: 5px; border: 1px solid #168;">
                     <option ${year == 2022 ? 'selected' : ''}>2022</option>
                     <option ${year == 2023 ? 'selected' : ''}>2023</option>
                 </select>
             </td>
               <th style="font-weight: bold">학기</th>
               <td>
-                <select name="semester">
+                &nbsp;<select name="semester" style="border-radius: 5px; border: 1px solid #168;">
                     <option ${semester == 1 ? 'selected' : ''}>1</option>
                     <option ${semester == 2 ? 'selected' : ''}>2</option>
                 </select>
             </td>
               <td>
-                 <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 10px; color:#168; background: #f0f6f9;">
+                 <input type="submit" value="조회" style="border-radius: 5px; border: 1px solid #168; margin-left: 10px; color:#168; background: #f0f6f9; ">
               </td>
               
          </tr>
@@ -293,7 +293,7 @@ function loadFeedbackList(lec_id) {
                <td class="lec-class">${list.get(i).c_ID }</td>
                <td class="lec-day">${list.get(i).day }</td>
                <td class="lec-time">${list.get(i).starttime }교시 ~ ${list.get(i).endtime }교시</td>
-               <td>
+               <td align="center">
                   <input type="button" value="선택" onclick="inputg('${list.get(i).lec_ID}', ${year}, ${semester})" style="border-radius: 5px; border: 1px solid #168; color:#168; background: #f0f6f9;"/>
                   
                </td>

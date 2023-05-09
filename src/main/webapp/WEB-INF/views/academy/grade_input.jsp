@@ -9,7 +9,7 @@
 <html>
 <head>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
 <script>
 $(document).ready(function() {
@@ -79,48 +79,8 @@ $(document).ready(function() {
    height: 100%;
 }
 
-.lec-sel {
-   display: flex; /* Flexbox 레이아웃 적용 */
-   flex-wrap: nowrap;
-   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
-}
 
-.lec-sel2 {
-   display: flex; /* Flexbox 레이아웃 적용 */
-   flex-wrap: nowrap;
-   align-items: center; /* 내부 요소들을 수직 가운데 정렬 */
-}
-
-.lec-sel>div {
-   flex-basis: 0;
-   flex-grow: 1;
-   text-align: center;
-   border-right: 2px solid #44f;
-   padding: 10px;
-   height: 10px;
-}
-
-.lec-sel2>div {
-   flex-basis: 0;
-   flex-grow: 1;
-   text-align: center;
-   border-right: 1px solid #ccc;
-   padding: 5px;
-}
 /* 교수정보 css  */
-.lecture-info {
-   display: flex;
-   align-items: center;
-   justify-content: flex-start;
-   padding: 10px;
-   border: none;
-}
-
-.lecture-info>div {
-   text-align: left;
-   padding: 0 10px;
-   border-right: 2px solid #4444ff;
-}
 
 .lecture-id-value {
    border-right: none;
@@ -168,6 +128,74 @@ $(document).ready(function() {
    overflow-y: auto;
    box-sizing: border-box;
 }
+
+.lec-tbl{
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
+}
+.lec-tbl th {
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+}
+.lec-tbl th, .lec-tbl td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.lec-tbl th:first-child, .lec-tbl td:first-child {
+  border-left: 0;
+}
+.lec-tbl th:last-child, .lec-tbl td:last-child {
+  border-right: 0;
+}
+.lec-tbl tr td:first-child{
+  text-align: center;
+}
+.lec-tbl caption{caption-side: bottom; display: none;}
+
+.input-info-tbl{
+   display: table;
+   border-collapse: collapse;
+    border-top: 3px solid #168;
+    width: 100%;
+    
+}
+
+#tr{
+   display: table-row;
+}
+#td{
+   display: table-cell;
+}
+#th{
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+  display: table-cell;
+}
+#th, #td{
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+#th:first-child, #td:first-child {
+  border-left: 0;
+}
+#th:last-child, #td:last-child {
+  border-right: 0;
+}
+#tr #td:first-child{
+  text-align: center;
+}
+.input-info-tbl caption{caption-side: bottom; display: none;}
+#choose{
+	border-radius: 5px; 
+	border: 1px solid #168; 
+	color:#168; 
+	background: #f0f6f9;"
+}
+input:focus {outline:none;}
 </style>
 </head>
 <body>
@@ -204,76 +232,89 @@ $(document).ready(function() {
       <div class="contents">
 
    <!-- 강의선택  -->
-         <div style="text-align: left; font-size: 18px; padding: 5px;">강의 선택</div>
-         <div class="lec-sel" style="font-weight: bold">
-            <div class="lec-id">학수번호</div>
-            <div class="lec-name">과목명</div>
-            <div class="lec-type">이수구분</div>
-            <div class="lec-grade">학년</div>
-            <div class="lec-credit">학점</div>
-            <div class="lec-class">강의실</div>
-            <div class="lec-number">수강인원</div>
-            <div class="lec-day">요일</div>
-            <div class="lec-time">시간</div>
-            <div>비고</div>
-         </div>
+         <p>
+           <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>강의 선택</b></span>
+        </p>
+        <table class="lec-tbl">
+         <tr class="lec-sel" style="font-weight: bold">
+            <th class="lec-id">학수번호</th>
+            <th class="lec-name">과목명</th>
+            <th class="lec-type">이수구분</th>
+            <th class="lec-grade">학년</th>
+            <th class="lec-credit">학점</th>
+            <th class="lec-class">강의실</th>
+            <th class="lec-number">수강인원</th>
+            <th class="lec-day">요일</th>
+            <th class="lec-time">시간</th>
+            <th>비고</th>
+         </tr>
 
 
 
 
          <c:forEach var="i" begin="0" end="${size }">
-            <div class="lec-sel2">
-               <div class="lec-id">${list.get(i).lec_ID }</div>
-               <div class="lec-name">${list.get(i).lec_name }</div>
-               <div class="lec-type">${list.get(i).completion }</div>
-               <div class="lec-grade">${list.get(i).grade }</div>
-               <div class="lec-credit">${list.get(i).credits }</div>
-               <div class="lec-class">${list.get(i).c_ID }</div>
-               <div class="lec-number">${counts[i] }</div>
-               <div class="lec-day">${list.get(i).day }</div>
-               <div class="lec-time">${list.get(i).starttime }교시~ ${list.get(i).endtime }교시</div>
-               <div>
-                  <input type="button" value="선택" onclick="LecSection(${i })" />
-               </div>
-            </div>
+            <tr class="lec-sel2">
+               <td class="lec-id">${list.get(i).lec_ID }</td>
+               <td class="lec-name">${list.get(i).lec_name }</td>
+               <td class="lec-type">${list.get(i).completion }</td>
+               <td class="lec-grade">${list.get(i).grade }</td>
+               <td class="lec-credit">${list.get(i).credits }</td>
+               <td class="lec-class">${list.get(i).c_ID }</td>
+               <td class="lec-number">${counts[i] }</td>
+               <td class="lec-day">${list.get(i).day }</td>
+               <td class="lec-time">${list.get(i).starttime }교시~ ${list.get(i).endtime }교시</td>
+               <td align="center">
+                  <input type="button" value="선택" onclick="LecSection(${i })" style="border-radius: 5px; border: 1px solid #168; color:#168; background: #f0f6f9;"/>
+               </td>
+            </tr>
          </c:forEach>
-         <hr />
+         </table>
+       
          <p></p>
 
 <!-- 과목정보  -->
          <c:forEach var="i" begin="0" end="${size }">
             <section id="LecSection${i }" style="display: none">
-               <div style="text-align: left; font-size: 18px; padding: 5px;">과목정보</div>
-                  <div class="lecture-info">
-                     <div class="name-label" style="font-weight: bold">과목명</div>
-                     <div class="name-value">${list.get(i).lec_name }</div>
-                     <div class="lecture-id-label" style="font-weight: bold">학수번호</div>
-                     <div class="lecture-id-value">${list.get(i).lec_ID }</div>
-                  </div>
-                  <div class="lecture-info">
-                     <div class="class-label" style="font-weight: bold">강의실</div>
-                     <div class="class-value">${list.get(i).c_ID }</div>
-                     <div class="day-label" style="font-weight: bold">요일</div>
-                     <div class="day-value">${list.get(i).day }</div>
-                     <div class="time-label" style="font-weight: bold">시간</div>
-                     <div class="time-value">${list.get(i).starttime }교시~ ${list.get(i).endtime }교시</div>
-                  </div>
-
+               <p>
+                 <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>과목 정보</b></span>
+              </p>
+              <table class="lec-tbl">
+                  <tr class="lecture-info">
+                     <th class="name-label" style="font-weight: bold">과목명</th>
+                     <td class="name-value">${list.get(i).lec_name }</td>
+                     <th class="lecture-id-label" style="font-weight: bold">학수번호</th>
+                     <td class="lecture-id-value">${list.get(i).lec_ID }</td>
+                  
+                     <th class="class-label" style="font-weight: bold">강의실</th>
+                     <td class="class-value">${list.get(i).c_ID }</td>
+                     <th class="day-label" style="font-weight: bold">요일</th>
+                     <td class="day-value">${list.get(i).day }</td>
+                     <th class="time-label" style="font-weight: bold">시간</th>
+                     <td class="time-value">${list.get(i).starttime }교시~ ${list.get(i).endtime }교시</td>
+                  </tr>
+            </table>
 <!-- 개별성적보기 -->
-                  <div style="text-align: left; font-size: 18px; padding: 5px; display: flex; justify-content: space-between;">
-                     <div>성적입력</div>
+                  <p>
+                   <span style="padding: 0.5em 0.6em; color: #168; font-size: 16pt;"><b>성적 입력</b></span>
+                  </p>
+                  
+                 <div class="input-info-tbl">
+                  
+                  <div class="gradeinput-info" id="tr" style="font-weight: bold">
+                     <div class="std-id" id="th" style="width:14%;">&nbsp;학번&nbsp;</div>
+                     
+                     <div class="std-name" id="th" style="width:10.7%;">이름</div>
+                     <div class="major" id="th" style="width:10.7%;">&nbsp;&nbsp;학과&nbsp;&nbsp;</div>
+                     <div class="std-grade" id="th" style="width:10.6%;">학년</div>
+                     <div class="attendance" id="th" style="width:10.7%;">출석</div>
+                     <div class="midterm" id="th" style="width:10.7%;">중간</div>
+                     <div class="final" id="th" style="width:10.6%;">기말</div>
+                     <div class="assignment" id="th" style="width:10.7%;">과제</div>
+                     <div class="selection" id="th" style="width:10.7%;">비고</div>
+                     <div id="th" style="width: 1%;"></div>
                   </div>
-                  <div class="gradeinput-info" style="font-weight: bold">
-                     <div class="std-id">&nbsp;학번&nbsp;</div>
-                     <div class="std-name">이름</div>
-                     <div class="major">&nbsp;&nbsp;학과&nbsp;&nbsp;</div>
-                     <div class="std-grade">학년</div>
-                     <div class="attendance">출석</div>
-                     <div class="midterm">중간</div>
-                     <div class="final">기말</div>
-                     <div class="assignment">과제</div>
-                     <div class="selection">비고</div>
-                  </div>
+                 </div>
+                  <div class="input-info-tbl">
                   <section class="overflow-section">
                      <input type="hidden" name="lec_ID" value="${list.get(i).lec_ID}" />
                      <input type="hidden" name="year" value="2022" />
@@ -281,31 +322,31 @@ $(document).ready(function() {
                      <form:form modelAttribute="grade_input" action="#">
                      
                      <c:forEach var="grade1" items="${stdList[i] }" varStatus="loop">
-                        <div class="gradeinput-info"> 
-                           <div class="std_ID">${grade1.std_ID }</div>
-                           <div class="std-name">${grade1.name }</div>
-                           <div class="major">${grade1.d_name }</div>
-                           <div class="std-grade">${grade1.grade }</div>
-                           <div class="attendance" style="display: inline-block;">
+                        <div class="gradeinput-info" id="tr"> 
+                           <div class="std_ID" id="td" style="width:4.5%;">${grade1.std_ID }</div>
+                           <div class="std-name" id="td" style="width:4.5%;">${grade1.name }</div>
+                           <div class="major" id="td" style="width:4.5%;">${grade1.d_name }</div>
+                           <div class="std-grade" id="td" style="width:4.5%;">${grade1.grade }</div>
+                           <div class="attendance" id="td" style="width:4.5%;">
                               <form:input path="at_score"  style="width: 20px" disabled="true" />
                               <div style="color: gray; font-size: 11px;">/20</div>
                            </div>
-                           <div class="midterm" style="display: inline-block;">
+                           <div class="midterm" id="td" style="width:4.5%;">
                               <form:input path="m_score"  style="width: 20px" disabled="true" />
                               <div style="color: gray; font-size: 11px">/30</div>
                            </div>
-                           <div class="final" style="display: inline-block;">
+                           <div class="final" id="td" style="width:4.5%;">
                               <form:input path="f_score" style="width: 20px" disabled="true" />
                               <div style="color: gray; font-size: 11px">/30</div>
                            </div>
-                           <div class="assignment" style="display: inline-block;">
+                           <div class="assignment" id="td" style="width:4.5%;">
                               <form:input path="a_score"  style="width: 20px" disabled="true" />
                               <div style="color: gray; font-size: 11px">/20</div>
                            </div>
-                           <div class="selection">
+                           <div class="selection" id="td" style="width:4.5%;">
                               <div>
-                                  <input type="button" onclick="toggleInput(this)" value="선택" />
-                                  <form:button class="submit-btn" data-lec-id="${list.get(i).lec_ID}" data-std-id="${grade1.std_ID}">제출</form:button>
+                                  <input id="choose" type="button" onclick="toggleInput(this)" value="선택" />
+                                  <form:button id="choose" class="submit-btn" data-lec-id="${list.get(i).lec_ID}" data-std-id="${grade1.std_ID}">제출</form:button>
                 
                               </div>
                            </div>
@@ -313,6 +354,7 @@ $(document).ready(function() {
                      </c:forEach>
                      </form:form>
                   </section>
+                 </div>
                </section>
             </c:forEach>
             <hr />
@@ -320,18 +362,18 @@ $(document).ready(function() {
    </section>
 </body>
 <script>
-	function toggleInput(button) {
-	     // 선택 버튼의 상위 요소인 div.gradeinput-info를 찾습니다.
-	     var gradeInfoDiv = button.parentElement.parentElement.parentElement;
-	
-	     // 상위 요소에서 입력란을 찾습니다.
-	     var inputs = gradeInfoDiv.querySelectorAll("input[type='text']");
-	
-	     // 입력란의 readonly 속성을 반전시킵니다.
-	     inputs.forEach(input => {
-	     <%--  input.readOnly = !input.readOnly; --%>
-	       input.disabled = !input.disabled
-	     });
-	}      
+   function toggleInput(button) {
+        // 선택 버튼의 상위 요소인 div.gradeinput-info를 찾습니다.
+        var gradeInfoDiv = button.parentElement.parentElement.parentElement;
+   
+        // 상위 요소에서 입력란을 찾습니다.
+        var inputs = gradeInfoDiv.querySelectorAll("input[type='text']");
+   
+        // 입력란의 readonly 속성을 반전시킵니다.
+        inputs.forEach(input => {
+        <%--  input.readOnly = !input.readOnly; --%>
+          input.disabled = !input.disabled
+        });
+   }      
 </script>
 </html>

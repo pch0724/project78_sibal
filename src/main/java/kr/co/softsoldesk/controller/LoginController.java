@@ -33,7 +33,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
 						@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
-		tempLoginMemberBean.setID(0);
+		tempLoginMemberBean.setID(null);
 		
 		model.addAttribute("fail", fail);
 		

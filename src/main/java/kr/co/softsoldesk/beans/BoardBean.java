@@ -15,7 +15,7 @@ public class BoardBean {
 	private int board_idx;
 	//private String category;
 	@NotBlank(message = "제목을 입력하세요.")
-	@Size(min = 4, max = 20, message = "4 ~ 20자 이내로 입력하세요.")
+	@Size(min = 3, max = 100, message = "3 ~ 100자 이내로 입력하세요.")
 	private String title;
 	private int w_ID; //MEMBER - ID랑 연결될 예정
 	private String w_name;

@@ -134,8 +134,9 @@ ul {
 </script>
 <body style="margin: 0;">
    <div style="position: absolute; background-color: navy; width: 100%; height: 8%;">
-            <img style="width: 100%; height: 66px; position: relative; margin-left: -1px;" src="${root }images/topblue.png">
-      <div class="logo"><a href="${root }ma/index"><img src="${root }images/logo_ex7.png" alt="Logo" /></a>
+            <img style="width: 100%; height: 66px; position: relative; margin-left: -1px;" src="${root }images/top_final.png">
+      <div class="logo"><a href="${root }ma/index"><img src="${root }images/logo_ex5.png" alt="Logo" /></a>
+      
          <button id="login" >
                <a href="${root }logout" style="text-decoration: none; color: white;">로그아웃</a>
          </button>&nbsp;&nbsp;

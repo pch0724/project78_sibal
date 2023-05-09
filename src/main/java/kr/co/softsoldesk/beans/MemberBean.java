@@ -15,7 +15,7 @@ import lombok.Setter;
 public class MemberBean {
 	
 	
-	private int ID;
+	private Integer ID;
 	
 	@Size(min = 4, max = 18, message = "4~18자 이내로 입력")
 	@Pattern(regexp = "[a-zA-Z0-9]*", message = "영어 대소문자 또는 숫자만 입력")
@@ -66,6 +66,12 @@ public class MemberBean {
 	private boolean memberIdExist;
 	
 	private boolean memberLogin;
+	
+	private String lec_name;
+	
+	private String completion;
+	
+	private String r_name;
 	
 	public MemberBean() {
 		this.memberIdExist = false;
